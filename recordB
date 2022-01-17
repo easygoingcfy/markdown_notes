@@ -1,0 +1,2725 @@
+record_list {
+  timestamp_sec: 1637628905.6818492
+  text: " R"
+  take_over: false
+  is_manual: false
+  time: "08:55:05 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637628918.91649
+  text: "AS_TRAJ_DELAY"
+  take_over: false
+  is_manual: false
+  time: "08:55:18 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637628972.4383237
+  text: "reset tos start"
+  take_over: false
+  is_manual: false
+  time: "08:56:12 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637628972.8963785
+  text: "reset tos ok and wait reply"
+  take_over: false
+  is_manual: false
+  time: "08:56:12 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637628983.0710471
+  text: "reset tos ok and get reply"
+  take_over: false
+  is_manual: false
+  time: "08:56:23 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637628983.3916929
+  text: " R"
+  take_over: false
+  is_manual: false
+  time: "08:56:23 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637629095.3553669
+  text: "reset tos start"
+  take_over: false
+  is_manual: false
+  time: "08:58:15 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637629095.500515
+  text: "reset tos ok and wait reply"
+  take_over: false
+  is_manual: false
+  time: "08:58:15 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637629105.2872908
+  text: "reset tos ok and get reply"
+  take_over: false
+  is_manual: false
+  time: "08:58:25 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637629105.5170686
+  text: " R"
+  take_over: false
+  is_manual: false
+  time: "08:58:25 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637629122.4398568
+  text: "UNLOAD CR43 R"
+  take_over: false
+  is_manual: false
+  time: "08:58:42 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637629202.7932224
+  text: "\346\216\245\347\256\241"
+  take_over: true
+  is_system_error_caused: true
+  is_manual: false
+  time: "09:00:02 23/11/2021"
+  system_error_reason: "OTHER_FUNCTIONAL_TAKEOVERS"
+  driver_id: 221
+  driver_name: "\346\235\250\351\221\253"
+  driver_license: "NJY692"
+}
+record_list {
+  timestamp_sec: 1637629258.4496078
+  text: "reset tos start"
+  take_over: false
+  is_manual: false
+  time: "09:00:58 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637629258.6890903
+  text: "reset tos ok and wait reply"
+  take_over: false
+  is_manual: false
+  time: "09:00:58 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637629268.2227528
+  text: "reset tos ok and get reply"
+  take_over: false
+  is_manual: false
+  time: "09:01:08 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637629268.6756425
+  text: "UNLOAD CR43 R"
+  take_over: false
+  is_manual: false
+  time: "09:01:08 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637629280.661763
+  text: "[ActiveSafety] [AUTO 1] Idle by [STATE: MONITOR_TOPIC_DELAY @ 1637629280.661476], antenna [REMOTE_ENVIRONMENT] has delay 0.609982 with acceptable_delay 0.600000"
+  take_over: false
+  is_manual: false
+  time: "09:01:20 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637629280.7141485
+  text: "[ActiveSafety] [AUTO 1] normal"
+  take_over: false
+  is_manual: false
+  time: "09:01:20 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637629539.8194227
+  text: "\346\216\245\347\256\241"
+  take_over: true
+  is_system_error_caused: false
+  is_manual: false
+  time: "09:05:39 23/11/2021"
+  driver_id: 221
+  driver_name: "\346\235\250\351\221\253"
+  driver_license: "NJY692"
+}
+record_list {
+  timestamp_sec: 1637629573.7107916
+  text: "VISION_LANE_KEEP_INVALID"
+  take_over: false
+  is_manual: false
+  time: "09:06:13 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637629585.5195138
+  text: "VISION_LANE_KEEP_INVALID"
+  take_over: false
+  is_manual: false
+  time: "09:06:25 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637629603.3755424
+  text: "VISION_LANE_KEEP_INVALID"
+  take_over: false
+  is_manual: false
+  time: "09:06:43 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637629670.4433744
+  text: "reset tos start"
+  take_over: false
+  is_manual: false
+  time: "09:07:50 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637629670.6445193
+  text: "reset tos ok and wait reply"
+  take_over: false
+  is_manual: false
+  time: "09:07:50 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637629680.5058188
+  text: "reset tos ok and get reply"
+  take_over: false
+  is_manual: false
+  time: "09:08:00 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637629680.931602
+  text: "UNLOAD CR43 R"
+  take_over: false
+  is_manual: false
+  time: "09:08:00 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637629744.0161331
+  text: "Crane43:Egox: -22.412903, fixed offset: 22.270000, container offset: -0.169991, final target offset: -0.312893, target_dist: -0.291570 , target dist is used."
+  take_over: false
+  is_manual: false
+  time: "09:09:04 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637629809.8747075
+  text: "LOAD CR42 R"
+  take_over: false
+  is_manual: false
+  time: "09:10:09 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637629910.5096223
+  text: "Crane42:Egox: -22.346469, fixed offset: 22.270000, container offset: 0.160814, final target offset: 0.084345, target_dist: -0.007447 , target dist is used."
+  take_over: false
+  is_manual: false
+  time: "09:11:50 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637629957.5535643
+  text: "UNLOAD 6L39"
+  take_over: false
+  is_manual: false
+  time: "09:12:37 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637630552.1091588
+  text: "UNLOAD 1K37"
+  take_over: false
+  is_manual: false
+  time: "09:22:32 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637630587.1689022
+  text: "UNLOAD 1K37"
+  take_over: false
+  is_manual: false
+  time: "09:23:07 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637630624.0647113
+  text: "UNLOAD 1K37"
+  take_over: false
+  is_manual: false
+  time: "09:23:44 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637630661.6610265
+  text: "UNLOAD 1K37"
+  take_over: false
+  is_manual: false
+  time: "09:24:21 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637630700.3745317
+  text: "UNLOAD 1K37"
+  take_over: false
+  is_manual: false
+  time: "09:25:00 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637630737.8684275
+  text: "UNLOAD 1K37"
+  take_over: false
+  is_manual: false
+  time: "09:25:37 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637630759.4943364
+  text: "UNLOAD 1K37"
+  take_over: false
+  is_manual: false
+  time: "09:25:59 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637630781.5371048
+  text: "UNLOAD 1K37"
+  take_over: false
+  is_manual: false
+  time: "09:26:21 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637630804.4466186
+  text: "UNLOAD 1K37"
+  take_over: false
+  is_manual: false
+  time: "09:26:44 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637630845.6991358
+  text: "UNLOAD 1K37"
+  take_over: false
+  is_manual: false
+  time: "09:27:25 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637630870.6055653
+  text: "UNLOAD 1K37"
+  take_over: false
+  is_manual: false
+  time: "09:27:50 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637630908.6658893
+  text: "UNLOAD 1K37"
+  take_over: false
+  is_manual: false
+  time: "09:28:28 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637630929.7029862
+  text: "UNLOAD 1K37"
+  take_over: false
+  is_manual: false
+  time: "09:28:49 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637630952.3577034
+  text: "UNLOAD 1K37"
+  take_over: false
+  is_manual: false
+  time: "09:29:12 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637630978.1402452
+  text: "UNLOAD 1K37"
+  take_over: false
+  is_manual: false
+  time: "09:29:38 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637631000.7304881
+  text: "UNLOAD 1K37"
+  take_over: false
+  is_manual: false
+  time: "09:30:00 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637631022.3803363
+  text: "UNLOAD 1K37"
+  take_over: false
+  is_manual: false
+  time: "09:30:22 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637631046.5333769
+  text: "UNLOAD 1K37"
+  take_over: false
+  is_manual: false
+  time: "09:30:46 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637631071.0277138
+  text: "UNLOAD 1K37"
+  take_over: false
+  is_manual: false
+  time: "09:31:11 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637631091.8078563
+  text: "UNLOAD 1K37"
+  take_over: false
+  is_manual: false
+  time: "09:31:31 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637631114.192723
+  text: "UNLOAD 1K37"
+  take_over: false
+  is_manual: false
+  time: "09:31:54 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637631140.855093
+  text: "UNLOAD 1K37"
+  take_over: false
+  is_manual: false
+  time: "09:32:20 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637631182.4556556
+  text: "UNLOAD 1K37"
+  take_over: false
+  is_manual: false
+  time: "09:33:02 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637631215.2704575
+  text: "UNLOAD 1K37"
+  take_over: false
+  is_manual: false
+  time: "09:33:35 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637631224.115885
+  text: "LOAD 5638"
+  take_over: false
+  is_manual: false
+  time: "09:33:44 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637631267.6809835
+  text: "LOAD 5638"
+  take_over: false
+  is_manual: false
+  time: "09:34:27 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637631293.8890839
+  text: "LOAD 5638"
+  take_over: false
+  is_manual: false
+  time: "09:34:53 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637631327.0730772
+  text: "LOAD 5638"
+  take_over: false
+  is_manual: false
+  time: "09:35:27 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637631350.0964973
+  text: "LOAD 5638"
+  take_over: false
+  is_manual: false
+  time: "09:35:50 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637631752.9909782
+  text: "LOAD 5638"
+  take_over: false
+  is_manual: false
+  time: "09:42:32 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637631933.2317078
+  text: "LOAD 71"
+  take_over: false
+  is_manual: false
+  time: "09:45:33 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637632160.3833961
+  text: "reset tos start"
+  take_over: false
+  is_manual: false
+  time: "09:49:20 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637632160.5631132
+  text: "reset tos ok and wait reply"
+  take_over: false
+  is_manual: false
+  time: "09:49:20 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637632170.030273
+  text: "reset tos ok and get reply"
+  take_over: false
+  is_manual: false
+  time: "09:49:30 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637632170.2728944
+  text: "LOAD 71"
+  take_over: false
+  is_manual: false
+  time: "09:49:30 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637632349.1630433
+  text: "[ActiveSafety] [AUTO 1] Idle by [STATE: MONITOR_TOPIC_DELAY @ 1637632349.162582], antenna [REMOTE_ENVIRONMENT] has delay 0.642224 with acceptable_delay 0.600000"
+  take_over: false
+  is_manual: false
+  time: "09:52:29 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637632349.2641268
+  text: "[ActiveSafety] [AUTO 1] Emergency by [STATE: MONITOR_TOPIC_DELAY @ 1637632349.263590], antenna [REMOTE_ENVIRONMENT] has delay 0.739762 with acceptable_delay 0.600000"
+  take_over: false
+  is_manual: false
+  time: "09:52:29 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637632357.3226972
+  text: "[ActiveSafety] [AUTO 1] normal"
+  take_over: false
+  is_manual: false
+  time: "09:52:37 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637632428.4781249
+  text: "LOAD 7137"
+  take_over: false
+  is_manual: false
+  time: "09:53:48 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637632662.1820619
+  text: "Gantry139:Egox: -11.463250, fixed offset: 14.580000, container offset: -3.029000, final target offset: 0.087750, target_dist: -0.006831 , target_dist is used."
+  take_over: false
+  is_manual: false
+  time: "09:57:42 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637632775.6956449
+  text: "[ActiveSafety] [AUTO 1] Idle by [STATE: MONITOR_TOPIC_DELAY @ 1637632775.695337], vehicle [CHASSIS] has delay 0.063509 with acceptable_delay 0.060000"
+  take_over: false
+  is_manual: false
+  time: "09:59:35 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637632775.7089429
+  text: "[ActiveSafety] [AUTO 1] normal"
+  take_over: false
+  is_manual: false
+  time: "09:59:35 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637632786.3540492
+  text: "LOAD 7137"
+  take_over: false
+  is_manual: false
+  time: "09:59:46 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637632807.0135567
+  text: "Gantry139:Egox: -17.553554, fixed offset: 14.580000, container offset: 3.120524, final target offset: 0.146970, target_dist: -0.036691 , target_dist is used."
+  take_over: false
+  is_manual: false
+  time: "10:00:07 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637632812.9184542
+  text: "LOAD 7137"
+  take_over: false
+  is_manual: false
+  time: "10:00:12 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637632815.523849
+  text: "Gantry139:Egox: -17.560371, fixed offset: 14.580000, container offset: 3.119094, final target offset: 0.138723, target_dist: -0.027803 , target_dist is used."
+  take_over: false
+  is_manual: false
+  time: "10:00:15 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637632950.0997555
+  text: " R"
+  take_over: false
+  is_manual: false
+  time: "10:02:30 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637633130.2446535
+  text: "\346\216\245\347\256\241"
+  take_over: true
+  is_system_error_caused: false
+  is_manual: false
+  time: "10:05:30 23/11/2021"
+  driver_id: 221
+  driver_name: "\346\235\250\351\221\253"
+  driver_license: "NJY692"
+}
+record_list {
+  timestamp_sec: 1637633190.9048686
+  text: "VISION_LANE_KEEP_INVALID"
+  take_over: false
+  is_manual: false
+  time: "10:06:30 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637633495.1549973
+  text: "UNLOAD CR41 R"
+  take_over: false
+  is_manual: false
+  time: "10:11:35 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637633558.4185684
+  text: "reset tos start"
+  take_over: false
+  is_manual: false
+  time: "10:12:38 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637633558.5208604
+  text: "Crane41:Egox: -22.702141, fixed offset: 22.270000, container offset: 0.003207, final target offset: -0.428934, target_dist: -0.427167 , target dist is used."
+  take_over: false
+  is_manual: false
+  time: "10:12:38 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637633558.5517044
+  text: "reset tos ok and wait reply"
+  take_over: false
+  is_manual: false
+  time: "10:12:38 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637633565.2281821
+  text: "reset tos ok and get reply"
+  take_over: false
+  is_manual: false
+  time: "10:12:45 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637633565.4760296
+  text: "UNLOAD CR41 R"
+  take_over: false
+  is_manual: false
+  time: "10:12:45 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637633589.2499578
+  text: "Crane41:Egox: -22.260016, fixed offset: 22.270000, container offset: 0.000454, final target offset: 0.010438, target_dist: -0.021843 , target dist is used."
+  take_over: false
+  is_manual: false
+  time: "10:13:09 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637633663.3078609
+  text: "LOAD 66"
+  take_over: false
+  is_manual: false
+  time: "10:14:23 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637633731.0175354
+  text: "[ActiveSafety] [AUTO 1] Idle by [STATE: MONITOR_TOPIC_DELAY @ 1637633731.017268], vehicle [CHASSIS] has delay 0.074860 with acceptable_delay 0.060000"
+  take_over: false
+  is_manual: false
+  time: "10:15:31 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637633731.0676854
+  text: "[ActiveSafety] [AUTO 1] normal"
+  take_over: false
+  is_manual: false
+  time: "10:15:31 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637633967.8942084
+  text: "\346\216\245\347\256\241"
+  take_over: true
+  is_system_error_caused: false
+  is_manual: false
+  time: "10:19:27 23/11/2021"
+  driver_id: 221
+  driver_name: "\346\235\250\351\221\253"
+  driver_license: "NJY692"
+}
+record_list {
+  timestamp_sec: 1637634140.1344132
+  text: "LOAD 66"
+  take_over: false
+  is_manual: false
+  time: "10:22:20 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637634425.7690454
+  text: "LOAD 6692"
+  take_over: false
+  is_manual: false
+  time: "10:27:05 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637634434.3608615
+  text: "reset tos start"
+  take_over: false
+  is_manual: false
+  time: "10:27:14 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637634434.4633121
+  text: "reset tos ok and wait reply"
+  take_over: false
+  is_manual: false
+  time: "10:27:14 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637634441.937963
+  text: "reset tos ok and get reply"
+  take_over: false
+  is_manual: false
+  time: "10:27:21 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637634442.1580691
+  text: "LOAD 6692"
+  take_over: false
+  is_manual: false
+  time: "10:27:22 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637634529.4250731
+  text: "reset tos start"
+  take_over: false
+  is_manual: false
+  time: "10:28:49 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637634529.5114298
+  text: "reset tos ok and wait reply"
+  take_over: false
+  is_manual: false
+  time: "10:28:49 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637634536.1501396
+  text: "reset tos ok and get reply"
+  take_over: false
+  is_manual: false
+  time: "10:28:56 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637634536.3373084
+  text: "LOAD 6692"
+  take_over: false
+  is_manual: false
+  time: "10:28:56 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637634617.3116941
+  text: "[ActiveSafety] [AUTO 1] Idle by [STATE: MONITOR_TOPIC_DELAY @ 1637634617.311435], control [CONTROL_COMMAND] has delay 0.078069 with acceptable_delay 0.070000"
+  take_over: false
+  is_manual: false
+  time: "10:30:17 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637634617.3605645
+  text: "[ActiveSafety] [AUTO 1] normal"
+  take_over: false
+  is_manual: false
+  time: "10:30:17 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637634656.5731902
+  text: "Gantry120:Egox: -14.684053, fixed offset: 14.580000, container offset: 0.000000, final target offset: -0.104053, target_dist: -0.043092 , target_dist is used."
+  take_over: false
+  is_manual: false
+  time: "10:30:56 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637634739.547487
+  text: "UNLOAD CR42 R"
+  take_over: false
+  is_manual: false
+  time: "10:32:19 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637634807.1138937
+  text: "[ActiveSafety] [AUTO 1] Idle by [STATE: MONITOR_TOPIC_DELAY @ 1637634807.111274], antenna [REMOTE_ENVIRONMENT] has delay 0.644163 with acceptable_delay 0.600000"
+  take_over: false
+  is_manual: false
+  time: "10:33:27 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637634807.2140002
+  text: "[ActiveSafety] [AUTO 1] Emergency by [STATE: MONITOR_TOPIC_DELAY @ 1637634807.213666], antenna [REMOTE_ENVIRONMENT] has delay 0.748619 with acceptable_delay 0.600000"
+  take_over: false
+  is_manual: false
+  time: "10:33:27 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637634809.3626785
+  text: "[ActiveSafety] [AUTO 1] normal"
+  take_over: false
+  is_manual: false
+  time: "10:33:29 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637634891.9431045
+  text: "\346\216\245\347\256\241"
+  take_over: true
+  is_system_error_caused: false
+  is_manual: false
+  time: "10:34:51 23/11/2021"
+  driver_id: 221
+  driver_name: "\346\235\250\351\221\253"
+  driver_license: "NJY692"
+}
+record_list {
+  timestamp_sec: 1637635027.1877451
+  text: "VISION_LANE_KEEP_INVALID"
+  take_over: false
+  is_manual: false
+  time: "10:37:07 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637635110.4196134
+  text: "reset tos start"
+  take_over: false
+  is_manual: false
+  time: "10:38:30 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637635110.5037456
+  text: "reset tos ok and wait reply"
+  take_over: false
+  is_manual: false
+  time: "10:38:30 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637635117.3268504
+  text: "reset tos ok and get reply"
+  take_over: false
+  is_manual: false
+  time: "10:38:37 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637635117.5970979
+  text: "UNLOAD CR42 R"
+  take_over: false
+  is_manual: false
+  time: "10:38:37 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637635255.4236572
+  text: "Crane42:Egox: -22.368909, fixed offset: 22.270000, container offset: 0.058640, final target offset: -0.040270, target_dist: 0.016671 , target dist is used."
+  take_over: false
+  is_manual: false
+  time: "10:40:55 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637635500.4085648
+  text: "[ActiveSafety] [AUTO 1] Idle by [STATE: MONITOR_TOPIC_DELAY @ 1637635500.408275], planning_v2 [PLANNING_TRAJECTORY] has delay 0.495741 with acceptable_delay 0.450000"
+  take_over: false
+  is_manual: false
+  time: "10:45:00 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637635500.4601843
+  text: "[ActiveSafety] [AUTO 1] normal"
+  take_over: false
+  is_manual: false
+  time: "10:45:00 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637635517.6021705
+  text: "LOAD 73"
+  take_over: false
+  is_manual: false
+  time: "10:45:17 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637635662.8084083
+  text: "[ActiveSafety] [AUTO 1] normal"
+  take_over: false
+  is_manual: false
+  time: "10:47:42 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637635668.8106277
+  text: "[ActiveSafety] [AUTO 1] normal"
+  take_over: false
+  is_manual: false
+  time: "10:47:48 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637635890.4823987
+  text: "LOAD 7350"
+  take_over: false
+  is_manual: false
+  time: "10:51:30 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637635927.7633648
+  text: "[ActiveSafety] [AUTO 1] Emergency by [STATE: MONITOR_TOPIC_DELAY @ 1637635927.763089], gnss_driver [GNSS_INS] has delay 0.074118 with acceptable_delay 0.060000"
+  take_over: false
+  is_manual: false
+  time: "10:52:07 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637635928.7261839
+  text: "\346\216\245\347\256\241"
+  take_over: true
+  is_system_error_caused: false
+  is_manual: false
+  time: "10:52:08 23/11/2021"
+  driver_id: 221
+  driver_name: "\346\235\250\351\221\253"
+  driver_license: "NJY692"
+}
+record_list {
+  timestamp_sec: 1637635945.8283913
+  text: "AS_TRAJ_NOT_SAFE_COLLISION"
+  take_over: false
+  is_manual: false
+  time: "10:52:25 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637635957.395685
+  text: "reset tos start"
+  take_over: false
+  is_manual: false
+  time: "10:52:37 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637635957.5548387
+  text: "reset tos ok and wait reply"
+  take_over: false
+  is_manual: false
+  time: "10:52:37 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637635964.5529468
+  text: "reset tos ok and get reply"
+  take_over: false
+  is_manual: false
+  time: "10:52:44 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637635964.84696
+  text: "LOAD 7350"
+  take_over: false
+  is_manual: false
+  time: "10:52:44 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637636028.881777
+  text: "Gantry143:Egox: -14.570188, fixed offset: 14.580000, container offset: 0.000000, final target offset: 0.009812, target_dist: -0.036818 , target_dist is used."
+  take_over: false
+  is_manual: false
+  time: "10:53:48 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637636123.7987087
+  text: "[ActiveSafety] [AUTO 1] Idle by [STATE: MONITOR_TOPIC_DELAY @ 1637636123.798462], localization_v2 [LOCALIZATION] has delay 0.073175 with acceptable_delay 0.070000"
+  take_over: false
+  is_manual: false
+  time: "10:55:23 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637636123.8095112
+  text: "[ActiveSafety] [AUTO 1] normal"
+  take_over: false
+  is_manual: false
+  time: "10:55:23 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637636137.4393039
+  text: "UNLOAD CR42 R"
+  take_over: false
+  is_manual: false
+  time: "10:55:37 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637636156.7773106
+  text: " R"
+  take_over: false
+  is_manual: false
+  time: "10:55:56 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637636213.668056
+  text: "[ActiveSafety] [AUTO 1] normal"
+  take_over: false
+  is_manual: false
+  time: "10:56:53 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637636317.2531037
+  text: "\346\216\245\347\256\241"
+  take_over: true
+  is_system_error_caused: false
+  is_manual: false
+  time: "10:58:37 23/11/2021"
+  driver_id: 221
+  driver_name: "\346\235\250\351\221\253"
+  driver_license: "NJY692"
+}
+record_list {
+  timestamp_sec: 1637636410.4542496
+  text: "VISION_LANE_KEEP_INVALID"
+  take_over: false
+  is_manual: false
+  time: "11:00:10 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637636466.4135199
+  text: "reset tos start"
+  take_over: false
+  is_manual: false
+  time: "11:01:06 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637636466.5178711
+  text: "reset tos ok and wait reply"
+  take_over: false
+  is_manual: false
+  time: "11:01:06 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637636474.2276046
+  text: "reset tos ok and get reply"
+  take_over: false
+  is_manual: false
+  time: "11:01:14 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637636475.4475789
+  text: " R"
+  take_over: false
+  is_manual: false
+  time: "11:01:15 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637636490.6247346
+  text: "\346\216\245\347\256\241"
+  take_over: true
+  is_system_error_caused: false
+  is_manual: false
+  time: "11:01:30 23/11/2021"
+  driver_id: 221
+  driver_name: "\346\235\250\351\221\253"
+  driver_license: "NJY692"
+}
+record_list {
+  timestamp_sec: 1637636555.1762259
+  text: "\346\216\245\347\256\241"
+  take_over: true
+  is_system_error_caused: false
+  is_manual: false
+  time: "11:02:35 23/11/2021"
+  driver_id: 221
+  driver_name: "\346\235\250\351\221\253"
+  driver_license: "NJY692"
+}
+record_list {
+  timestamp_sec: 1637636832.7578471
+  text: "VISION_LANE_KEEP_INVALID"
+  take_over: false
+  is_manual: false
+  time: "11:07:12 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637636834.4114289
+  text: "AS_TRAJ_TOO_NEAR_TO_COASLINE"
+  take_over: false
+  is_manual: false
+  time: "11:07:14 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637637392.6169655
+  text: "VISION_LANE_KEEP_INVALID"
+  take_over: false
+  is_manual: false
+  time: "11:16:32 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637637618.3719742
+  text: "UNLOAD CR42 R"
+  take_over: false
+  is_manual: false
+  time: "11:20:18 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637637618.9186871
+  text: "AS_TRAJ_TOO_NEAR_TO_COASLINE"
+  take_over: false
+  is_manual: false
+  time: "11:20:18 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637637700.3879809
+  text: "reset tos start"
+  take_over: false
+  is_manual: false
+  time: "11:21:40 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637637700.4767451
+  text: "reset tos ok and wait reply"
+  take_over: false
+  is_manual: false
+  time: "11:21:40 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637637710.3588002
+  text: "reset tos ok and get reply"
+  take_over: false
+  is_manual: false
+  time: "11:21:50 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637637710.7693324
+  text: "UNLOAD CR42 R"
+  take_over: false
+  is_manual: false
+  time: "11:21:50 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637637931.5741386
+  text: "[ActiveSafety] [AUTO 1] Emergency by [STATE: MONITOR_TOPIC_DELAY @ 1637637931.573813], control [CONTROL_COMMAND] has delay 0.071131 with acceptable_delay 0.070000"
+  take_over: false
+  is_manual: false
+  time: "11:25:31 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637637933.0291865
+  text: "[ActiveSafety] [AUTO 1] normal"
+  take_over: false
+  is_manual: false
+  time: "11:25:33 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637637960.8122957
+  text: "\346\216\245\347\256\241"
+  take_over: true
+  is_system_error_caused: false
+  is_manual: false
+  time: "11:26:00 23/11/2021"
+  driver_id: 221
+  driver_name: "\346\235\250\351\221\253"
+  driver_license: "NJY692"
+}
+record_list {
+  timestamp_sec: 1637638006.0038471
+  text: "Crane42:Egox: -22.276079, fixed offset: 22.270000, container offset: -0.033343, final target offset: -0.039423, target_dist: -0.013337 , target dist is used."
+  take_over: false
+  is_manual: false
+  time: "11:26:46 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637638086.9763753
+  text: "LOAD 5774"
+  take_over: false
+  is_manual: false
+  time: "11:28:06 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637638114.8198905
+  text: "LOAD 5774"
+  take_over: false
+  is_manual: false
+  time: "11:28:34 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637638137.4614131
+  text: "LOAD 5774"
+  take_over: false
+  is_manual: false
+  time: "11:28:57 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637638162.0848396
+  text: "LOAD 5774"
+  take_over: false
+  is_manual: false
+  time: "11:29:22 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637638186.4418764
+  text: "LOAD 5774"
+  take_over: false
+  is_manual: false
+  time: "11:29:46 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637638212.5366695
+  text: "LOAD 5774"
+  take_over: false
+  is_manual: false
+  time: "11:30:12 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637638238.0519884
+  text: "LOAD 5774"
+  take_over: false
+  is_manual: false
+  time: "11:30:38 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637638259.1860785
+  text: "LOAD 5774"
+  take_over: false
+  is_manual: false
+  time: "11:30:59 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637638281.9899642
+  text: "LOAD 5774"
+  take_over: false
+  is_manual: false
+  time: "11:31:21 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637638306.5192089
+  text: "LOAD 5774"
+  take_over: false
+  is_manual: false
+  time: "11:31:46 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637638333.3198941
+  text: "LOAD 5774"
+  take_over: false
+  is_manual: false
+  time: "11:32:13 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637638357.6070187
+  text: "LOAD 5774"
+  take_over: false
+  is_manual: false
+  time: "11:32:37 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637638379.993603
+  text: "LOAD 5774"
+  take_over: false
+  is_manual: false
+  time: "11:32:59 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637638402.4318862
+  text: "LOAD 5774"
+  take_over: false
+  is_manual: false
+  time: "11:33:22 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637638439.631465
+  text: "LOAD 5774"
+  take_over: false
+  is_manual: false
+  time: "11:33:59 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637638476.5926788
+  text: "LOAD 5774"
+  take_over: false
+  is_manual: false
+  time: "11:34:36 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637638514.307322
+  text: "LOAD 5774"
+  take_over: false
+  is_manual: false
+  time: "11:35:14 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637638553.9137578
+  text: "LOAD 5774"
+  take_over: false
+  is_manual: false
+  time: "11:35:53 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637638592.9491611
+  text: "LOAD 5774"
+  take_over: false
+  is_manual: false
+  time: "11:36:32 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637638633.1349523
+  text: "LOAD 5774"
+  take_over: false
+  is_manual: false
+  time: "11:37:13 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637638649.2379994
+  text: "LOAD 5774"
+  take_over: false
+  is_manual: false
+  time: "11:37:29 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637638662.8021336
+  text: "RTK_KEEP_INVALID_IN_ROADS"
+  take_over: false
+  is_manual: false
+  time: "11:37:42 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637638687.4498837
+  text: "LOAD 5774"
+  take_over: false
+  is_manual: false
+  time: "11:38:07 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637638726.5954609
+  text: "LOAD 5774"
+  take_over: false
+  is_manual: false
+  time: "11:38:46 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637638763.8938403
+  text: "LOAD 5774"
+  take_over: false
+  is_manual: false
+  time: "11:39:23 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637638800.9194202
+  text: "LOAD 5774"
+  take_over: false
+  is_manual: false
+  time: "11:40:00 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637638837.7330146
+  text: "LOAD 5774"
+  take_over: false
+  is_manual: false
+  time: "11:40:37 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637638876.5598192
+  text: "LOAD 5774"
+  take_over: false
+  is_manual: false
+  time: "11:41:16 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637638914.3648405
+  text: "LOAD 5774"
+  take_over: false
+  is_manual: false
+  time: "11:41:54 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637638937.7329419
+  text: "UNLOAD CR43 R"
+  take_over: false
+  is_manual: false
+  time: "11:42:17 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637638985.0025129
+  text: "UNLOAD CR43 R"
+  take_over: false
+  is_manual: false
+  time: "11:43:05 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639023.422436
+  text: "UNLOAD CR43 R"
+  take_over: false
+  is_manual: false
+  time: "11:43:43 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639116.4633985
+  text: "reset tos start"
+  take_over: false
+  is_manual: false
+  time: "11:45:16 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639116.6012466
+  text: "reset tos ok and wait reply"
+  take_over: false
+  is_manual: false
+  time: "11:45:16 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639127.5510349
+  text: "reset tos ok and get reply"
+  take_over: false
+  is_manual: false
+  time: "11:45:27 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639127.8304064
+  text: "UNLOAD CR43 R"
+  take_over: false
+  is_manual: false
+  time: "11:45:27 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639292.6270895
+  text: "\346\216\245\347\256\241"
+  take_over: true
+  is_system_error_caused: false
+  is_manual: false
+  time: "11:48:12 23/11/2021"
+  driver_id: 221
+  driver_name: "\346\235\250\351\221\253"
+  driver_license: "NJY692"
+}
+record_list {
+  timestamp_sec: 1637639472.4657903
+  text: "reset tos start"
+  take_over: false
+  is_manual: false
+  time: "11:51:12 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639472.7342408
+  text: "reset tos ok and wait reply"
+  take_over: false
+  is_manual: false
+  time: "11:51:12 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639484.2147369
+  text: "reset tos ok and get reply"
+  take_over: false
+  is_manual: false
+  time: "11:51:24 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639484.4859805
+  text: "UNLOAD CR43 R"
+  take_over: false
+  is_manual: false
+  time: "11:51:24 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639615.24192
+  text: "[ActiveSafety] [AUTO 1] Idle by [STATE: MONITOR_TOPIC_DELAY @ 1637639615.241439], vehicle [CHASSIS] has delay 0.061636 with acceptable_delay 0.060000"
+  take_over: false
+  is_manual: false
+  time: "11:53:35 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639615.2604587
+  text: "[ActiveSafety] [AUTO 1] normal"
+  take_over: false
+  is_manual: false
+  time: "11:53:35 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639651.5129733
+  text: "\346\216\245\347\256\241"
+  take_over: true
+  is_system_error_caused: true
+  is_manual: false
+  time: "11:54:11 23/11/2021"
+  system_error_reason: "NOT_EVADE_CONTAINER"
+  driver_id: 221
+  driver_name: "\346\235\250\351\221\253"
+  driver_license: "NJY692"
+}
+record_list {
+  timestamp_sec: 1637639663.4322538
+  text: "reset tos start"
+  take_over: false
+  is_manual: false
+  time: "11:54:23 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639663.6102421
+  text: "reset tos ok and wait reply"
+  take_over: false
+  is_manual: false
+  time: "11:54:23 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639672.2103851
+  text: "reset tos ok and get reply"
+  take_over: false
+  is_manual: false
+  time: "11:54:32 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639672.5622294
+  text: "UNLOAD CR43 R"
+  take_over: false
+  is_manual: false
+  time: "11:54:32 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639731.3605525
+  text: "Crane43:Egox: -22.170341, fixed offset: 22.270000, container offset: -0.151371, final target offset: -0.051712, target_dist: 0.017388 , target dist is used."
+  take_over: false
+  is_manual: false
+  time: "11:55:31 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639749.0102627
+  text: "[ActiveSafety] [AUTO 1] Idle by [STATE: MONITOR_TOPIC_DELAY @ 1637639749.009931], antenna [REMOTE_ENVIRONMENT] has delay 0.617150 with acceptable_delay 0.600000"
+  take_over: false
+  is_manual: false
+  time: "11:55:49 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639749.1095896
+  text: "[ActiveSafety] [AUTO 1] Emergency by [STATE: MONITOR_TOPIC_DELAY @ 1637639749.109308], antenna [REMOTE_ENVIRONMENT] has delay 0.716297 with acceptable_delay 0.600000"
+  take_over: false
+  is_manual: false
+  time: "11:55:49 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639750.4450285
+  text: "[ActiveSafety] [AUTO 1] normal"
+  take_over: false
+  is_manual: false
+  time: "11:55:50 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639752.9079893
+  text: "[ActiveSafety] [AUTO 1] Idle by [STATE: MONITOR_TOPIC_DELAY @ 1637639752.907634], antenna [REMOTE_ENVIRONMENT] has delay 0.614691 with acceptable_delay 0.600000"
+  take_over: false
+  is_manual: false
+  time: "11:55:52 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639753.0081925
+  text: "[ActiveSafety] [AUTO 1] Emergency by [STATE: MONITOR_TOPIC_DELAY @ 1637639753.007854], antenna [REMOTE_ENVIRONMENT] has delay 0.714952 with acceptable_delay 0.600000"
+  take_over: false
+  is_manual: false
+  time: "11:55:53 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639755.8821859
+  text: "[ActiveSafety] [AUTO 1] normal"
+  take_over: false
+  is_manual: false
+  time: "11:55:55 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639760.1091726
+  text: "[ActiveSafety] [AUTO 1] Idle by [STATE: MONITOR_TOPIC_DELAY @ 1637639760.108863], antenna [REMOTE_ENVIRONMENT] has delay 0.646901 with acceptable_delay 0.600000"
+  take_over: false
+  is_manual: false
+  time: "11:56:00 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639760.2106912
+  text: "[ActiveSafety] [AUTO 1] Emergency by [STATE: MONITOR_TOPIC_DELAY @ 1637639760.210081], antenna [REMOTE_ENVIRONMENT] has delay 0.747762 with acceptable_delay 0.600000"
+  take_over: false
+  is_manual: false
+  time: "11:56:00 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639762.3131869
+  text: "[ActiveSafety] [AUTO 1] normal"
+  take_over: false
+  is_manual: false
+  time: "11:56:02 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639763.8086987
+  text: "[ActiveSafety] [AUTO 1] Idle by [STATE: MONITOR_TOPIC_DELAY @ 1637639763.808430], antenna [REMOTE_ENVIRONMENT] has delay 0.645490 with acceptable_delay 0.600000"
+  take_over: false
+  is_manual: false
+  time: "11:56:03 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639763.9107537
+  text: "[ActiveSafety] [AUTO 1] Emergency by [STATE: MONITOR_TOPIC_DELAY @ 1637639763.910356], antenna [REMOTE_ENVIRONMENT] has delay 0.745200 with acceptable_delay 0.600000"
+  take_over: false
+  is_manual: false
+  time: "11:56:03 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639765.3369772
+  text: "[ActiveSafety] [AUTO 1] normal"
+  take_over: false
+  is_manual: false
+  time: "11:56:05 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639765.9103761
+  text: "[ActiveSafety] [AUTO 1] Idle by [STATE: MONITOR_TOPIC_DELAY @ 1637639765.909744], antenna [REMOTE_ENVIRONMENT] has delay 0.616323 with acceptable_delay 0.600000"
+  take_over: false
+  is_manual: false
+  time: "11:56:05 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639766.0083401
+  text: "[ActiveSafety] [AUTO 1] Emergency by [STATE: MONITOR_TOPIC_DELAY @ 1637639766.008044], antenna [REMOTE_ENVIRONMENT] has delay 0.715939 with acceptable_delay 0.600000"
+  take_over: false
+  is_manual: false
+  time: "11:56:06 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639767.5192044
+  text: "[ActiveSafety] [AUTO 1] normal"
+  take_over: false
+  is_manual: false
+  time: "11:56:07 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639768.162075
+  text: "[ActiveSafety] [AUTO 1] Idle by [STATE: MONITOR_TOPIC_DELAY @ 1637639768.161620], antenna [REMOTE_ENVIRONMENT] has delay 0.649553 with acceptable_delay 0.600000"
+  take_over: false
+  is_manual: false
+  time: "11:56:08 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639768.2771139
+  text: "[ActiveSafety] [AUTO 1] Emergency by [STATE: MONITOR_TOPIC_DELAY @ 1637639768.275333], antenna [REMOTE_ENVIRONMENT] has delay 0.766212 with acceptable_delay 0.600000"
+  take_over: false
+  is_manual: false
+  time: "11:56:08 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639769.2613666
+  text: "[ActiveSafety] [AUTO 1] normal"
+  take_over: false
+  is_manual: false
+  time: "11:56:09 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639770.2185738
+  text: "[ActiveSafety] [AUTO 1] Idle by [STATE: MONITOR_TOPIC_DELAY @ 1637639770.218271], antenna [REMOTE_ENVIRONMENT] has delay 0.615282 with acceptable_delay 0.600000"
+  take_over: false
+  is_manual: false
+  time: "11:56:10 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639770.3089514
+  text: "[ActiveSafety] [AUTO 1] Emergency by [STATE: MONITOR_TOPIC_DELAY @ 1637639770.308325], antenna [REMOTE_ENVIRONMENT] has delay 0.707414 with acceptable_delay 0.600000"
+  take_over: false
+  is_manual: false
+  time: "11:56:10 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639772.7084177
+  text: "[ActiveSafety] [AUTO 1] normal"
+  take_over: false
+  is_manual: false
+  time: "11:56:12 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639918.3606913
+  text: "[ActiveSafety] [AUTO 1] Idle by [STATE: MONITOR_TOPIC_DELAY @ 1637639918.360380], planning_v2 [PLANNING_TRAJECTORY] has delay 0.481399 with acceptable_delay 0.450000"
+  take_over: false
+  is_manual: false
+  time: "11:58:38 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639918.4082525
+  text: "[ActiveSafety] [AUTO 1] normal"
+  take_over: false
+  is_manual: false
+  time: "11:58:38 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639925.1115336
+  text: "[ActiveSafety] [AUTO 1] Idle by [STATE: MONITOR_TOPIC_DELAY @ 1637639925.111186], planning_v2 [PLANNING_TRAJECTORY] has delay 0.454783 with acceptable_delay 0.450000"
+  take_over: false
+  is_manual: false
+  time: "11:58:45 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639925.1635852
+  text: "[ActiveSafety] [AUTO 1] normal"
+  take_over: false
+  is_manual: false
+  time: "11:58:45 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639925.7144725
+  text: "LOAD 5272"
+  take_over: false
+  is_manual: false
+  time: "11:58:45 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639926.4597194
+  text: "[ActiveSafety] [AUTO 1] Idle by [STATE: MONITOR_TOPIC_DELAY @ 1637639926.459354], planning_v2 [PLANNING_TRAJECTORY] has delay 0.456935 with acceptable_delay 0.450000"
+  take_over: false
+  is_manual: false
+  time: "11:58:46 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639926.5247266
+  text: "[ActiveSafety] [AUTO 1] normal"
+  take_over: false
+  is_manual: false
+  time: "11:58:46 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637639988.4489946
+  text: "\346\216\245\347\256\241"
+  take_over: true
+  is_system_error_caused: false
+  is_manual: false
+  time: "11:59:48 23/11/2021"
+  driver_id: 221
+  driver_name: "\346\235\250\351\221\253"
+  driver_license: "NJY692"
+}
+record_list {
+  timestamp_sec: 1637640013.0713112
+  text: "LOAD 5272"
+  take_over: false
+  is_manual: false
+  time: "12:00:13 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637640035.7887828
+  text: "LOAD 5272"
+  take_over: false
+  is_manual: false
+  time: "12:00:35 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637640058.8832211
+  text: "LOAD 5272"
+  take_over: false
+  is_manual: false
+  time: "12:00:58 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637640078.8982632
+  text: "LOAD 5272"
+  take_over: false
+  is_manual: false
+  time: "12:01:18 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637640100.8612816
+  text: "LOAD 5272"
+  take_over: false
+  is_manual: false
+  time: "12:01:40 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637640122.8970997
+  text: "LOAD 5272"
+  take_over: false
+  is_manual: false
+  time: "12:02:02 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637640143.8885858
+  text: "LOAD 5272"
+  take_over: false
+  is_manual: false
+  time: "12:02:23 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637640167.1985474
+  text: "LOAD 5272"
+  take_over: false
+  is_manual: false
+  time: "12:02:47 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637640190.0685961
+  text: "LOAD 5272"
+  take_over: false
+  is_manual: false
+  time: "12:03:10 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637640211.6908376
+  text: "RTK_KEEP_INVALID_IN_ROADS"
+  take_over: false
+  is_manual: false
+  time: "12:03:31 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637640216.3899174
+  text: "LOAD 5272"
+  take_over: false
+  is_manual: false
+  time: "12:03:36 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637640239.3671062
+  text: "LOAD 5272"
+  take_over: false
+  is_manual: false
+  time: "12:03:59 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637640261.7378318
+  text: "LOAD 5272"
+  take_over: false
+  is_manual: false
+  time: "12:04:21 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637640286.267653
+  text: "LOAD 5272"
+  take_over: false
+  is_manual: false
+  time: "12:04:46 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637640314.7435465
+  text: "LOAD 5272"
+  take_over: false
+  is_manual: false
+  time: "12:05:14 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637640335.7732766
+  text: "LOAD 5272"
+  take_over: false
+  is_manual: false
+  time: "12:05:35 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637640358.4124746
+  text: "LOAD 5272"
+  take_over: false
+  is_manual: false
+  time: "12:05:58 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637640378.7153959
+  text: "LOAD 5272"
+  take_over: false
+  is_manual: false
+  time: "12:06:18 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637640399.9930117
+  text: "LOAD 5272"
+  take_over: false
+  is_manual: false
+  time: "12:06:39 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637640439.3862531
+  text: "LOAD 5272"
+  take_over: false
+  is_manual: false
+  time: "12:07:19 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637640476.250103
+  text: "LOAD 5272"
+  take_over: false
+  is_manual: false
+  time: "12:07:56 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637640513.6557417
+  text: "LOAD 5272"
+  take_over: false
+  is_manual: false
+  time: "12:08:33 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637640552.5606921
+  text: "LOAD 5272"
+  take_over: false
+  is_manual: false
+  time: "12:09:12 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637640587.432467
+  text: "LOAD 5272"
+  take_over: false
+  is_manual: false
+  time: "12:09:47 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637640623.2267463
+  text: "LOAD 5272"
+  take_over: false
+  is_manual: false
+  time: "12:10:23 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637640663.8127553
+  text: "LOAD 5272"
+  take_over: false
+  is_manual: false
+  time: "12:11:03 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637640700.716728
+  text: "LOAD 5272"
+  take_over: false
+  is_manual: false
+  time: "12:11:40 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637640736.4097953
+  text: "LOAD 5272"
+  take_over: false
+  is_manual: false
+  time: "12:12:16 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637640773.8264327
+  text: "LOAD 5272"
+  take_over: false
+  is_manual: false
+  time: "12:12:53 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637640810.0013592
+  text: "LOAD 5272"
+  take_over: false
+  is_manual: false
+  time: "12:13:30 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637640844.7913992
+  text: "LOAD 5272"
+  take_over: false
+  is_manual: false
+  time: "12:14:04 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637640886.0495496
+  text: "LOAD 5272"
+  take_over: false
+  is_manual: false
+  time: "12:14:46 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637640923.5712447
+  text: "LOAD 5272"
+  take_over: false
+  is_manual: false
+  time: "12:15:23 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637640961.9631078
+  text: "LOAD 5272"
+  take_over: false
+  is_manual: false
+  time: "12:16:01 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637640998.9593515
+  text: "LOAD 5272"
+  take_over: false
+  is_manual: false
+  time: "12:16:38 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637641034.8768909
+  text: "LOAD 5272"
+  take_over: false
+  is_manual: false
+  time: "12:17:14 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637641037.1038642
+  text: "RTK_KEEP_INVALID_IN_ROADS"
+  take_over: false
+  is_manual: false
+  time: "12:17:17 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637641076.3977516
+  text: "UNLOAD CR43 R"
+  take_over: false
+  is_manual: false
+  time: "12:17:56 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637641133.3436792
+  text: "UNLOAD CR43 R"
+  take_over: false
+  is_manual: false
+  time: "12:18:53 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637641175.540905
+  text: "UNLOAD CR43 R"
+  take_over: false
+  is_manual: false
+  time: "12:19:35 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637641213.8272123
+  text: "UNLOAD CR43 R"
+  take_over: false
+  is_manual: false
+  time: "12:20:13 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637641265.4299462
+  text: "UNLOAD CR43 R"
+  take_over: false
+  is_manual: false
+  time: "12:21:05 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637641429.4310634
+  text: "reset tos start"
+  take_over: false
+  is_manual: false
+  time: "12:23:49 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637641429.5701303
+  text: "reset tos ok and wait reply"
+  take_over: false
+  is_manual: false
+  time: "12:23:49 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637641438.9968355
+  text: "reset tos ok and get reply"
+  take_over: false
+  is_manual: false
+  time: "12:23:58 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637641440.210114
+  text: "UNLOAD CR43 R"
+  take_over: false
+  is_manual: false
+  time: "12:24:00 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637641616.1492367
+  text: "\346\216\245\347\256\241"
+  take_over: true
+  is_system_error_caused: false
+  is_manual: false
+  time: "12:26:56 23/11/2021"
+  driver_id: 221
+  driver_name: "\346\235\250\351\221\253"
+  driver_license: "NJY692"
+}
+record_list {
+  timestamp_sec: 1637641714.419415
+  text: "reset tos start"
+  take_over: false
+  is_manual: false
+  time: "12:28:34 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637641714.6014023
+  text: "reset tos ok and wait reply"
+  take_over: false
+  is_manual: false
+  time: "12:28:34 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637641724.3690994
+  text: "reset tos ok and get reply"
+  take_over: false
+  is_manual: false
+  time: "12:28:44 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637641724.5896351
+  text: "UNLOAD CR43 R"
+  take_over: false
+  is_manual: false
+  time: "12:28:44 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637641832.5310245
+  text: "Crane43:Egox: -22.438344, fixed offset: 22.270000, container offset: 0.075076, final target offset: -0.093268, target_dist: 0.008700 , target dist is used."
+  take_over: false
+  is_manual: false
+  time: "12:30:32 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637641915.7075012
+  text: "LOAD CR41 R"
+  take_over: false
+  is_manual: false
+  time: "12:31:55 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637641931.0835097
+  text: "\346\216\245\347\256\241"
+  take_over: true
+  is_system_error_caused: false
+  is_manual: false
+  time: "12:32:11 23/11/2021"
+  driver_id: 221
+  driver_name: "\346\235\250\351\221\253"
+  driver_license: "NJY692"
+}
+record_list {
+  timestamp_sec: 1637641989.3125818
+  text: "Crane41:Egox: -34.093387, fixed offset: 22.270000, container offset: 0.070000, final target offset: -11.753387, target_dist: 0.000000 "
+  take_over: false
+  is_manual: false
+  time: "12:33:09 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637641999.2057581
+  text: "LOAD CR41 R"
+  take_over: false
+  is_manual: false
+  time: "12:33:19 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637641999.8936272
+  text: "AS_TRAJ_DELAY"
+  take_over: false
+  is_manual: false
+  time: "12:33:19 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637642097.895757
+  text: "LOAD CR41 R"
+  take_over: false
+  is_manual: false
+  time: "12:34:57 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637642152.9284334
+  text: "RTK_KEEP_INVALID_IN_ROADS"
+  take_over: false
+  is_manual: false
+  time: "12:35:52 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637642272.4173253
+  text: "reset tos start"
+  take_over: false
+  is_manual: false
+  time: "12:37:52 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637642272.6569829
+  text: "reset tos ok and wait reply"
+  take_over: false
+  is_manual: false
+  time: "12:37:52 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637642288.0658252
+  text: "reset tos ok and get reply"
+  take_over: false
+  is_manual: false
+  time: "12:38:08 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637642288.3672218
+  text: "LOAD CR41 R"
+  take_over: false
+  is_manual: false
+  time: "12:38:08 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637642305.6771791
+  text: "[ActiveSafety] [AUTO 1] Idle by [STATE: MONITOR_TOPIC_DELAY @ 1637642305.676583], control [CONTROL_COMMAND] has delay 0.070520 with acceptable_delay 0.070000"
+  take_over: false
+  is_manual: false
+  time: "12:38:25 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637642305.7095249
+  text: "[ActiveSafety] [AUTO 1] normal"
+  take_over: false
+  is_manual: false
+  time: "12:38:25 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637642351.1605835
+  text: "[ActiveSafety] [AUTO 1] Idle by [STATE: MONITOR_TOPIC_DELAY @ 1637642351.159550], lidar_driver [LIDAR_POINT_CLOUD_HEAD_MID] has delay 0.404535 with acceptable_delay 0.400000"
+  take_over: false
+  is_manual: false
+  time: "12:39:11 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637642351.2646217
+  text: "[ActiveSafety] [AUTO 1] Emergency by [STATE: MONITOR_TOPIC_DELAY @ 1637642351.264157], lidar_driver [LIDAR_POINT_CLOUD_HEAD_MID] has delay 0.503649 with acceptable_delay 0.400000"
+  take_over: false
+  is_manual: false
+  time: "12:39:11 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637642360.0713072
+  text: "[ActiveSafety] [AUTO 1] normal"
+  take_over: false
+  is_manual: false
+  time: "12:39:20 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637642725.2192724
+  text: "[ActiveSafety] [AUTO 1] Emergency by [STATE: MONITOR_TOPIC_DELAY @ 1637642725.218837], control [CONTROL_COMMAND] has delay 0.074600 with acceptable_delay 0.070000"
+  take_over: false
+  is_manual: false
+  time: "12:45:25 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637642726.4202614
+  text: "[ActiveSafety] [AUTO 1] normal"
+  take_over: false
+  is_manual: false
+  time: "12:45:26 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637642742.1940453
+  text: "LOAD CR41 R"
+  take_over: false
+  is_manual: false
+  time: "12:45:42 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637643012.2386696
+  text: "[ActiveSafety] [AUTO 1] Emergency by [STATE: MONITOR_TOPIC_DELAY @ 1637643012.237194], gnss_driver [GNSS_INS] has delay 0.060570 with acceptable_delay 0.060000"
+  take_over: false
+  is_manual: false
+  time: "12:50:12 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637643013.4520366
+  text: "[ActiveSafety] [AUTO 1] normal"
+  take_over: false
+  is_manual: false
+  time: "12:50:13 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637643158.0825679
+  text: "Crane41:Egox: -22.388703, fixed offset: 22.270000, container offset: 0.070000, final target offset: -0.048703, target_dist: -0.007520 , target dist is used."
+  take_over: false
+  is_manual: false
+  time: "12:52:38 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637643288.7403643
+  text: "[ActiveSafety] [AUTO 1] Idle by [STATE: MONITOR_TOPIC_DELAY @ 1637643288.739971], vehicle [CHASSIS] has delay 0.061268 with acceptable_delay 0.060000"
+  take_over: false
+  is_manual: false
+  time: "12:54:48 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637643288.7618408
+  text: "[ActiveSafety] [AUTO 1] normal"
+  take_over: false
+  is_manual: false
+  time: "12:54:48 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637643293.4170003
+  text: "UNLOAD 6L39"
+  take_over: false
+  is_manual: false
+  time: "12:54:53 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637643490.6569724
+  text: "[ActiveSafety] [AUTO 1] Idle by [STATE: MONITOR_TOPIC_DELAY @ 1637643490.656309], vehicle [CHASSIS] has delay 0.074451 with acceptable_delay 0.060000"
+  take_over: false
+  is_manual: false
+  time: "12:58:10 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637643490.7081971
+  text: "[ActiveSafety] [AUTO 1] normal"
+  take_over: false
+  is_manual: false
+  time: "12:58:10 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637643506.3104947
+  text: "\346\216\245\347\256\241"
+  take_over: true
+  is_system_error_caused: false
+  is_manual: false
+  time: "12:58:26 23/11/2021"
+  driver_id: 221
+  driver_name: "\346\235\250\351\221\253"
+  driver_license: "NJY692"
+}
+record_list {
+  timestamp_sec: 1637643874.9498515
+  text: "UNLOAD 1K41"
+  take_over: false
+  is_manual: false
+  time: "13:04:34 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637643921.3147805
+  text: "UNLOAD 1K41"
+  take_over: false
+  is_manual: false
+  time: "13:05:21 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637643946.648387
+  text: "UNLOAD 1K41"
+  take_over: false
+  is_manual: false
+  time: "13:05:46 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637643990.2188234
+  text: "UNLOAD 1K41"
+  take_over: false
+  is_manual: false
+  time: "13:06:30 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637644040.4400351
+  text: "UNLOAD 1K41"
+  take_over: false
+  is_manual: false
+  time: "13:07:20 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637644066.8917155
+  text: "UNLOAD 1K41"
+  take_over: false
+  is_manual: false
+  time: "13:07:46 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637644092.1527245
+  text: "UNLOAD 1K41"
+  take_over: false
+  is_manual: false
+  time: "13:08:12 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637644120.4670177
+  text: "UNLOAD 1K41"
+  take_over: false
+  is_manual: false
+  time: "13:08:40 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637644167.8095293
+  text: "UNLOAD 1K41"
+  take_over: false
+  is_manual: false
+  time: "13:09:27 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637644194.7511191
+  text: "UNLOAD 1K41"
+  take_over: false
+  is_manual: false
+  time: "13:09:54 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637644217.3515611
+  text: "UNLOAD 1K41"
+  take_over: false
+  is_manual: false
+  time: "13:10:17 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637644246.6207197
+  text: "UNLOAD 1K41"
+  take_over: false
+  is_manual: false
+  time: "13:10:46 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637644294.0240836
+  text: "UNLOAD 1K41"
+  take_over: false
+  is_manual: false
+  time: "13:11:34 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637644333.2596259
+  text: "UNLOAD 1K41"
+  take_over: false
+  is_manual: false
+  time: "13:12:13 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637644375.4842896
+  text: "UNLOAD 1K41"
+  take_over: false
+  is_manual: false
+  time: "13:12:55 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637644421.2089863
+  text: "UNLOAD 1K41"
+  take_over: false
+  is_manual: false
+  time: "13:13:41 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637644462.1964133
+  text: "UNLOAD 1K41"
+  take_over: false
+  is_manual: false
+  time: "13:14:22 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637644489.6209683
+  text: "UNLOAD 1K41"
+  take_over: false
+  is_manual: false
+  time: "13:14:49 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637644507.1117976
+  text: "UNLOAD 1K41"
+  take_over: false
+  is_manual: false
+  time: "13:15:07 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637645708.6523979
+  text: "LOAD CR33 R"
+  take_over: false
+  is_manual: false
+  time: "13:35:08 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637645709.2833364
+  text: "AS_TRAJ_DELAY"
+  take_over: false
+  is_manual: false
+  time: "13:35:09 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637645733.9645433
+  text: "AS_MONITOR_PROCESS_CORE"
+  take_over: false
+  is_manual: false
+  time: "13:35:33 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637645745.887342
+  text: "RTK_KEEP_INVALID_IN_ROADS"
+  take_over: false
+  is_manual: false
+  time: "13:35:45 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637646728.2273741
+  text: "LOAD CR32 R"
+  take_over: false
+  is_manual: false
+  time: "13:52:08 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637646937.9143693
+  text: "VISION_LANE_KEEP_INVALID"
+  take_over: false
+  is_manual: false
+  time: "13:55:37 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637647017.2642431
+  text: "UNLOAD 8M68"
+  take_over: false
+  is_manual: false
+  time: "13:56:57 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637647072.3780801
+  text: "UNLOAD 8M68"
+  take_over: false
+  is_manual: false
+  time: "13:57:52 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637647085.3606524
+  text: "VISION_LANE_KEEP_INVALID"
+  take_over: false
+  is_manual: false
+  time: "13:58:05 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637647124.8936415
+  text: "UNLOAD 8M68"
+  take_over: false
+  is_manual: false
+  time: "13:58:44 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637647131.8542712
+  text: "AS_TRAJ_DELAY"
+  take_over: false
+  is_manual: false
+  time: "13:58:51 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637647193.9631777
+  text: "RTK_KEEP_INVALID_IN_ROADS"
+  take_over: false
+  is_manual: false
+  time: "13:59:53 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637647327.2771466
+  text: "AS_TRAJ_DELAY"
+  take_over: false
+  is_manual: false
+  time: "14:02:07 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637647438.4075763
+  text: "LOAD CR45 R"
+  take_over: false
+  is_manual: false
+  time: "14:03:58 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637647450.3159976
+  text: "LOAD CR45 R"
+  take_over: false
+  is_manual: false
+  time: "14:04:10 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637647630.5206347
+  text: "LOAD CR45 R"
+  take_over: false
+  is_manual: false
+  time: "14:07:10 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637647963.3901637
+  text: "LOAD CR45 R"
+  take_over: false
+  is_manual: false
+  time: "14:12:43 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637647989.9587855
+  text: "LOAD CR45 R"
+  take_over: false
+  is_manual: false
+  time: "14:13:09 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637648020.671752
+  text: "LOAD CR45 R"
+  take_over: false
+  is_manual: false
+  time: "14:13:40 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637648059.77995
+  text: "UNLOAD 43#"
+  take_over: false
+  is_manual: false
+  time: "14:14:19 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637648079.5914953
+  text: "UNLOAD 43#"
+  take_over: false
+  is_manual: false
+  time: "14:14:39 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637648100.4732716
+  text: "UNLOAD 43#"
+  take_over: false
+  is_manual: false
+  time: "14:15:00 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637648120.6123767
+  text: "UNLOAD 43#"
+  take_over: false
+  is_manual: false
+  time: "14:15:20 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637648142.071615
+  text: "UNLOAD 43#"
+  take_over: false
+  is_manual: false
+  time: "14:15:42 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637648164.6191297
+  text: "UNLOAD 43#"
+  take_over: false
+  is_manual: false
+  time: "14:16:04 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637648182.8128779
+  text: "UNLOAD 43#"
+  take_over: false
+  is_manual: false
+  time: "14:16:22 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637648202.7099545
+  text: "UNLOAD 43#"
+  take_over: false
+  is_manual: false
+  time: "14:16:42 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637648221.8255827
+  text: "UNLOAD 43#"
+  take_over: false
+  is_manual: false
+  time: "14:17:01 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637648241.7228069
+  text: "UNLOAD 43#"
+  take_over: false
+  is_manual: false
+  time: "14:17:21 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637648261.5266449
+  text: "UNLOAD 43#"
+  take_over: false
+  is_manual: false
+  time: "14:17:41 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637648280.8711951
+  text: "UNLOAD 43#"
+  take_over: false
+  is_manual: false
+  time: "14:18:00 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637648302.9056263
+  text: "UNLOAD 43#"
+  take_over: false
+  is_manual: false
+  time: "14:18:22 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637648322.9928231
+  text: "UNLOAD 43#"
+  take_over: false
+  is_manual: false
+  time: "14:18:42 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637648341.8932185
+  text: "UNLOAD 43#"
+  take_over: false
+  is_manual: false
+  time: "14:19:01 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637648360.7431612
+  text: "UNLOAD 43#"
+  take_over: false
+  is_manual: false
+  time: "14:19:20 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637648381.7893386
+  text: "UNLOAD 43#"
+  take_over: false
+  is_manual: false
+  time: "14:19:41 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637648401.1320817
+  text: "UNLOAD 43#"
+  take_over: false
+  is_manual: false
+  time: "14:20:01 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637648422.0377145
+  text: "UNLOAD 43#"
+  take_over: false
+  is_manual: false
+  time: "14:20:22 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637648439.8621936
+  text: "UNLOAD 43#"
+  take_over: false
+  is_manual: false
+  time: "14:20:39 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637648457.7073016
+  text: "UNLOAD 43#"
+  take_over: false
+  is_manual: false
+  time: "14:20:57 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637648475.5506685
+  text: "UNLOAD 43#"
+  take_over: false
+  is_manual: false
+  time: "14:21:15 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637648494.5027938
+  text: "UNLOAD 43#"
+  take_over: false
+  is_manual: false
+  time: "14:21:34 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637648514.7415016
+  text: "UNLOAD 43#"
+  take_over: false
+  is_manual: false
+  time: "14:21:54 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637648533.5935831
+  text: "UNLOAD 43#"
+  take_over: false
+  is_manual: false
+  time: "14:22:13 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637648553.686161
+  text: "UNLOAD 43#"
+  take_over: false
+  is_manual: false
+  time: "14:22:33 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637648574.5408447
+  text: "UNLOAD 43#"
+  take_over: false
+  is_manual: false
+  time: "14:22:54 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637648592.6240077
+  text: "UNLOAD 43#"
+  take_over: false
+  is_manual: false
+  time: "14:23:12 23/11/2021"
+}
+record_list {
+  timestamp_sec: 1637648611.4955034
+  text: "UNLOAD 43#"
+  take_over: false
+  is_manual: false
+  time: "14:23:31 23/11/2021"
+}
+meta {
+  git_commit: " 74afb25e09dbda43d9b3ab76e0b743db2edb6921"
+  resource_commit: " 1ebc3048e98a450488a3ac683eed0caa325503e0"
+  release_generation_time: " Thu Nov 11 23:21:15 CST 2021"
+  release_type: " custom_builds/74afb25e"
+}
