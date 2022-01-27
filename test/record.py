@@ -23,6 +23,14 @@ class Record:
         self.file_dict = get_path(root_path,date,'recordB')
         if self.file_dict != None:
             self.is_valid = True
+            total = 0
+            print('total vehicle:%d'%len(self.file_dict))
+            for key,values in self.file_dict.items():
+                print('vehicle:'+key)
+                total += len(values)
+                for value in values:
+                    print(value)
+            print('total:%d'%total)
         else:
             self.is_valid = False
 
@@ -68,6 +76,14 @@ class Bag:
         if self.file_dict != None:
             self.is_valid = True
             self.get_time_dict(self.file_dict)
+            total = 0
+            for key,values in self.file_dict.items():
+                print(key+':')
+                print(len(values))
+                total += len(values)
+                for value in values:
+                    print(value)
+            print('total file:%d' % total)
         else:
             self.is_valid = False
 
@@ -130,7 +146,7 @@ class BagParser:
     
     
     def process_units(self,record_time):
-        if self.index < len(self.bag_index.units):
+        while self.index < len(self.bag_index.units):
             send_time = self.bag_index.units[self.index].data_header.send_time_ns / 1e9
             min_delta_time = 1e-1
             if record_time > send_time and record_time -send_time < min_delta_time:
@@ -143,9 +159,7 @@ class BagParser:
                     loc.ParseFromString(data)
                     print('process')
             self.index += 1
-            return True
-        else:
-            return False
+            
 
 
 def get_time(time_str):
@@ -195,25 +209,36 @@ def process_data(record_list,loc):
 def process(root_path,date):
     record = Record(root_path,date)
     bag = Bag(root_path,date)
+    total_msg = 0
     if not record.is_valid or not bag.is_valid:
         print('error:no match file')
         exit(0)
     for vehicle in record.file_dict:
         for record_file in record.file_dict[vehicle]:
+            print('read recordB file')
+            t_read_recordB = time.mktime(time.localtime())
             msg_record = record.update_record(record.parse(record_file),'take_over')
+            t_update_recordB = time.mktime(time.localtime())
+            print('update cost:%d'%(t_update_recordB - t_read_recordB))
             for record_list in msg_record.record_list:
                 #根据时间筛选文件
                 record_time = record_list.timestamp_sec
+                t_record_list = time.mktime(time.localtime())
                 file_path = bag.select_file(vehicle,record_time)
-
+                t_select_file = time.mktime(time.localtime())
+                print('select_file cost:%d'%(t_select_file-t_record_list))
                 if file_path != None:
                     print('read file:'+ file_path)
+                    total_msg += 1
+                    t_read_msg = time.mktime(time.localtime())
                     parser = BagParser(file_path)
                     #bag_chunk = message_bag.BagDataChunk()
-                    while(parser.process_units(record_time)):
-                        pass
+                    parser.process_units(record_time)
+                    t_process = time.mktime(time.localtime())
+                    print('process one msg file cost: %d' % (t_process-t_read_msg))
                 else:
                     continue
+    print('total processed msg file: %d' % total_msg)
             
 
 if __name__ == '__main__':
