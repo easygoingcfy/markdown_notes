@@ -189,7 +189,7 @@ def get_path(root_path,date,file_str):
                 file_list = os.listdir(root + '/' + file_dir)
                 file_list.sort()
                 for file_name in file_list:
-                    if re.match(".*%s.*"%file_str,file_name)!= None:
+                    if re.match(".*%s"%file_str,file_name)!= None:
                         fullpath = root + '/' + file_dir + '/' + file_name
                         if vehicle_name in path_dict:
                             path_dict[vehicle_name].append(fullpath)
