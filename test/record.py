@@ -20,6 +20,7 @@ type_dict = {
 class Record:
     def __init__(self,root_path,date):
         #self.date = date
+        self.batch_record = driving_record.BatchRecord()
         self.file_dict = get_path(root_path,date,'recordB')
         if self.file_dict != None:
             self.is_valid = True
@@ -59,13 +60,25 @@ class Record:
             print('recordB dont exist')
             return
 
+    def post_batch(self,url):
+        '''
+        post batch_record
+        '''
+        #url = "http://192.168.10.78:8070/api/records"
+        t_s = time.mktime(time.localtime())
+        json_string = json_format.MessageToJson(self.batch_record,preserving_proto_field_name=True)
+        print("msg to json done")
+        res = requests.post(url=url,data=json_string)
+        print(res.text)
+        t_e = time.mktime(time.localtime())
+        print('post_batch cost:%f s' % (t_e - t_s) )
 
     def update_record(self,record,field):      
         '''
         提取需要的record_list,放到新的msg_record中
         '''
         t_s = time.mktime(time.localtime())
-        new_record = driving_record.Record()
+        new_record = self.batch_record.records.add()
         for record_list in record.record_list:
             if eval('record_list.'+field):
                 new_record_list = new_record.record_list.add()
@@ -126,11 +139,27 @@ class Bag:
 
 
 class BagParser:
-    def __init__(self,file_path):
+    def __init__(self,file_path,record_time):
         self.path = file_path
         #self.msg_file = self.get_msg_file(self.path)
         self.bag_index = self.get_bag_index(self.path)
-        self.index = 0
+        self.index = self.set_index(record_time)
+
+    def set_index(self,record_time):
+        '''
+        二分查找设置index的值
+        '''
+        l,r = 0,len(self.bag_index.units)-1
+        while l < r:
+            mid = (l+r)//2
+            send_time = self.bag_index.units[mid].data_header.send_time_ns / 1e9
+            if send_time < record_time-LOC_MIN_DELTA_TIME:  #此处可能需要用近似代替
+                l = mid+1
+            elif send_time > record_time-LOC_MIN_DELTA_TIME:
+                r = mid-1
+            else:
+                return mid
+        return l
 
     def get_msg_file(self,file_path):
         t_s = time.mktime(time.localtime())
@@ -179,8 +208,11 @@ class BagParser:
                 if message_type == adapter_config.AdapterConfig.LOCALIZATION:
                     loc = Localization()
                     p = self.bag_index.units[self.index].message_data_offset
-                    data_lenth = self.bag_index.units[self.index].message_data_length
-                    data = self.msg_file[p:p+data_lenth]
+                    f = open(self.path,'rb')
+                    f.seek(p)
+                    data_length = self.bag_index.units[self.index].message_data_length
+                    data = f.read(data_length)
+                    f.close()
                     loc.ParseFromString(data)
                     print('process')
             self.index += 1
@@ -188,12 +220,13 @@ class BagParser:
         print('process_units cost: %f ns' % ((t_e - t_s)*1e6))
     '''
 
-    def process_units(self,record_time):
+    def process_units(self,record_list):
         t_s = time.mktime(time.localtime())
+        record_time = record_list.timestamp_sec
         while self.index < len(self.bag_index.units):
             send_time = self.bag_index.units[self.index].data_header.send_time_ns / 1e9
             min_delta_time = 1e-1
-            if record_time > send_time and record_time -send_time < min_delta_time:
+            if abs(record_time -send_time) < min_delta_time:
                 message_type = self.bag_index.units[self.index].data_header.message_type
                 if message_type == adapter_config.AdapterConfig.LOCALIZATION:
                     loc = Localization()
@@ -205,6 +238,9 @@ class BagParser:
                     f.close()
                     loc.ParseFromString(data)
                     print('process')
+                    #这里把循环放到外面，每次返回一个data，再处理会不会好一点
+                    update_record_list(record_list,loc)
+                    
             self.index += 1
         t_e = time.mktime(time.localtime())
         print('process_units cost: %f ns' % ((t_e - t_s)*1e6))
@@ -253,6 +289,10 @@ def get_path(root_path,date,file_str):
     print('get_path cost: %f ns' % ((t_e - t_s)*1e9))
     return path_dict
 
+def update_record_list(record_list,data):
+    if data.header.module_name == "localization":
+        record_list.utm_x.append(data.utm_x)
+
 
 def process_data(record_list,loc):
     pass
@@ -277,12 +317,17 @@ def process(root_path,date):
                 if file_path != None:
                     print('read file:'+ file_path)
                     total_msg += 1
-                    parser = BagParser(file_path)
+                    parser = BagParser(file_path,record_time)
                     #bag_chunk = message_bag.BagDataChunk()
-                    parser.process_units(record_time)
+                    parser.process_units(record_list)
                 else:
                     continue
     print('total processed msg file: %d' % total_msg)
+    print(record.batch_record)
+    print('post batch_record')
+    url = "http://192.168.10.78:8070/api/records"
+    record.post_batch(url)
+    print('done')
             
 
 if __name__ == '__main__':
