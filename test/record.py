@@ -40,12 +40,15 @@ class Record:
         解析文件
         '''
         if os.path.isfile(path):
+            t_s = time.mktime(time.localtime())
             f = open(path,'rb')
             print('open file:'+path)
             try:
                 record = driving_record.Record()
                 text_format.Parse(f.read(),record)
                 f.close()
+                t_e = time.mktime(time.localtime())
+                print('parse recordB cost: %f ns'% ((t_e-t_s)*1e9))
                 return record
             except text_format.ParseError as e:
                 print(path+'Parse error!!!!!!!!')
@@ -61,11 +64,14 @@ class Record:
         '''
         提取需要的record_list,放到新的msg_record中
         '''
+        t_s = time.mktime(time.localtime())
         new_record = driving_record.Record()
         for record_list in record.record_list:
             if eval('record_list.'+field):
                 new_record_list = new_record.record_list.add()
                 new_record_list.CopyFrom(record_list)
+        t_e = time.mktime(time.localtime())
+        print('update_record cost:%f ns' % ((t_e - t_s)*1e9) )
         return new_record
 
 
@@ -88,6 +94,7 @@ class Bag:
             self.is_valid = False
 
     def get_time_dict(self,file_dict):
+        t_s = time.mktime(time.localtime())
         for vehicle_name in file_dict:
             for file_name in file_dict[vehicle_name]:
                 time_str = get_time(file_name.split(vehicle_name)[2][1:20])
@@ -95,36 +102,43 @@ class Bag:
                     self.file_time_dict[vehicle_name].append(time_str)
                 else:
                     self.file_time_dict[vehicle_name] = [time_str]
-
+        t_e = time.mktime(time.localtime())
+        print('get_time_dict cost: %f ns' % ((t_e - t_s)*1e9) )
 
     
-    def select_file(self,vehicle_name,time):  
+    def select_file(self,vehicle_name,record_time):  
         '''
         根据时间筛选文件
         '''
         index = -1
+        t_s = time.mktime(time.localtime())
         for i in range(0,len(self.file_time_dict[vehicle_name])):
-            if time < self.file_time_dict[vehicle_name][i]:
+            if record_time < self.file_time_dict[vehicle_name][i]:
                 index = i - 1
                 break
-        if index < 0 or time < self.file_time_dict[vehicle_name][index]:
+        if index < 0 or record_time < self.file_time_dict[vehicle_name][index]:
             print('no time match file')
             return  
         else:
+            t_e = time.mktime(time.localtime())
+            print('select_file cost: %f ns' % ((t_e - t_s)*1e9) )
             return self.file_dict[vehicle_name][index]
 
 
 class BagParser:
     def __init__(self,file_path):
         self.path = file_path
-        self.msg_file = self.get_msg_file(self.path)
+        #self.msg_file = self.get_msg_file(self.path)
         self.bag_index = self.get_bag_index(self.path)
         self.index = 0
 
     def get_msg_file(self,file_path):
+        t_s = time.mktime(time.localtime())
         f = open(file_path,'rb')
         msg_file = f.read()
         f.close()
+        t_e = time.mktime(time.localtime())
+        print('get_msg_file cost: %f ns' % ((t_e - t_s)*1e9))
         return msg_file
 
 
@@ -132,20 +146,31 @@ class BagParser:
         '''
         用来给self.bag_index初始化
         '''
+        t_s = time.mktime(time.localtime())
+        f = open(self.path,'rb')
         bag_header = message_bag.BagHeader()
-        l, = struct.unpack('L',self.msg_file[0:8])
-        data = self.msg_file[8:l+8]
+        #l, = struct.unpack('L',self.msg_file[0:8])
+        l, = struct.unpack('L',f.read(8))
+        #data = self.msg_file[8:l+8]
+        data = f.read(l)
         bag_header.ParseFromString(data)
         #get index
         p = bag_header.index_offset
+        f.seek(p)
         bag_index = message_bag.BagIndex()
-        l, = struct.unpack('L',self.msg_file[p:p+8])
-        data = self.msg_file[p+8:p+8+l]
+        #l, = struct.unpack('L',self.msg_file[p:p+8])
+        l,  = struct.unpack('L',f.read(8))
+        #data = self.msg_file[p+8:p+8+l]
+        data = f.read(l)
+        f.close()
         bag_index.ParseFromString(data)
+        t_e = time.mktime(time.localtime())
+        print('get_bag_index cost:%f ns' % ((t_e-t_s)*1e9))
         return bag_index
     
-    
+    '''
     def process_units(self,record_time):
+        t_s = time.mktime(time.localtime())
         while self.index < len(self.bag_index.units):
             send_time = self.bag_index.units[self.index].data_header.send_time_ns / 1e9
             min_delta_time = 1e-1
@@ -159,7 +184,30 @@ class BagParser:
                     loc.ParseFromString(data)
                     print('process')
             self.index += 1
-            
+        t_e = time.mktime(time.localtime())
+        print('process_units cost: %f ns' % ((t_e - t_s)*1e6))
+    '''
+
+    def process_units(self,record_time):
+        t_s = time.mktime(time.localtime())
+        while self.index < len(self.bag_index.units):
+            send_time = self.bag_index.units[self.index].data_header.send_time_ns / 1e9
+            min_delta_time = 1e-1
+            if record_time > send_time and record_time -send_time < min_delta_time:
+                message_type = self.bag_index.units[self.index].data_header.message_type
+                if message_type == adapter_config.AdapterConfig.LOCALIZATION:
+                    loc = Localization()
+                    f = open(self.path,'rb')
+                    p = self.bag_index.units[self.index].message_data_offset
+                    f.seek(p)
+                    l = self.bag_index.units[self.index].message_data_length
+                    data = f.read(l)
+                    f.close()
+                    loc.ParseFromString(data)
+                    print('process')
+            self.index += 1
+        t_e = time.mktime(time.localtime())
+        print('process_units cost: %f ns' % ((t_e - t_s)*1e6))
 
 
 def get_time(time_str):
@@ -174,6 +222,7 @@ def get_path(root_path,date,file_str):
     if not os.path.exists(root_path):
         print('root_dir dont exist')
         return
+    t_s = time.mktime(time.localtime())
     vehicle_list = os.listdir(root_path)
     vehicle_list.sort()
     path_dict = dict()
@@ -198,6 +247,10 @@ def get_path(root_path,date,file_str):
         else:
             print('path dont exist')
             continue
+    t_e = time.mktime(time.localtime())
+    print(type(t_e))
+    print(type(1e6))
+    print('get_path cost: %f ns' % ((t_e - t_s)*1e9))
     return path_dict
 
 
@@ -216,26 +269,17 @@ def process(root_path,date):
     for vehicle in record.file_dict:
         for record_file in record.file_dict[vehicle]:
             print('read recordB file')
-            t_read_recordB = time.mktime(time.localtime())
             msg_record = record.update_record(record.parse(record_file),'take_over')
-            t_update_recordB = time.mktime(time.localtime())
-            print('update cost:%d'%(t_update_recordB - t_read_recordB))
             for record_list in msg_record.record_list:
                 #根据时间筛选文件
                 record_time = record_list.timestamp_sec
-                t_record_list = time.mktime(time.localtime())
                 file_path = bag.select_file(vehicle,record_time)
-                t_select_file = time.mktime(time.localtime())
-                print('select_file cost:%d'%(t_select_file-t_record_list))
                 if file_path != None:
                     print('read file:'+ file_path)
                     total_msg += 1
-                    t_read_msg = time.mktime(time.localtime())
                     parser = BagParser(file_path)
                     #bag_chunk = message_bag.BagDataChunk()
                     parser.process_units(record_time)
-                    t_process = time.mktime(time.localtime())
-                    print('process one msg file cost: %d' % (t_process-t_read_msg))
                 else:
                     continue
     print('total processed msg file: %d' % total_msg)
@@ -259,7 +303,12 @@ if __name__ == '__main__':
 
     root_path = args.path
     date = args.date
+
+    time_start = time.mktime(time.localtime())
     process(root_path,date)
+    time_end = time.mktime(time.localtime())
+    print('total time:%d s' % (time_end - time_start))
+
     '''
     parser = BagParser('/onboard_data/bags/meishangang/howo40/20220101/1405/howo40_2022_01_01_14_08_04_2.msg')
     bag_chunk = message_bag.BagDataChunk()
