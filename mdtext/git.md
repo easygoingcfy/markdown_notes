@@ -12,17 +12,175 @@ commit 提交到本地仓库  -m表示注释
 
 ---
 
-## git push
+# 远程仓库
 
-`git push <远程主机名> <本地分支>:<远程分支>`
+## 查看远程仓库
+
+```
+git remote (-v)
+```
+
+使用-v会显示需要读写远程仓库使用的Git保存的简写与其对应的URL
+
+## 添加远程仓库
+
+```
+git remote add <shortname> <url>
+```
+
+添加一个新的远程仓库，同时指定一个简写
+
+## 从远程仓库中抓取与拉取
+
+```
+git fetch <remote>
+```
+
+访问远程仓库，从中拉取所有本地仓库还没有的数据。执行完成后，本地会拥有远程仓库中所有分支的引用，可以随时合并或查看。
+
+```
+git pull <远程主机名> <远程分支名> : <本地分支名>
+```
+
+如果分支设置了跟踪远程分支，可以用git pull 命令自动抓取后合并该远程分支到当前分支。
+
+默认情况下，git clone命令会自动设置本地master分支跟踪克隆的远程仓库的master分支。
+
+```
+git push origin master
+git push <远程主机名> <本地分支>:<远程分支>
+```
+
+推送到远程仓库。
 
 如果本地分支与远程分支名字相同，冒号及后面的部分可以省略
 
-## git pull
+## 查看远程仓库
 
-` git pull <远程主机名> <远程分支名> : <本地分支名> `
+```
+git remote show <remote>
+```
 
-省略情况同push，注意参数顺序
+列出远程仓库的URL与跟踪分支的信息。
+
+## 重命名与移除
+
+```
+git remote rename 
+git remote remove 
+git remote rm
+```
+
+## 标签
+
+### 列出标签
+
+```
+git tag (-l --list)
+git tag -l "v1.8.5*"
+```
+
+使用-l --list 按照通配符列出标签
+
+### 附注标签
+
+附注标签是储存在Git数据库中的一个完整对象，包含打标签者的名字、电子邮件地址、日期时间和标签信息，并且可以使用GNU Privacy Guard(GPG)签名并验证。通常会建议创建附注标签。
+
+```
+git tag -a v1.4 -m "my version 1.4"
+```
+
+### 轻量标签
+
+```
+git tag v1.4-lw
+```
+
+### 后期打标签
+
+需要在命令的末尾指定条件的校验和（或者部分）
+
+```
+git tag -a v1.2 xxxxxx
+```
+
+### 共享标签
+
+```
+git push origin <tagname> 推送一个标签
+git push origin --tags	  推送所有不在远程仓库服务器的标签（不会区分轻量标签和附注标签）
+```
+
+### 删除标签
+
+```
+git tag -d <tagname>
+git push origin --delete <tagname>
+```
+
+## GIT别名
+
+```
+git config --global alias.<name> commend
+ex:
+git config --global alias.co checkout
+```
+
+# git分支
+
+Git保存的不是文件的变化或者差异，而是一系列不同时刻的 快照 
+
+在进行提交操作时，Git会保存一个提交对象（commit object）。
+
+提交对象会包含一个指向暂存内容的指针，作者的姓名、邮箱、提交时输入的信息以及指向父对象的指针。
+
+更具体的，Git会使用blob对象保存当前版本的文件快照，并将校验和加入到暂存区等待提交
+
+当使用git commit进行提交操作时，Git会先计算每一个子目录的校验和，然后在Git仓库中将这些校验和保存为树对象（记录着目录结构和blob对象索引）。
+
+随后，Git会创建一个提交对象，它除了上面提到的那些信息外，还包含指向这个树对象（项目根目录）的指针。如此一来，Git就可以在需要的时候重现此次保存的快照。
+
+
+
+Git的分支，本质上仅仅是指向提交对象的可变指针。
+
+## HEAD指针
+
+HEAD指向当前所在的本地分支。
+
+## 创建分支
+
+```
+git branch branch_name
+```
+
+创建分支并切换过去
+
+```
+git checkout -b <newbranchname>
+```
+
+
+
+## 查看各分支当前所指的对象
+
+```
+git log --online --decorate
+```
+
+## 切换分支
+
+```
+git checkout branch_name
+```
+
+## 删除分支
+
+```
+git branch -d branch_name
+```
+
+
 
 - - -
 ## git log 查看历史提交日志
@@ -75,9 +233,7 @@ git branch -D 强制删除分支
 ## git diff 
 查看不同分支的文件差异
 - - -
-## git remote
-查看当前仓库名称
-git remote -v   详细信息
+
 
 # 一些经验
 ## git分支开发步骤  

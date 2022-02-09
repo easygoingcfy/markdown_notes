@@ -2,6 +2,41 @@
 
 哈希表
 
+### 字典的构造
+
+格式：` d = {key1 : value1, key2:value2.....}`
+
+``` 
+items = [('name','Gumby'),('age',42)]
+d = dict(items)
+d = dict(name='Gumby',age=42,height=1.76)
+```
+
+
+
+### 遍历
+
+#### 遍历key
+
+```
+for key in dict:
+for key in dict.keys():
+```
+
+#### 遍历value
+
+```
+for value in d.values():
+```
+
+#### 遍历项
+
+```
+for key,values in d.items():
+```
+
+
+
 ## 函数
 
 ```

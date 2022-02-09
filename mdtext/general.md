@@ -14,3 +14,10 @@ sudo mount -t glusterfs storage1.fabu.ai:/onboard_data /onboard_data
 
 ex: ` ssh caofangyu@172.25.20.8`
 
+## root_dir
+
+/onboard_data/bags/meishangang/
+
+## 命令
+
+python main.py -p /onboard_data/bags/meishangang/ -d 20220101
