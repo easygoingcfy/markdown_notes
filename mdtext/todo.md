@@ -493,3 +493,137 @@ done
 
 ![image-20220222145250582](/home/caofangyu/.config/Typora/typora-user-images/image-20220222145250582.png)
 
+```
+def common_setup():
+    output("handle speicfic cases of common_setup"
+           " onboard = {}".format(onboard))
+
+    flag_path_base = 'modules/common/data/global_flagfile.txt'
+    flag_path = flag_path_base
+    if onboard or conf_without_custom_config:
+        flag_path = os.path.join(".config", flag_path)
+        output("flag_path = {} ".format(flag_path))
+    # tensorrt version, based on machine arch: x86->7.0.0 aarch64->7.1.3
+
+    trt_version = "7.0.0" if machine_arch == "x86_64" else "7.1.3"
+    replace_and_append(
+        src_path=flag_path,
+        dst_path=os.path.join(CONFIG_TEMP_PATH, flag_path_base),
+        criterias=["trt_version"],
+        from_regexs=["\d\.\d\.\d$"],
+        tos=[trt_version])
+
+    if not onboard and Flags.config_for == "develop":
+        src_path_base = os.path.join("modules", "common", "module_conf",
+                                     "conf", "living_modules_conf.pb.txt")
+        src_path = src_path_base
+        if conf_without_custom_config:
+            src_path = os.path.join('.config', src_path)
+        dst_path = os.path.join(CONFIG_TEMP_PATH, src_path_base)
+        # replace_and_append(
+        #    src_path,
+        #    dst_path=dst_path,
+        #    criterias=["CAMERA"],
+        #    from_regexs=["CAMERA"],
+        #    tos=["COMPRESSED_CAMERA"])
+        replace_and_append(
+            src_path,
+            dst_path=dst_path,
+            criterias=["endpoint"],
+            from_regexs=["\d+\.\d+\.\d+\.\d+"],
+            tos=["127.0.0.1"])
+
+def replace_and_append(src_path,
+                       dst_path=None,
+                       criterias=None,
+                       from_regexs=None,
+                       tos=None,
+                       append=None,
+                       insert=None,
+                       node_regex=None,
+                       node_start_line=None,
+                       node_end_line=None,
+                       node_replace_in_copy=False):
+    if not os.path.isfile(src_path):
+        output("replace_and_append return src_path \"{}\" doesn't"
+               " exist.".format(src_path))
+        return
+    if not dst_path:
+        dst_path = os.path.join(CONFIG_TEMP_PATH, src_path)
+    if criterias is not None:
+        if not (len(criterias) == len(from_regexs) == len(tos)):
+            raise Exception(
+                "Lens of criterias, from_regexs and tos must be equal: %s" %
+                (dst_path))
+    if (os.path.islink(dst_path)):
+        os.unlink(dst_path)
+        src_file = open(src_path, 'r')
+        conf_file = open("%s.bak" % dst_path, 'w+')
+    else:
+        src_file = open(dst_path, 'r')
+        conf_file = open("%s.bak" % dst_path, 'w+')
+    if insert is not None:
+        conf_file.write(insert)
+    if node_regex is None:
+        for line in src_file:
+            origin = line
+            line, show_info = edit_line_with_regex(dst_path, line, criterias,
+                                                   from_regexs, tos)
+            conf_file.write(line)
+            if show_info and line != origin:
+                # if show_info:
+                output("{} : {} -> {}".format(dst_path,
+                                              origin.strip(), line.strip()))
+    else:
+        assert(node_start_line is not None and node_end_line is not None)
+        buffer = []
+        is_in_node = False
+        is_target = False
+        for line in src_file:
+            if not is_in_node:
+                if re.match(node_start_line, line) is not None:
+                    is_in_node = True
+                    buffer.append(line)
+                else:
+                    conf_file.write(line)
+                continue
+            elif re.match(node_end_line, line) is not None:
+                buffer.append(line)
+                if is_target and node_replace_in_copy:
+                    # dump buffer once first as original
+                    for buf_line in buffer:
+                        conf_file.write(buf_line)
+
+                # dump buffer
+                for buf_line in buffer:
+                    origin = buf_line
+                    if is_target:
+                        buf_line, show_info =\
+                            edit_line_with_regex(dst_path,
+                                                 buf_line, criterias,
+                                                 from_regexs, tos)
+                        if show_info and buf_line != origin:
+                            output("{} : {} -> {}".format(dst_path,
+                                                          origin.strip(),
+                                                          line.strip()))
+                    conf_file.write(buf_line)
+                is_in_node = False
+                is_target = False
+                buffer = []
+                continue
+            else:
+                buffer.append(line)
+                if re.search(node_regex, line) is not None:
+                    is_target = True
+                continue
+    src_file.close()
+
+    if append is not None:
+        # print("%s : %s" % (dst_path, append))
+        conf_file.write(append)
+    conf_file.close()
+    if os.path.isfile(dst_path):
+        os.remove(dst_path)
+    os.rename("%s.bak" % dst_path, dst_path)
+```
+
