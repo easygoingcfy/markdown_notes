@@ -84,6 +84,10 @@ cat [-AbeEnstTuv] [--help] [--version] fileName
 
 逐屏显示文件
 
+## bc : 计算器
+
+scale:设置精度
+
 ## head与tail
 
 显示文件的头部或尾部，默认选择 10 行，-n选项可以选择函数
@@ -118,7 +122,19 @@ caofangyu
 sbbbbbbbb 
 ```
 
-## grep
+## tar.gz
+
+```
+tar -zxvf xxx.tar.gz  解压缩
+```
+
+## dpkg
+
+```
+dpkg -i xxx.deb   安装软件
+```
+
+## grep 查找
 
 查找文件中符合条件的字符串
 

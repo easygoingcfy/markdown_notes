@@ -40,6 +40,50 @@ file_name proto文件名
 
 https://googleapis.dev/python/protobuf/latest/google/protobuf.html
 
+### 查看protobuf信息
+
+```
+which protoc   默认路径
+protoc --version   查看版本
+```
+
+
+
+### message
+
+### 复制
+
+```
+CopyFrom()
+
+MergeFrom()
+
+ParseFromString（）
+Parse serialized protocol buffer data into this message
+
+SerializePartialToString(**kwargs)
+Serializes the protocol message to a binary string
+
+DiscardUnknownFields()
+Clears all fields in the UnknownFieldSet.
+```
+
+
+
+
+
+### 遍历字段
+
+#### 使用descriptor对象
+
+```
+obj 为消息对象
+for descriptor in obj.DESCRIPTOR.fields:
+        value = getattr(obj, descriptor.name)
+```
+
+
+
 ### json_format
 
 https://googleapis.dev/python/protobuf/latest/google/protobuf/json_format.html#google.protobuf.json_format.MessageToJson
@@ -167,4 +211,8 @@ allow_field_number=False			如果为True，则允许字段编号和字段名称
 descriptor_pool=None				用于解析Any类型的描述符池
 
 allow_unknown_field=False	如果为真，跳过未知字段并继续解析。如果可能，请避免使用此选项，它可能会隐藏一些错误（例如字段名称的拼写）
+
+### message 	草稿，函数名参考的c++代码
+
+message.ByteSizeLong() 获取字节大小
 

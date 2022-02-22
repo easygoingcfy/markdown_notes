@@ -1,4 +1,26 @@
 # 常用操作  
+
+## 代理
+
+### 重置代理
+
+```
+git config --global  --unset https.https://github.com.proxy 
+git config --global  --unset http.https://github.com.proxy 
+```
+
+### 设置代理
+
+```text
+# http
+git config --global http.https://github.com.proxy http://127.0.0.1:8080
+git config --global https.https://github.com.proxy https://127.0.0.1:8080
+
+# socket
+git config --global http.proxy 'socks5://127.0.0.1:8080'
+git config --global https.proxy 'socks5://127.0.0.1:8080'
+```
+
 - - -
 ## git init  
 初始化当前目录为仓库，并将当前仓库设置为master
@@ -125,6 +147,25 @@ git config --global alias.<name> commend
 ex:
 git config --global alias.co checkout
 ```
+
+## git ignore
+
+在主目录添加.gitignore文件，使用git ignore
+
+- 空白行或以 开头`#`的行将被忽略。
+- 标准 glob 模式有效，并将在整个工作树中递归应用。
+- 您可以使用正斜杠 ( `/`) 开始模式以避免递归。
+- 您可以使用正斜杠 ( `/`) 结束模式以指定目录。
+- 您可以通过以感叹号 ( `!`) 开头来否定模式。
+
+### 使.gitignore生效
+
+```
+git rm -r --cached .			#清除缓存
+git add .						#重新trace file
+```
+
+
 
 # git分支
 
