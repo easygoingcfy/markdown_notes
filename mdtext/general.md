@@ -46,7 +46,7 @@ $ ./deploy/dev_int.sh
 
 拉取最新的开发版本(推荐)
 
-$ bash deploy/common/update_release.sh candidate/HEAD
+$ bash deploy/common/update_release.sh master/HEAD
 
 拉取指定版本
 
@@ -119,3 +119,7 @@ name of first client : cilent
 ```
 ./scripts/record_bag.sh --ms   开始记录数据
 ```
+
+## arcanist
+
+![image-20220224165804550](/home/caofangyu/.config/Typora/typora-user-images/image-20220224165804550.png)

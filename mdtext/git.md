@@ -32,6 +32,91 @@ git add .     提交所有改动，除了删除操作
 commit 提交到本地仓库  -m表示注释  
 改写提交：git commit --amend
 
+## git 查看改动
+
+### 查看未暂存的修改
+
+```
+git diff
+此时比较的是 已暂存（staged）和已追踪未暂存（modified）之间的修改部分。
+```
+
+
+
+### 查看已暂存的修改
+
+```
+git diff --catched
+此时比较的是 提交至仓库的版本 和 暂存区文件（staged）之间的修改部分
+```
+
+### 查看已提交的修改
+
+```
+git log -p 
+此时比较的是每次提交到仓库的版本 与 上一次提交到仓库的版本之间的变化
+```
+
+
+
+# git 提交
+
+## 合并提交
+
+```
+git rebase -i xxx
+git rebase -i HEAD~2 
+```
+
+
+
+## 格式
+
+```text
+<type>(<scope>): <subject>
+```
+
+### **type(必须)**
+
+用于说明git commit的类别，只允许使用下面的标识。
+
+feat：新功能（feature）。
+
+fix/to：修复bug，可以是QA发现的BUG，也可以是研发自己发现的BUG。
+
+- fix：产生diff并自动修复此问题。适合于一次提交直接修复问题
+- to：只产生diff不自动修复此问题。适合于多次提交。最终修复问题提交时使用fix
+
+docs：文档（documentation）。
+
+style：格式（不影响代码运行的变动）。
+
+refactor：重构（即不是新增功能，也不是修改bug的代码变动）。
+
+perf：优化相关，比如提升性能、体验。
+
+test：增加测试。
+
+chore：构建过程或辅助工具的变动。
+
+revert：回滚到上一个版本。
+
+merge：代码合并。
+
+sync：同步主线或分支的Bug。
+
+### **scope(可选)**
+
+scope用于说明 commit 影响的范围，比如数据层、控制层、视图层等等，视项目不同而不同。
+
+例如在Angular，可以是location，browser，compile，compile，rootScope， ngHref，ngClick，ngView等。如果你的修改影响了不止一个scope，你可以使用*代替。
+
+### **subject(必须)**
+
+subject是commit目的的简短描述，不超过50个字符。
+
+建议使用中文（感觉中国人用中文描述问题能更清楚一些）。
+
 ---
 
 # 远程仓库

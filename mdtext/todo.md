@@ -1,36 +1,30 @@
 # current 
 
-record_list {
-
-​	timestamp_sec: 1645234083
-
-​    timestamp_sec: 1645234397
-
-.8495138
-    text: "\346\216\245\347\256\241"
-    take_over: true
-    take_over_reason: "CONDITION_NOT_MET"
-    is_manual: false
-    time: "09:33:17 19/02/2022"
-    driver_id: 299
-    driver_name: "\345\264\224\344\271\235\351\271\217"
-    driver_license: "1"
-    bag: "./scripts/message_service.sh play /fabudata/howo41/20220219/0922/howo41_2022_02_19_09_23_46_1.msg"
-    log: "no loc data\n"
-    dynamic_take_over: false
-  }
+## with
 
 
 
-/fabudata/howo11/20220120/1235/howo11_2022_01_20_12_47_17_12.msg
+### 我的问题
 
-/fabudata/howo11/20220120/1235/howo11_2022_01_20_12_47_17_12.msg
+怎么在Jenkins中找到自己的构建
 
-文件名 参考google code style
+## 数据可视化
 
-#### DataManager类
+### 在容器外运行容器内指令？
 
-找时间把处理数据的类写出来。
+关联pick_bag.py
+
+了解docker exec
+
+### 另一种方式：通过在数据平台页直接运行？（传入日期等信息）
+
+—————————————————————————————————————————————————————————————————————
+
+—————————————————————————————————————————————————————————————————————
+
+# 数据平台
+
+### 目前网页上统计数据以 当前时间 为分界线
 
 ## 必要字段
 
@@ -44,21 +38,11 @@ record_list：
 
 * take_over_reason
 
-## 数据可视化
+## write log
 
-### 在容器外运行容器内指令？
+找时间把write log整理一下。包括语句的格式，错误的类型。
 
-关联pick_bag.py
-
-了解docker exec
-
-### 另一种方式：通过在数据平台页直接运行？（传入日期等信息）
-
-## 尝试增加消息队列msg_que
-
-放在BagParser里
-
-重点是处理好字典的形式
+统一一下方便查找，定位。
 
 --------------------------------------------***---------------------------------------------------------------------------------------------------
 
@@ -627,3 +611,14 @@ def replace_and_append(src_path,
     os.rename("%s.bak" % dst_path, dst_path)
 ```
 
+# 2022/2/28
+
+## write log
+
+把write log整理一下。包括语句的格式，错误的类型。
+
+统一一下方便查找，定位。
+
+重要的信息：包的数量，各种错误信息。
+
+把整个过程捋一捋⑧
