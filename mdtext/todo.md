@@ -1,8 +1,117 @@
 # current 
 
-## with
+python parse_bag.py /onboard_data/bags/meishangang howo7_2022_03_01_16_14_54_38.msg
+
+输入： 车 日期 时间段（默认为全天好了）
+
+输出：字典，存放所有remote_control
+
+# 作业流程
+
+# 接管
+
+常见接管类型，判断的方法，数据在哪（那个字段）
+
+应该看看播包的脚本 以及 接管分析的PPT
+
+可能更关心车发出去（本身）的数据，而不是接收到的？
+
+## 压线
+
+车的信息（车道），速度，状态等。
+
+## 吊具在作业
+
+吊具高度？如何匹配吊具
+
+# 数据
+
+git@git.fabu.ai:caofangyu/event_parser.git
 
 
+
+## RemoteControl
+
+频率：1/s  每个bag60个
+
+一般包括3个部分
+
+header
+
+command
+
+tos_command_text
+
+
+
+## TosCommand
+
+频率 1/s
+
+header
+
+tos_commands_info
+
+## TaskState
+
+频率：10/s  584个
+
+header
+
+task_mode
+
+command_id
+
+## RemoteEnvironment
+
+频率 10/s 558
+
+### header
+
+### gantry_status
+
+cps_guide_cm
+
+spreader_horizonal_position_mm
+
+spreader_size
+
+### crane_status
+
+
+
+* spreader_lane
+* is_working
+* spreader_size
+* spreader_lane_old
+* spreader_speed
+* netload
+
+
+
+# 指令
+
+阅读antenna中相关proto，了解指令类型与作业流程
+
+## 通过解析msg包了解流程
+
+找一段时间的msg解析观察 指令 状态 和一些需要关注的值，最好能找出来统计一下
+
+最少对整个流程得有大概的认识
+
+# 目前的目的
+
+能够通过解析接管时的信息知道接管发生时所处的状态（阶段）
+
+![f06be0c1-1d07-47f5-a8ae-44cd9b0b373f](/home/caofangyu/me/f06be0c1-1d07-47f5-a8ae-44cd9b0b373f.jpg)
+
+————————————————————————————————————————————————————————————
+
+
+
+# 最终的目标
+
+能够通过数据分析出接管发生的原因（可能是出于替代（减少）人工的想法）
 
 ### 我的问题
 
@@ -37,12 +146,6 @@ record_list：
 * take_over
 
 * take_over_reason
-
-## write log
-
-找时间把write log整理一下。包括语句的格式，错误的类型。
-
-统一一下方便查找，定位。
 
 --------------------------------------------***---------------------------------------------------------------------------------------------------
 

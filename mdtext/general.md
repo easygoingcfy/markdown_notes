@@ -20,6 +20,10 @@ ssh caofangyu@172.25.20.8
 
 /fabudata
 
+## ThinkPad
+
+fabu382764
+
 ## root_dir
 
 /onboard_data/bags/meishangang/
@@ -50,7 +54,7 @@ $ bash deploy/common/update_release.sh master/HEAD
 
 拉取指定版本
 
-$ bash deploy/common/update_release.sh candidate/********
+$ bash deploy/common/update_release.sh master/********
 
 ### 切换车号
 

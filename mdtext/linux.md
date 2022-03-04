@@ -191,6 +191,28 @@ dpkg是Debian的一个底层包管理工具，主要用于对已下载到本地�
 
 `unset ENVNAME`
 
+# ssh
+
+## server:172.25.20.8
+
+## 文件传输
+
+从服务器上下载文件：
+
+`scp username@servername:/path/filename /var/www/local_dir`
+
+上传本地文件到服务器：
+
+`scp /path/filename username@servername:/path `
+
+从服务器下载整个目录
+
+`scp -r username@servername:/var/www/remote_dir/（远程目录） /var/www/local_dir（本地目录）`
+
+上传目录到服务器：
+
+`scp -r local_dir username@servername:remote_dir`
+
 # 工具
 
 ## Tmux
@@ -320,6 +342,14 @@ cron.*              /var/log/cron.log #将cron前面的注释符去掉
 ```
 sudo service rsyslog restart
 ```
+
+## python 脚本不运行
+
+https://blog.csdn.net/weixin_36343850/article/details/79217611
+
+https://www.runoob.com/linux/linux-comm-crontab.html
+
+所有文件使用绝对路径，包括python(which python)
 
 ## 重启cron服务
 
