@@ -1,10 +1,15 @@
+
+
 # 指令
 
 ## command_monitor(c++)
 
 ### GetCommandType(command_monitor_util.cc)
 
-* 比较时间param_obj->stat.timestamp - rc_time  3.0
+* 判断rc_msg为空
+  * true: return
+
+* 比较时间param_obj->stat.timestamp - rc_time  kMaxMsgDelay(3.0)
   * 小于3.0（远程控制消息没有延迟（delay））
     * 判断RCmsgBelongPreFinishTask
       * true：MOVE_TO_POSITION
@@ -152,6 +157,22 @@
     * 判断远程环境信息丢失错误REMOTE_ENV_MSG_LOST_ERROR
       * **CommandSummaryAddAbnormal**
 * 打印信息(record_msg)
+
+### abnormal_type_determine.cc
+
+#### HasSystemTimeError(std::string *abnormal_value)
+
+* 判断lidar_msg == nullptr || lidar_msg_pre == nullptr
+  * true: return false
+* 用SystemTimeDetermine判断各模块（lane,radar,chassis,gnss,rc）时间是否正确：
+* SystemTimeDetermine(lane_msg, lane_msg_pre, abnormal_value) || ......
+  * true: return true
+
+#### HasTosCommandError()
+
+
+
+
 
 ## remote_control
 
@@ -435,7 +456,7 @@ i know ge p
 
 驼峰法
 
-## 文件名
+### 文件名
 
 同变量
 

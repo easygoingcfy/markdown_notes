@@ -62,3 +62,17 @@ class function<R<Args...>;
 ```
 
 类模板std :: function是一个通用的多态函数包装器。 std :: function的实例可以存储，复制和调用任何可调用的目标 ：包括函数，lambda表达式，绑定表达式或其他函数对象，以及指向成员函数和指向数据成员的指针。当std::function对象未包裹任何实际的可调用元素，调用该std::function对象将抛出std::bad_function_call异常
+
+## 单例模式 instance()
+
+一个类只能有一个对象被创建。
+
+## 断言函数assert
+
+原理：assert的作用是现计算表达式 expression ，如果其值为假（即为0），那么它先向stderr打印一条出错信息，然后通过调用 abort 来终止程序运行。
+
+## 编译
+
+g++  test.cc
+
+g++ test.cc -o out_name

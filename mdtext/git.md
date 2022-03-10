@@ -140,7 +140,11 @@ ssh-keygen -o
 保密性更高
 ```
 
+## 将本地分支与远程同名分支相关联
 
+```
+git push -u <远程仓库名> <本地分支名>
+```
 
 ## 查看远程仓库
 
@@ -182,6 +186,16 @@ git push <远程主机名> <本地分支>:<远程分支>
 推送到远程仓库。
 
 如果本地分支与远程分支名字相同，冒号及后面的部分可以省略
+
+## git强制拉取更新
+
+```
+使用git reset回滚代码仓库，然后拉取
+git reset HEAD~1 
+git pull
+```
+
+
 
 ## 查看远程仓库
 
@@ -247,6 +261,14 @@ git push origin --delete <tagname>
 ```
 
 ## GIT别名
+
+### 查看别名（设置）
+
+```
+git config --list
+```
+
+### 使用方法
 
 ```
 git config --global alias.<name> commend

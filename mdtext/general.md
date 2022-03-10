@@ -124,6 +124,17 @@ name of first client : cilent
 ./scripts/record_bag.sh --ms   开始记录数据
 ```
 
+## 编译
+
+```
+# Build without optimization
+$ bash fabupilot.sh build
+# Build with optimization
+$ bash fabupilot.sh build_opt
+# Build with GPU support
+$ bash fabupilot.sh build_opt_gpu
+```
+
 ## arcanist
 
 ![image-20220224165804550](/home/caofangyu/.config/Typora/typora-user-images/image-20220224165804550.png)

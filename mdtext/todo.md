@@ -1,14 +1,75 @@
 # current 
 
-python parse_bag.py /onboard_data/bags/meishangang howo7_2022_03_01_16_14_54_38.msg
+## 看错误判断的原理
 
-输入： 车 日期 时间段（默认为全天好了）
+形如HasSystemTimeError()。在abnormal_type_determine.cc里面
 
-输出：字典，存放所有remote_control
+## 看看c++代码规范（Google style）
+
+## handle
+
+需要增加一个handle，在某种情况下发消息给planning，让planning紧急停车
+
+在driving_event里面看。包括conf里面的配置文件
+
+### 大概步骤
+
+1. **driving_event_conf.pb.txt**中加入driving_event_msg，在对应模块下 分配对应的event_code、level 、和handler
+2. handler.h中加入新的handler类（从base集成,EmergencyHandler），写构造函数 和 Execute函数声明
+3. handler.cc中写Execute函数，主要内容为生成对应的数据类型（），设置该数据的参数，然后调用AdapterManager中FillxxxHeader和PublishXxx
+4. 如果AdapterManager中没有上述函数，自己写
+5. driving_event.cc 里，RegisterFactory增加自己的handler类。
+
+### 问题：
+
+#### EmergencyHandler::Execute具体做什么？
+
+设置哪些参数
+
+#### driving_event_conf.pb.txt应该怎么写
+
+driving_event_msg {
+  event_code: xxx in event_code.proto
+  module: PLANNING
+  event_level: WARN 
+  handler {
+    type: EMERGENCY
+    params {
+      key: "TBD"
+      value: "TBD"
+    }
+  }
+}
+
+我的参数设置都是用params写的，比较臃肿。**这种写法到底对不对**
+
+现在的写法params没有意义。
+
+adapter的FillHeader和PublishEventInfo是通用的。
+
+#### 目前的改动
+
+driving_event_conf.pb.txt: 加了模板，具体内容没写
+
+handler.h : copy MonitorLogHandler的构造函数，设置时间间隔为1，做了ParseFreq
+
+handler.cc : 写了EmergencyHandler::Execute,设置module,error_code,event_level
+
+driving_event.cc ： RegisterFactory增加EMERGENCY
+
+# 日志
+
+改善一下file_list的问题，每次不好定位具体的文件，要不还是每个bag_parser对应一个msg好了，用循环直接做。
 
 # 作业流程
 
 # 接管
+
+**3.4**好几个msg解析失败，没有找到原因，错误全是解析bag_index的时候失败。
+
+参考 ： modules/common/message/tools/message_bag.cc
+
+
 
 常见接管类型，判断的方法，数据在哪（那个字段）
 

@@ -128,6 +128,14 @@ sbbbbbbbb
 tar -zxvf xxx.tar.gz  解压缩
 ```
 
+## tar.xz
+
+```
+xz -d xxxx.tar.xz 解压缩
+```
+
+
+
 ## dpkg
 
 ```

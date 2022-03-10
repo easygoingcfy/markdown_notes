@@ -1,5 +1,3 @@
-markdown（typora）
-
 # 无序列表
 
 标记 * + - 
@@ -18,6 +16,12 @@ markdown（typora）
 
 快捷键（可操作多行） ：ctrl+shift+[
 
+# 引用
+
+ Ctrl + Shift + Q.
+
+
+
 # 代码
 
 ## 代码块
@@ -27,6 +31,8 @@ ctrl+shift+k
 ## 行内代码
 
 ctrl+shift+`
+
+
 
 # 字体
 
