@@ -17,17 +17,17 @@
   * 大于等于3.0  	有延迟
     * 判断TaskOverDetermine(*param_obj) 	 	任务是否结束
       * true：MOVE_TO_POSITION
-        * false: 使用chassis_msg 和 taskstate_msg辅助判断
-          * chassis_msg 和 taskstate_msg不为空且chassis_msg->driving_mode() == Chassis::COMPLETE_AUTO_DRIVE)
-            * taskstate_msg->task_mode() ： **FINISH**  && command_id 一致（rc_msg） && rc_time < tt_time	
-              * 类型为GetCommandTypeFromRcmsg(*rc_msg)中状态的下一个阶段：
-                * MOVE_VIA_CRANE_CPS  : WAIT_CRANE_OFF
-                * MOVE_VIA_GANTRY_CPS : WAIT_GANTRY_OFF
-                * MOVE_TO_GANTRY : WAIT_GANTRY_COME
-                * MOVE_TO_CRANE : WAIT_CRANE_OFF
-            * taskstate_msg->task_mode() : **RUNNING** && command_id 一致（rc_msg） && rc_time < tt_time
-              * 判断GetCommandTypeFromRcmsg(*rc_msg)：
-                * WAIT_GANTRY_OFF || WAIT_CRANE_OFF ： MOVE_TO_POSITION
+      * false: 使用chassis_msg 和 taskstate_msg辅助判断
+        * chassis_msg 和 taskstate_msg不为空且chassis_msg->driving_mode() == Chassis::COMPLETE_AUTO_DRIVE)
+          * taskstate_msg->task_mode() ： **FINISH**  && command_id 一致（rc_msg） && rc_time < tt_time	
+            * 类型为GetCommandTypeFromRcmsg(*rc_msg)中状态的下一个阶段：
+              * MOVE_VIA_CRANE_CPS  : WAIT_CRANE_OFF
+              * MOVE_VIA_GANTRY_CPS : WAIT_GANTRY_OFF
+              * MOVE_TO_GANTRY : WAIT_GANTRY_COME
+              * MOVE_TO_CRANE : WAIT_CRANE_OFF
+          * taskstate_msg->task_mode() : **RUNNING** && command_id 一致（rc_msg） && rc_time < tt_time
+            * 判断GetCommandTypeFromRcmsg(*rc_msg)：
+              * WAIT_GANTRY_OFF || WAIT_CRANE_OFF ： MOVE_TO_POSITION
 
 ### CommandSummary（command_monitor_processor.cc）
 
@@ -376,9 +376,9 @@ planning回传给antenna的数据，主要包括header, task_mode,command_id
 2. 写代码，自测
 3. 提交的时候要保证工作区没有变动*大概是这个意思把。
 4. 先提交到自己的分支，拿到版本号
-5. 写CR，同时禅道上提交需求，禅道链接要放到CR summary中
+5. 在master合并分支，写CR，同时JR上提交需求，禅道链接要放到CR summary中
 6. 在custom.fabu.ai上生成版本，并进行测试（会转到jenkins）
-7. build成功后，进行自测，自测成功将版本和需求（怎么测，测什么之类的）发给测试，让测试测一测
+7. build成功(./scripts/update_release.sh custom_builds/xxxxxx)后，进行自测，自测成功将版本和需求（怎么测，测什么之类的）发给测试，让测试测一测
 8. 使用arc_land命令，会提交到Jenkins（Pipeline fabupilot-check-before-land）
 
 ### arc_land
@@ -411,15 +411,17 @@ mv .arcrc ~  在本地执行
 *******具体实现自己看deploy/dev_start.sh************
 ```
 
+## JR
 
+JR.fabu.ai
 
-## 禅道
+### 项目
 
-zendao.fabu.ai
+DrivingEvent，属于集卡自动驾驶系统
 
-研发需求->提研发需求
+### 模块
 
-页面中带*的填上，主要 选择评审 需求名称 描述 验收标准
+DrivingEvent，属于fabupilot
 
 ## custom.fabu.ai
 
@@ -442,21 +444,115 @@ i know ge p
 
 一个工具把
 
-# 代码格式
+# DEV
 
- ### 变量
+遇到问题先确定有没有拉最新版本，有没有更新代码
 
-小写，下划线连接
+## 更新子模块（不一定需要*）
 
-### 函数
+```
+git submodule update
+```
 
-同变量
+## 拉版本
 
-### 类
+```
+./deploy/common/update_release.sh master/HEAD
+```
 
-驼峰法
+## 模块
 
-### 文件名
+加载（目前使用的模块）注册在`config/modules/common/module_conf/conf/living_modules.pb.txt`里
 
-同变量
+如果里面不存在的模块引用了，就会出undefined modules:xxx的错误（在运行driving_event_test.cc时遇到）
+
+### living_modules
+
+message_service使用的，用来确认给哪些模块发消息。
+
+# proto
+
+整个项目是基于bazel的，所以新增proto需要同时在bazel的配置文件（BUILD）中更新
+
+## 新增proto文件
+
+需要在BUILD中新增cc_proto_library (c++) 或者 Python的（百度一哈）
+
+```
+eg:
+cc_proto_library(
+	name = "notepad_log_proto",
+	protos = ["notepad_log.proto"],
+	deps = [
+	    "//modules/common/proto:header_proto",
+		"//modules/common/proto:event_code_proto",
+		"//modules/common/proto:module_proto",
+	],
+)
+```
+
+需要修改配置
+
+* modules/common/adapters/BUILD	cc_library中加入依赖
+
+* modules/common/adapters/proto/adapter_config.proto  主要是新的message_type
+
+* modules/common/adapters/message_adapters.h 需要包含的proto消息的C++编译文件头文件（xxx.pb.h），类型Python中的xxx_pb2.py，并在adapter命名空间中声明该消息的Adapter：
+
+  * eg:
+
+    ```
+    #include "modules/msgs/notepad/proto/notepad_log.pb.h"
+    
+    using NotepadMessageAdapter = Adapter<fabupilot::notepad::NotepadMessage>;
+    ```
+
+    
+
+  * ```
+    using LocalizationAdapter = Adapter<::fabupilot::localization::Localization>;
+    ```
+
+  * 需要在BUILD中添加依赖，（modules/common/adapters/BUILD -> message_adapters.h）
+
+* modules/common/adapters/adapter_manager.h 需要使用REGISTER_ADAPTER注册新增的proto消息，看起来只需要消息的类名就行
+
+  * eg:
+
+    ```
+    (REGISTER_ADAPTER(NotepadMessage)
+    ```
+
+    
+
+* modules/common/adapters/adapter_manager.cc 加入case(用来关联adapter.conf中定义的消息类型(NOTEPAD_LOG) 和proto消息类（NotepadMessage）)。
+
+  * eg:
+
+    ```
+    case AdapterConfig::NOTEPAD_LOG:
+    +        EnableNotepadMessage(config.type(), config.mode(),
+    +                           config.message_history_limit());
+    +        break;
+    ```
+
+    
+
+* modules/common/driving_event/BUILD中添加新的依赖（handler）
+
+### 问题
+
+在adapter.conf里面定义的消息类型（比如MONITOR -> MonitorMessage， NOTEPAD_LOG -> NotepadMessage)是怎么通过adapter映射的?
+
+ 在modules/common/adapter/adapet_manager.cc里面，通过config.type（）进行配置。
+
+## echo
+
+记得编译，编译，编译
+
+build build build
+
+```
+bazel build //modules/common/message/tools:echo_message
+```
 

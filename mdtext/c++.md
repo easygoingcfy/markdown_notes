@@ -71,6 +71,21 @@ class function<R<Args...>;
 
 原理：assert的作用是现计算表达式 expression ，如果其值为假（即为0），那么它先向stderr打印一条出错信息，然后通过调用 abort 来终止程序运行。
 
+## const 关键字
+
+### const修饰类成员函数
+
+const 修饰类成员函数，其目的是防止成员函数修改被调用对象的值，如果我们不想修改一个调用对象的值，所有的成员函数都应当声明为 const 成员函数。
+
+**注意：**const 关键字不能与 static 关键字同时使用，因为 static 关键字修饰静态成员函数，静态成员函数不含有 this 指针，即不能实例化，const 成员函数必须具体到某一实例。
+
+```
+//eg
+int func_name() const
+```
+
+
+
 ## 编译
 
 g++  test.cc

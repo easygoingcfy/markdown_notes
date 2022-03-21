@@ -59,6 +59,33 @@ git log -p
 
 
 
+# git 子模块（git submodule）
+
+https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E5%AD%90%E6%A8%A1%E5%9D%97
+
+### 添加新的子模块
+
+```
+git submodule add URL
+```
+
+### 克隆含有子模块的项目
+
+在克隆这样的项目时，默认会包含该子模块目录，但其中还没有任何文件
+
+```
+git submodule init 初始化本地配置文件
+git submodule update 从项目中抓取所有数据并检出父项目中列出的合适的提交。
+或者合成一步：
+git submodule update --init
+```
+
+#### 更简单的方式
+
+```console
+git clone --recurse-submodules URL
+```
+
 # git 提交
 
 ## 合并提交
@@ -418,3 +445,13 @@ git branch -D 强制删除分支
 git pull origin master --allow-unrelated-histories
 
 默认情况下，git合并命令拒绝合并没有共同祖先的历史。当两个项目的历史独立地开始时，这个选项可以被用来覆盖这个安全。由于这是一个非常少见的情况，因此没有默认存在的配置变量，也不会添加。（有道翻译）
+
+## key_load_public: invalid format
+
+从一台机器上复制密钥文件到其他电脑时，可以只复制私钥文件，然后使用：
+
+```
+ssh-keygen -f ~/.ssh/id_rsa -y > ~/.ssh/id_rsa.pub   生成公钥文件
+```
+
+如果非要直接复制，不要复制`=`后面的 xxx@xx

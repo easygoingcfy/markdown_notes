@@ -16,6 +16,10 @@ sudo mount -t glusterfs storage1.fabu.ai:/onboard_data /onboard_data
 ssh caofangyu@172.25.20.8
 ````
 
+## dev
+
+192.168.3.50	
+
 ### 数据存放
 
 /fabudata

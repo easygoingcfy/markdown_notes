@@ -4,6 +4,69 @@
 
 形如HasSystemTimeError()。在abnormal_type_determine.cc里面
 
+# todo
+
+新增一个handler，暂定名NotepadHandler
+
+自己先写一个Notepad的Proto。放在modules/msgs/notepad/proto/notepad_log.proto里。
+
+自己先测试。
+
+dev0执行arc diff --preview 报错：No space left on device
+
+### NotepadHandler
+
+主要用于向Notepad端发送数据（司机），基本内容应该与MonitorHandler一致，需要ParseContent
+
+* driving_event.cc 进行注册（RegisterFactory)	
+
+* handler.h 同monitor_log
+
+* handler.cc同monitor_log,之后根据proto进行修改。
+
+* driving_event_test.cc  使用测试代码（沿用之前的）
+
+* 修改driving_event_conf.pb.txt  在事件中加入EmergencyHandler和NotepadHandler，用message_service查看发送内容
+
+* driving_event_conf.pb.txt新加的事件需要在modules/common/proto/event_code.proto中登记
+
+* 需要修改配置
+
+  * modules/common/adapters/proto/adapter_config.proto  主要是新的message_type，目前应该是使用NOTEPAD或者新加NOTEPAD_LOG
+
+  * modules/common/adapters/message_adapters.h 需要包含的proto消息的C++编译文件头文件（xxx.pb.h），类型Python中的xxx_pb2.py，并在adapter命名空间中声明该消息的Adapter：
+
+    * ```
+      using LocalizationAdapter = Adapter<::fabupilot::localization::Localization>;
+      ```
+
+      
+
+  * modules/common/adapters/adapter_manager.h 需要使用REGISTER_ADAPTER注册新增的proto消息，看起来只需要消息的类名就行
+
+
+
+
+自己播包，学一下怎么分析接管原因。
+
+结合monitor_command代码
+
+# event_parser里面写判断指令状态的代码
+
+存到log里发送。
+
+* 可以整合到data_manager里面
+  * 数据选择：有多个类型数据，且需要的数据量并不大(原则上只需要一个)，如何筛选数据
+    * remote_control
+    * task_state
+    * chassis
+
+## event_parser
+
+找时间把bag_parser里面的type_dict去掉，统一用main中的给定的data_ditc初始化。每次数据类型变化只要在main里面改data_dict就好了。
+
+去掉那个愚蠢的全局变量，传入data_dict后set_index的时间直接用字典里的，考虑是否把time作为类的成员
+
 ## 看看c++代码规范（Google style）
 
 ## handle
@@ -21,31 +84,6 @@
 5. driving_event.cc 里，RegisterFactory增加自己的handler类。
 
 ### 问题：
-
-#### EmergencyHandler::Execute具体做什么？
-
-设置哪些参数
-
-#### driving_event_conf.pb.txt应该怎么写
-
-driving_event_msg {
-  event_code: xxx in event_code.proto
-  module: PLANNING
-  event_level: WARN 
-  handler {
-    type: EMERGENCY
-    params {
-      key: "TBD"
-      value: "TBD"
-    }
-  }
-}
-
-我的参数设置都是用params写的，比较臃肿。**这种写法到底对不对**
-
-现在的写法params没有意义。
-
-adapter的FillHeader和PublishEventInfo是通用的。
 
 #### 目前的改动
 
@@ -65,7 +103,7 @@ driving_event.cc ： RegisterFactory增加EMERGENCY
 
 # 接管
 
-**3.4**好几个msg解析失败，没有找到原因，错误全是解析bag_index的时候失败。
+**3.4** 好几个msg解析失败，没有找到原因，错误全是解析bag_index的时候失败。
 
 参考 ： modules/common/message/tools/message_bag.cc
 
@@ -786,3 +824,29 @@ def replace_and_append(src_path,
 重要的信息：包的数量，各种错误信息。
 
 把整个过程捋一捋⑧
+
+# 2022/3/14
+
+检查新脚本的运行时间。
+
+### old: 
+
+[main]total_record_list:488 
+[main]process use :5763.485047 s 
+
+### new:
+
+[main]total_record_list:488
+[main]process use :1451.712782 s
+
+**0312**
+
+new
+
+[__main__]total_record_list:638
+[__main__]process use :4484.862074 s
+
+old
+
+[main]total_record_list:638
+[main]process use :7649.830548 s
