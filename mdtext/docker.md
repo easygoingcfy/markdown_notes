@@ -175,3 +175,19 @@ docker commit -m="has update" -a="runoob" e218edb10161 runoob/ubuntu:v2
 docker cp [OPTIONS] CONTAINER:SRC_PATH DEST_PATH|-
 ```
 
+## 用户 usermod
+
+### 查看用户组
+
+```
+sudo cat /etc/group | grep docker
+```
+
+### 添加用户
+
+```
+sudo usermod -aG docker ${usr}
+sudo usermod -aG docker caofangyu
+```
+
+添加用户之后需要重新登录以使权限生效。

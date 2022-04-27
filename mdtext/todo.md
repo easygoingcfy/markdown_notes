@@ -1,10 +1,149 @@
 # current 
 
-## 看错误判断的原理
+./scripts/message_service.sh play /fabudata/howo10/20220422/0837/howo10_2022_04_22_08_41_22_4.msg 
+
+./scripts/message_service.sh play /fabudata/howo10/20220422/0837/howo10_2022_04_22_08_42_22_5.msg 
+
+./scripts/message_service.sh play /fabudata/howo10/20220422/0837/howo10_2022_04_22_08_43_22_6.msg
+
+想咨询两个问题：
+
+1. 这种对位时指令被取消的情况下，还能通过什么方式（指令）确认对位是否完成了吗？
+2. 我自己解析的数据，4.22号这天howo10大概收到19次二次对位开始指令，但是一个对位结束指令都没有收到。是不是有什么问题？
+
+# TODO
+
+## 播包，记录monitor数据，完成 对位配合作业次数统计
+
+判断依据为两个指令状态之间无接管，是否发生接管可以通过event_tracking_type.proto拿到。
+
+~~在modules/common/messsage/python里同时保存支持python2和python3的代码~~
+
+## 1.将视频文件（数据）存到bag里面
+
+## 2. 从bag中解析视频，播放，并能根据视频输出图片（给感知？）
+
+## message_service
+
+视频录到包里，message_service要做的事
+
+1. 从bag里解析出视频数据（文件）
+2. 播放视频，需要增加-s选项，用来定位时间。
+   1. 设置帧率
+   2. 设置waitkey（例子中用的1000/fps, 教程中建议25左右）。waitkey影响播放速度
+3. 视频输出重定向？
+
+## cache 
+
+用 numpy把已经发送过的record数据存储好，每次发送之前对照一次，已经发送过的数据就不再发送了。
+
+### record_list转成np支持的格式（np数组？）
+
+### 数据按时间存储，并且有检测时间的机制（将一周之前存储的数据删除）
+
+暂时用json做了，先测试
+
+## 停车点字符串
+
+### 增加-s
+
+提前3s
+
+测试，暂定从停车时间点开始。
+
+### record脚本补发逻辑？
+
+有时候存在某几天服务器维护，无法上传数据的问题，能否设计一个补发逻辑。
+
+从request里入手
+
+## record log搜索问题，找时间验证一下是否都搜到静止点的log了
+
+还有Log的显示方式要不要变化一下。
+
+# 
+
+# 辅助分析
+
+先做最最简单的。
+
+* 判断消息频率
+  * 从msg_queue拿到时间段内的所有log消息。遍历消息，能拿到消息的event_code，用字典统计出现次数？
+  * 不如统计标签的出现次数，这样如果出现多个标签，也能根据次数来确定百分比。
+    * dict{'tag_name' : count}
+  * 统计标签次数好还是统计event_code次数好？
+* 分配标签
+  * 存在同样的event_code对应多个标签的情况，用re匹配content，确定具体标签。content也需要有个列表或者字典。
+    * dict{'tag_name': 're_patten'}
+
+
+
+
+| monitor错误日志                                              | EventCode                | 附加判断条件 | planning刹停规则 | 问题标签                       |
+| ------------------------------------------------------------ | ------------------------ | ------------ | ---------------- | ------------------------------ |
+|                                                              | INPUT_GNSS_UNSTABLE      | 横纵路上     |                  | 驱动-组合导航-组合导航信号异常 |
+| 定位接收的GNSS不稳定,将触发规划停车                          | INPUT_GNSS_UNSTABLE      | 非横纵路上   |                  | 定位-定位错误刹停              |
+| 系统错误: 处于紧急阶段-无变道空间                            | PLANNING_SYSTEM_ERROR    | 无           |                  | 规划--决策--无变道空间         |
+| 系统错误: 地图路线搜索失败                                   | PLANNING_SYSTEM_ERROR    | 无           |                  | 规划--决策--路径搜索失败       |
+| 模块消息延时:antenna [REMOTE_ENVIRONMENT] has delay          | MODULE_TOPIC_DELAY       | 无           |                  | 缺少合适的问题标签             |
+| 系统错误: 处于紧急阶段-收到紧急停车指令 底盘参数异常，紧急停车 | PLANNING_SYSTEM_ERROR    | 无           |                  | 车辆-底盘硬件错误              |
+| 转向控制异常,将触发规划紧急停车                              | EPS_ANGLE_EXCEPTION      | 无           |                  | 车辆-底盘硬件错误              |
+| 定位接收的车道线错误,将触发规划停车                          | INPUT_VISION_LANE_ERROR  | 无           |                  | 定位-定位错误刹停              |
+| 双机时间同步异常,请求主动安全停车                            | COMPUTER_TIME_SYNC_ERROR | 无           |                  | 普罗米修斯-双机同步异常        |
+| perception_lidar has error: [NEED_EMERGENCY_FATAL]-106021-[激光雷达遮挡错误] |                          | 无           |                  | 驱动-激光雷达-激光雷达帧率异常 |
+
+
+
+
+
+
+
+
+
+* 从云控拿到的数据可以转成字典，字典格式如下：
+
+* ```
+  {
+  vehicleEvents: list
+  totalElements: int
+  totalPages:int
+  }
+  ```
+
+  
+
+* 看错误判断的原理
+
 
 形如HasSystemTimeError()。在abnormal_type_determine.cc里面
 
-# todo
+## 录包
+
+连接失败。record_bag启动之后没有连接成功。
+
+### 溯源
+
+- message::MessageService::Init(module_name,callback,1)
+  - MessageService::InitImpl(module_name,callback)
+  - 
+
+- fabupilot::common::adapter::AdapterManager::Init(configs)    
+
+  - configs: config/modules/planning_v3/conf/adapter.conf
+
+    - config形式：
+
+      ```
+      config {
+           type: LOCALIZATION
+           mode: RECEIVE_ONLY
+           message_history_limit: 50
+        }
+      ```
+
+  - 对config.type: EnableLocalization
+
+# handler
 
 新增一个handler，暂定名NotepadHandler
 
@@ -51,22 +190,6 @@ dev0执行arc diff --preview 报错：No space left on device
 
 结合monitor_command代码
 
-# event_parser里面写判断指令状态的代码
-
-存到log里发送。
-
-* 可以整合到data_manager里面
-  * 数据选择：有多个类型数据，且需要的数据量并不大(原则上只需要一个)，如何筛选数据
-    * remote_control
-    * task_state
-    * chassis
-
-## event_parser
-
-找时间把bag_parser里面的type_dict去掉，统一用main中的给定的data_ditc初始化。每次数据类型变化只要在main里面改data_dict就好了。
-
-去掉那个愚蠢的全局变量，传入data_dict后set_index的时间直接用字典里的，考虑是否把time作为类的成员
-
 ## 看看c++代码规范（Google style）
 
 ## handle
@@ -94,10 +217,6 @@ handler.h : copy MonitorLogHandler的构造函数，设置时间间隔为1，做
 handler.cc : 写了EmergencyHandler::Execute,设置module,error_code,event_level
 
 driving_event.cc ： RegisterFactory增加EMERGENCY
-
-# 日志
-
-改善一下file_list的问题，每次不好定位具体的文件，要不还是每个bag_parser对应一个msg好了，用循环直接做。
 
 # 作业流程
 
@@ -230,7 +349,17 @@ spreader_size
 
 —————————————————————————————————————————————————————————————————————
 
-# 数据平台
+# 消息提示
+
+如果检测虚拟机里面的企业微信消息
+
+然后在Linux中给个弹窗
+
+--------------------------------------------***---------------------------------------------------------------------------------------------------
+
+-------------------------------朴素的手动分割线--------------------------------------------------------------------------------------------
+
+--------------------------------------------***---------------------------------------------------------------------------------------------------数据平台
 
 ### 目前网页上统计数据以 当前时间 为分界线
 

@@ -24,6 +24,50 @@ ssh caofangyu@172.25.20.8
 
 /fabudata
 
+## 云控
+
+云控访问地址：
+
+```
+http://nt-ecs.fabu.ai
+http://pre.nt-ecs.fabu.ai    //预发
+```
+
+生产
+
+```
+http://192.168.3.100:8890/#/report
+```
+
+预发：
+
+```
+http://192.168.3.100:18890/#/report
+```
+
+```
+s-admin
+fabu124
+```
+
+## REMOTE_CONTROL
+
+```
+destination_id: "xxxx"
+一共4个字符，前两个代表箱区，后两个代表泊位
+堆场包括箱区 比如：6堆场包括所有6开头的箱区，从61 - 6M
+JE:箱区 后面跟的数字代表贝位号，一共四个字符
+CR:泊位
+```
+
+不规则箱区名：
+
+![不规则厢区](/home/caofangyu/me/shared_folders_with_win10/不规则厢区.png)
+
+6堆场箱区名：
+
+![6堆场](/home/caofangyu/me/shared_folders_with_win10/6堆场.png)
+
 ## ThinkPad
 
 fabu382764
@@ -80,6 +124,18 @@ $ ./scripts/message_service.sh play /onboard_data/bags/meishangang/howo21/202105
 
 
 
+
+
+### 模块
+
+#### 在后端*（不确定）启动模块
+
+```
+./scripts/planning_v3 start_fe
+```
+
+
+
 ## openVpn
 
 IPV4: 192.168.10.147
@@ -96,9 +152,9 @@ name of first client : cilent
 
 ## 配置
 
-主要配置文件在release/.config里面，每次更新或启动会把本地的与这个.config同步。更改的话需要改.config
+### dev下生成config
 
-如果运行不了，可以先在release里面跑
+./scripts/generate_fabupilot_config.sh xxxx(vehicle_name)
 
 ## 配套工具
 

@@ -35,6 +35,18 @@ for value in d.values():
 for key,values in d.items():
 ```
 
+### 删除元素
+
+
+
+```
+del tinydict['Name']  # 删除键是'Name'的条目
+tinydict.clear()      # 清空字典所有条目
+del tinydict          # 删除字典
+```
+
+
+
 ## 字符串
 
 ### strip()
@@ -49,7 +61,18 @@ lstrip(rm)
 rstrip(rm)
 ```
 
+## json
 
+```
+json.dumps()  将python对象编码成Json字符串
+json.loads()  将Json字符串解码成python对象
+json.dump()   将python中的对象转化成json储存到文件中
+json.load()   将文件中的json的格式转化成python对象提取
+```
+
+注意，此处python对象不包括自定义的数据结构（类，消息）
+
+使用json处理Protobuf消息时，仍然需要使用PythonApi ( json_format.Parse()  json_format.MessageToJson() ) 来完成消息与json字符串的转换。
 
 ## 函数
 
@@ -100,7 +123,52 @@ if \_\_name\_\_ == '\_\_mian\_\_' :
 - encoding -- 要使用的编码，如"UTF-8"。
 - errors -- 设置不同错误的处理方案。默认为 'strict',意为编码错误引起一个UnicodeError。 其他可能得值有 'ignore', 'replace', 'xmlcharrefreplace', 'backslashreplace' 以及通过 codecs.register_error() 注册的任何值。
 
+
+
+## 列表
+
+### 删除元素
+
+#### del 
+
+```
+del listname[index]
+del listname[start : end]
+```
+
+#### pop
+
+如果不写 index 参数，默认会删除列表中的最后一个元素
+
+```
+listname.pop(index)
+```
+
+#### remove
+
+除了 del 关键字，Python 还提供了 remove() 方法，该方法会根据元素本身的值来进行删除操作。
+
+需要注意的是，remove() 方法只会删除第一个和指定值相同的元素，而且必须保证该元素是存在的，否则会引发 ValueError 错误。
+
+```
+list.remove(value)
+```
+
+#### clear()
+
+Python clear() 用来删除列表的所有元素，也即清空列表
+
 # 库
+
+## import json
+
+```
+json.dumps()    将 Python 对象编码成 JSON 字符串
+json.dumps().encode("utf-8")    将 Python 对象编码成 JSON 字符串,以utf-8格式编码。
+json.loads()    将已编码的 JSON 字符串解码为 Python 对象
+```
+
+
 
 ## import argparse
 
@@ -300,6 +368,12 @@ DataFrame.to_excel(excel_writer, sheet_name='Sheet1', na_rep='', float_format=No
 > 指定要冻结的从 1 开始的最底行和最右列
 >
 > *0.20.0 版中的新功能。*
+
+
+
+## import psutil
+
+
 
 
 
@@ -525,6 +599,8 @@ re.findall(pattern,string,flags=0)
 
 ** 求幂
 
+
+
 ## 字符串
 
 单引号，双引号，三引号都可以，分行写时用\连接
@@ -532,6 +608,183 @@ re.findall(pattern,string,flags=0)
 # global
 
 在函数内部对函数外的变量进行操作时，需要在函数内部声明为global
+
+# OpenCv
+
+## 图像
+
+```
+cv.imread(path, flag)
+```
+
+path:图像路径
+flag:
+**cv.IMREAD_COLOR**：加载彩色图像，任何图像的透明度都会被忽略，它是默认标志
+**cv.IMREAD_GRAYSCALE**：以灰度模式加载图像
+**cv.IMREAD_UNCHANGED**：加载图像，包括 alpha 通道
+
+```
+cv.imshow(name, image)
+```
+
+第一个参数是窗口名，它是一个字符串，第二个参数就是我们的图像。你可以根据需要创建任意数量的窗口，但是窗口名字要不同。
+
+```
+cv.waitkey()
+```
+
+一个键盘绑定函数，它的参数是以毫秒为单位的时间。该函数为任意键盘事件等待指定毫秒。如果你在这段时间内按下任意键，程序将继续。如果传的是 0，它会一直等待键盘按下
+
+```
+cv.destroyAllWindows()
+```
+
+简单的销毁我们创建的所有窗口。如果你想销毁任意指定窗口，应该使用函数 **[cv.destroyWindow()](https://docs.opencv.org/4.0.0/d7/dfc/group__highgui.html#ga851ccdd6961022d1d5b4c4f255dbab34)** 参数是确切的窗口名
+
+```
+cv.namedWindow(name, flag)
+```
+
+默认情况下，flag 是 **[cv.WINDOW_AUTOSIZE](https://docs.opencv.org/4.0.0/d7/dfc/group__highgui.html#ggabf7d2c5625bc59ac130287f925557ac3acf621ace7a54954cbac01df27e47228f)**。但如果你指定了 flag 为 **[cv.WINDOW_NORMAL](https://docs.opencv.org/4.0.0/d7/dfc/group__highgui.html#ggabf7d2c5625bc59ac130287f925557ac3a29e45c5af696f73ce5e153601e5ca0f1)**，你能调整窗口大小。当图像尺寸太大，在窗口中添加跟踪条是很有用的。
+
+```
+cv.imwrite(name, img)
+```
+
+第一个参数是文件名，第二个参数是你要保存的图像。
+
+### 关于Matplotlib
+
+Matplotlib 是一个 Python 的绘图库，提供了丰富多样的绘图函数。
+
+彩色图像 OpenCV 用的 BGR 模式，但是 Matplotlib 显示用的 RGB 模式,使用Matplotlib显示opencv读取的彩色图像时需要进行转换：
+
+```
+1. img2 = img[:, :, ::-1]
+2. img2 = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+```
+
+### cv.get()
+
+```
+enum cv::VideoCaptureProperties {
+  cv::CAP_PROP_POS_MSEC =0,
+  cv::CAP_PROP_POS_FRAMES =1,
+  cv::CAP_PROP_POS_AVI_RATIO =2,
+  cv::CAP_PROP_FRAME_WIDTH =3,
+  cv::CAP_PROP_FRAME_HEIGHT =4,
+  cv::CAP_PROP_FPS =5,
+  cv::CAP_PROP_FOURCC =6,
+  cv::CAP_PROP_FRAME_COUNT =7,
+  cv::CAP_PROP_FORMAT =8,
+  cv::CAP_PROP_MODE =9,
+  cv::CAP_PROP_BRIGHTNESS =10,
+  cv::CAP_PROP_CONTRAST =11,
+  cv::CAP_PROP_SATURATION =12,
+  cv::CAP_PROP_HUE =13,
+  cv::CAP_PROP_GAIN =14,
+  cv::CAP_PROP_EXPOSURE =15,
+  cv::CAP_PROP_CONVERT_RGB =16,
+  cv::CAP_PROP_WHITE_BALANCE_BLUE_U =17,
+  cv::CAP_PROP_RECTIFICATION =18,
+  cv::CAP_PROP_MONOCHROME =19,
+  cv::CAP_PROP_SHARPNESS =20,
+  cv::CAP_PROP_AUTO_EXPOSURE =21,
+  cv::CAP_PROP_GAMMA =22,
+  cv::CAP_PROP_TEMPERATURE =23,
+  cv::CAP_PROP_TRIGGER =24,
+  cv::CAP_PROP_TRIGGER_DELAY =25,
+  cv::CAP_PROP_WHITE_BALANCE_RED_V =26,
+  cv::CAP_PROP_ZOOM =27,
+  cv::CAP_PROP_FOCUS =28,
+  cv::CAP_PROP_GUID =29,
+  cv::CAP_PROP_ISO_SPEED =30,
+  cv::CAP_PROP_BACKLIGHT =32,
+  cv::CAP_PROP_PAN =33,
+  cv::CAP_PROP_TILT =34,
+  cv::CAP_PROP_ROLL =35,
+  cv::CAP_PROP_IRIS =36,
+  cv::CAP_PROP_SETTINGS =37,
+  cv::CAP_PROP_BUFFERSIZE =38,
+  cv::CAP_PROP_AUTOFOCUS =39,
+  cv::CAP_PROP_SAR_NUM =40,
+  cv::CAP_PROP_SAR_DEN =41,
+  cv::CAP_PROP_BACKEND =42,
+  cv::CAP_PROP_CHANNEL =43,
+  cv::CAP_PROP_AUTO_WB =44,
+  cv::CAP_PROP_WB_TEMPERATURE =45
+}
+```
+
+
+
+## 视频
+
+### VideoCapture
+
+去获取一个视频，你需要创建一个**VideoCapture**对象。它的参数可以是设备索引或者一个视频文件名。
+
+```
+cap = cv.VideoCapture(0)
+```
+
+#### cap.read()
+
+**[cap.read()](https://docs.opencv.org/4.0.0/d2/d75/namespacecv.html#a9afba2f5b9bf298c62da8cf66184e41f)** 返回一个 bool 值(`True`/`False`)。如果加载成功，它会返回`True`。因此，你可以通过这个返回值判断视频是否结束。
+
+有时，cap 可能没有初始化 capture。在这种情况下，此代码显示错误。你可以通过该方法 **cap.isOpened()** 检查它是否初始化。如果它是 True，那么是好的，否则用 **[cap.open()](https://docs.opencv.org/4.0.0/d6/dee/group__hdf5.html#ga243d7e303690af3c5c3686ca5785205e)** 打开在使用。
+
+
+
+#### cap.get(propId)
+
+你也可以通过使用 **cap.get(propId)** 函数获取一些视频的特征，这里的 propld 是一个 0-18 的数字，每个数字代表视频的一个特征 (如果这个视频有)，或者使用cv:VideoCapture:get()获取全部细节。它们中有些值可以使用 **cap.set(propId, value)** 修改。Value 就是你想要的新值
+
+
+
+### 播放视频
+
+#### cv.waitkey()
+
+如果它太小，视频将非常快，如果太大，视频将很慢 (嗯，这就是如何显示慢动作)。正常情况下，25 毫秒就可以了。
+
+### 保存视频
+
+建一个 **VideoWriter** 对象。我们应该指定输出文件的名字 (例如：output.avi)。然后我们应该指定 **FourCC** 码 (下一段有介绍)。然后应该传递每秒帧数和帧大小。最后一个是 **isColor** flag。如果是 True，编码器期望彩色帧，否则它适用于灰度帧。
+
+```
+fourcc = cv.VideoWriter_fourcc(*'XVID')
+out = cv.VideoWriter('output.avi',fourcc, 20.0, (640,480))
+```
+
+**[FourCC](http://en.wikipedia.org/wiki/FourCC)** 是用于指定视频解码器的 4 字节代码。这里 **[fourcc.org](http://www.fourcc.org/codecs.php)** 是可用编码的列表。它取决于平台，下面编码就很好。
+
+- In Fedora: DIVX, XVID, MJPG, X264, WMV1, WMV2. (XVID 是最合适的. MJPG 结果比较大. X264 结果比较小)
+- In Windows: DIVX (还需要测试和添加跟多内容)
+- In OSX: MJPG (.mp4), DIVX (.avi), X264 (.mkv).
+
+#### 编码大小
+
+尝试过XVID, MJPG,MP4V
+
+```
+XVID(.avi) 大小和MP4V接近，略高
+MJEP(.avi) 极大
+MP4V(mp4)目前最小的
+```
+
+
+
+#### **保存视频失败的问题
+
+保存视频时设置的视频尺寸，必须要与读到的每帧图片大小一致，两种解决办法
+
+```
+1. 修改cv.VideoWriter中视频尺寸参数，可以通过cap.get()函数获取图片的宽和高
+2. 修改图片大小，使用cv.resize(frame, (width, height))
+```
+
+
 
 # conda
 
@@ -576,4 +829,6 @@ conda deactivate ENV
 ```
 
 
+
+# 使用C或C++扩展Python
 
