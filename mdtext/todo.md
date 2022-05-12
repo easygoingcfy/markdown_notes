@@ -1,15 +1,105 @@
-# current 
+current 
 
-./scripts/message_service.sh play /fabudata/howo10/20220422/0837/howo10_2022_04_22_08_41_22_4.msg 
+一次读入多个db文件，每个db文件建立一个链接，存储成字典的形式 （文件名：con？）
 
-./scripts/message_service.sh play /fabudata/howo10/20220422/0837/howo10_2022_04_22_08_42_22_5.msg 
+# 20220512
 
-./scripts/message_service.sh play /fabudata/howo10/20220422/0837/howo10_2022_04_22_08_43_22_6.msg
+### 测试同时读多个db文件的时间。
 
-想咨询两个问题：
+![image-20220512192853792](/home/caofangyu/.config/Typora/typora-user-images/image-20220512192853792.png)
 
-1. 这种对位时指令被取消的情况下，还能通过什么方式（指令）确认对位是否完成了吗？
-2. 我自己解析的数据，4.22号这天howo10大概收到19次二次对位开始指令，但是一个对位结束指令都没有收到。是不是有什么问题？
+### sql中加入新的表，保存时间与文件名信息
+
+
+
+### 开始统计对位指标
+
+
+
+
+
+
+
+
+
+## 新建一个模块 data_analyze
+
+位置:  modules/tools/data_analyzer
+
+先拉一个分支实现
+
+* 写配置文件
+  * xxx.conf
+
+* 配置Living modules
+  * ```
+    config/modules/common/module_conf/conf/living_modules.pb.txt
+    ```
+  
+
+1 往前搜包
+
+
+
+
+
+## python脚本完成数据分析
+
+根据企业微信文档 《对位数据指标》的说明，通过回调函数实现：
+
+* 判断车辆状态（自动驾驶，脱离自动驾驶）
+  * http://git.fabu.ai/fabupilot/fabupilot/blob/master/modules/common/driving_event/conf/driving_event_conf.pb.txt#L815
+  *  http://git.fabu.ai/fabupilot/fabupilot/blob/master/modules/common/driving_event/conf/driving_event_conf.pb.txt#L1087
+  * 通过解析数据来完成
+* 脱离自动驾驶后进行实时分析，（数据为记录的db文件以及msg文件）
+  * 确定分析的数据范围（时间或者状态决定）
+  * 统计重要参数（见企业微信文档）
+
+TOPIC:
+
+msg_type : message_type
+
+timestamp : data_header.send_time_ns
+
+offset : 
+
+length:
+
+## 问题：
+
+数据保存路径的问题，线上存的时候也是保存在data/bag里吗，相对路径一致吗
+
+
+
+### 接管时需要的参数
+
+接管时间
+
+### 通过bag_index的内容解析数据，拿到数据队列
+
+### 静态接管中怎么定位到车辆停止的时刻。
+
+像bag_parser一样单独搜索？
+
+#### 搜索数据的顺序
+
+从前往后遍历比
+
+
+
+
+
+
+
+
+
+在本地fabupilot上build时每次都会有个
+
+```
+Downloading LFS objects:
+```
+
+卡很久，但是在dev上没有，为什么
 
 # TODO
 
@@ -979,3 +1069,50 @@ old
 
 [main]total_record_list:638
 [main]process use :7649.830548 s
+
+# 2022/5/9
+
+## c++
+
+std::funtion
+
+# 2022/5/10
+
+## c++
+
+gflags库
+
+```
+无人化修改配置
+文件：modules/active_safety/conf/active_safety_config.pb.txt
+内容：
+搜索 use_planning_v3，将false改成true
+搜索 safe_dist_checker_config，把下边的enable: false修改为enable: true
+搜索 vision_lane_checker_config，把下边的enable: false修改为enable: true
+
+文件：modules/perception_v2/conf/crane/crane_process_config.pb.txt
+内容：搜索tmp_test_correct_crane_status，true改为false
+
+文件：modules/perception_v2/conf/perception_camera.conf
+内容：搜索--dag_config_path，dag_port_camera.config改为dag_port_camera_object.config
+
+文件：modules/perception_v2/conf/obstacle/lidar/cnnseg_v2_truck_hesai40_velo16_config.pb.txt
+内容：config_file: 无人化使用 resources/perception/models/deep_lidar/mxnet_models/truck_rs32_velo16/lidar_fire_howo_tail-50_v1.5.1_config.conf
+
+文件：modules/perception_v2/conf/obstacle/lidar/ray_segmentor_config.pb.txt
+内容：enable_static_low_x_filter配置项 无人化为false
+
+Test Plan:  测试
+
+Reviewers: zhengtu, tangwenjian, xiezhongjian, qianwei, wangpeng
+
+Reviewed By: xiezhongjian, qianwei, wangpeng
+```
+
+# 2022/5/11
+
+## c++
+
+static_cast<>
+
+lambda表达式

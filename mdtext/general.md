@@ -1,7 +1,3 @@
-#### 测试用recordB文件地址
-
-/onboard_data/bags/meishangang/howo9/20211123/0854/recordB
-
 #### 本地mount集群命令
 
 ```
@@ -19,6 +15,14 @@ ssh caofangyu@172.25.20.8
 ## dev
 
 192.168.3.50	
+
+## arm3
+
+```
+192.168.11.203
+```
+
+
 
 ### 数据存放
 
@@ -76,10 +80,6 @@ fabu382764
 
 /onboard_data/bags/meishangang/
 
-## 命令
-
-python main.py -p /onboard_data/bags/meishangang/ -d 20220101
-
 ## 公钥
 
 文件地址： ~/.ssh/id_rsa.pub
@@ -91,8 +91,8 @@ python main.py -p /onboard_data/bags/meishangang/ -d 20220101
 ### 启动容器
 
 $ sudo mount -t glusterfs storage1.fabu.ai:/onboard_data /onboard_data //挂载共享空间 具体见http://wiki.fabu.ai/wiki/doku.php?id=infrastructure:platform:nfs
-$ ./deploy/dev_start.sh 
-$ ./deploy/dev_int.sh  
+$ ./deploy/dev_start.sh
+$ ./deploy/dev_int.sh
 
 ### 拉取版本
 
@@ -122,9 +122,25 @@ $ ./deploy/check_port.sh
 $ cd release 
 $ ./scripts/message_service.sh play /onboard_data/bags/meishangang/howo21/20210515/1021/howo21_2021_05_15_10_36_18_15.msg
 
+### 更新源
 
+```
+./deploy/common/update_resources.sh 
+```
 
+### DEV环境生成config
 
+```
+./scripts/generate_fabupilot_config.sh [--vehicle=howo1] [--use-local-config-online]
+```
+
+### 查看车上monitor
+
+```
+192.168.3.100:8523
+```
+
+不要经常开，会影响车上网络
 
 ### 模块
 
@@ -198,3 +214,4 @@ $ bash fabupilot.sh build_opt_gpu
 ## arcanist
 
 ![image-20220224165804550](/home/caofangyu/.config/Typora/typora-user-images/image-20220224165804550.png)
+

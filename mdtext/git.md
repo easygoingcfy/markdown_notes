@@ -506,6 +506,11 @@ git branch -D 强制删除分支
 - - -
 ## git diff 
 查看不同分支的文件差异
+
+## cherry-pick
+
+
+
 - - -
 
 # 服务器

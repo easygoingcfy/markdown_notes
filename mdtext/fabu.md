@@ -399,6 +399,29 @@ CR需要在summary中加上禅道（目前）的链接，否则会挂掉
 
 主要也是编辑summary，然后选择Reviewers。
 
+### cr出错
+
+检查是否更新resources:
+
+```
+cd resources 
+git pull
+```
+
+检查是否更新子模块
+
+```
+git submodule update
+```
+
+bazel clean
+
+```
+bazel clean
+```
+
+
+
 ### login
 
 每次使用arc diff --preview时会需要权限：执行arc install-certificate 生成一个API Token
@@ -450,6 +473,8 @@ i know ge p
 
 ## 更新子模块（不一定需要*）
 
+遇到缺少文件的问题，如果生成配置，更新resources都没用，可能是没有更新子模块的问题。最好的办法是自己好好查看错误信息，跟着错误信息排查。
+
 ```
 git submodule update
 ```
@@ -470,7 +495,13 @@ git submodule update
 
 message_service使用的，用来确认给哪些模块发消息。
 
+```
+config/modules/common/module_conf/conf/living_modules.pb.txt
+```
+
 # proto
+
+在fabupilot项目中，根据proto文件生成了C和python文件是存放在/fabupilot/bazel-genfiles/modules中的，如果需要修改Proto文件也可以修改之后使用build生成相关配置
 
 整个项目是基于bazel的，所以新增proto需要同时在bazel的配置文件（BUILD）中更新
 
