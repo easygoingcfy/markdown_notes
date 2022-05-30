@@ -37,15 +37,19 @@ for key,values in d.items():
 
 ### 删除元素
 
-
-
 ```
 del tinydict['Name']  # 删除键是'Name'的条目
 tinydict.clear()      # 清空字典所有条目
 del tinydict          # 删除字典
 ```
 
+### setdefault
 
+```
+d.setdefault(key, value)
+```
+
+如果key存在，会返回key对应的value，如果不存在，会设置key值为value。
 
 ## 字符串
 
@@ -73,6 +77,13 @@ json.load()   将文件中的json的格式转化成python对象提取
 注意，此处python对象不包括自定义的数据结构（类，消息）
 
 使用json处理Protobuf消息时，仍然需要使用PythonApi ( json_format.Parse()  json_format.MessageToJson() ) 来完成消息与json字符串的转换。
+
+```
+json_format.MessageToJson(message, parameters)
+json_format.Parse(text,message, parameters)
+```
+
+
 
 ## 函数
 
@@ -127,6 +138,12 @@ if \_\_name\_\_ == '\_\_mian\_\_' :
 
 ## 列表
 
+### 列表生成式
+
+```
+[exp for iter_var in iterable]
+```
+
 ### 删除元素
 
 #### del 
@@ -158,7 +175,30 @@ list.remove(value)
 
 Python clear() 用来删除列表的所有元素，也即清空列表
 
+## ZIP
+
+**zip()** 函数用于将可迭代的对象作为参数，将对象中对应的元素打包成一个个元组，然后返回由这些元组组成的列表。
+
+如果各个迭代器的元素个数不一致，则返回列表长度与最短的对象相同，利用 * 号操作符，可以将元组解压为列表。
+
+```
+zip([iterable, ...])
+```
+
+
+
 # 库
+
+## threading 线程锁
+
+lock = threading.Lock()
+
+```
+lock.acquie(True)
+lock.release()
+```
+
+
 
 ## import json
 

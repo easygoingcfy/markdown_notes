@@ -1,5 +1,3 @@
-
-
 # 指令
 
 ## command_monitor(c++)
@@ -7,19 +5,21 @@
 ### GetCommandType(command_monitor_util.cc)
 
 * 判断rc_msg为空
+  
   * true: return
 
 * 比较时间param_obj->stat.timestamp - rc_time  kMaxMsgDelay(3.0)
+  
   * 小于3.0（远程控制消息没有延迟（delay））
     * 判断RCmsgBelongPreFinishTask
       * true：MOVE_TO_POSITION
         * false：GetCommandTypeFromRcmsg(*rc_msg);
-  * 大于等于3.0  	有延迟
-    * 判断TaskOverDetermine(*param_obj) 	 	任务是否结束
+  * 大于等于3.0      有延迟
+    * 判断TaskOverDetermine(*param_obj)          任务是否结束
       * true：MOVE_TO_POSITION
       * false: 使用chassis_msg 和 taskstate_msg辅助判断
         * chassis_msg 和 taskstate_msg不为空且chassis_msg->driving_mode() == Chassis::COMPLETE_AUTO_DRIVE)
-          * taskstate_msg->task_mode() ： **FINISH**  && command_id 一致（rc_msg） && rc_time < tt_time	
+          * taskstate_msg->task_mode() ： **FINISH**  && command_id 一致（rc_msg） && rc_time < tt_time    
             * 类型为GetCommandTypeFromRcmsg(*rc_msg)中状态的下一个阶段：
               * MOVE_VIA_CRANE_CPS  : WAIT_CRANE_OFF
               * MOVE_VIA_GANTRY_CPS : WAIT_GANTRY_OFF
@@ -32,12 +32,13 @@
 ### CommandSummary（command_monitor_processor.cc）
 
 * 判断(param_obj_pre_.stat.timestamp > 0) 
-
+  
   * HasTosIdChanged() || param_obj 与param_obj_pre的**command_type**不相同
-
+    
     * 设置vehicle_name、command_type、command_end_time、command_duration
-
+    
     * 判断is_test:
+      
       * true：对所有错误类型执行GET_ERROR_TYPE
       * false：对所有错误类型执行UpdateRecordStr，如果采集到错误信息，执行AppendDrivingRecord
 
@@ -50,7 +51,7 @@
       * 清理储存的mutable_command_summary(不确定是前一个还是唯一的一个)
       * 设置桥吊id
     * 判断HasTosIdChanged() 
-      * 设置vehicle_name  crane_id  mutable_command_context()	
+      * 设置vehicle_name  crane_id  mutable_command_context()    
       * task_summary_.mutable_command_context()->clear_type()
       * 检测异常
       * task_summary_.Clear();_
@@ -58,7 +59,7 @@
 
 ### StatUpdate()
 
-#### ParamObjStatUpdate()		未标注_pre的全是对param_obj操作
+#### ParamObjStatUpdate()        未标注_pre的全是对param_obj操作
 
 * 判断param_obj_pre_.stat.timestamp < 0 && param_obj_.stat.command_type ： MOVE_TO_POSITION
   * param_obj_pre_.stat.command_type = param_obj_.stat.command_type
@@ -81,46 +82,39 @@
 #### SummaryStatUpdate();
 
 * 判断command_type 不相同
+  
   * command_summary_.set_command_begin_time(param_obj_.stat.timestamp);
   * mutable_command_stat()->set_has_take_over(false)
-
-  
 
 * // tos_command_context update
 
 * 判断command_summary_和rc_msg __`!command_summary_.has_command_context() && rc_msg != nullptr`
-
-  * 更新tos_command_context :`*command_summary_.mutable_command_context() = rc_msg->tos_command_context()`
-
   
+  * 更新tos_command_context :`*command_summary_.mutable_command_context() = rc_msg->tos_command_context()`
 
 * // crane_id for command_summary update
 
 * 判断crane_id和cd_msg `!command_summary_.has_crane_id() && cd_msg != nullptr`
-
+  
   * 判断状态（command_type）（确定是龙门吊还是桥吊）
-
+    
     * MOVE_TO_CRANE || MOVE_VIA_CRANE_CPS || WAIT_CRANE_OFF 且target_crane有效（不为空且有id）
-
-      * set_crane_id
-
-    * MOVE_TO_GANTRY || WAIT_GANTRY_COME || WAIT_GANTRY_OFF 且 target_gantry有效（不为空且有id）
-
-      * set_crane_id
-
       
+      * set_crane_id
+    
+    * MOVE_TO_GANTRY || WAIT_GANTRY_COME || WAIT_GANTRY_OFF 且 target_gantry有效（不为空且有id）
+      
+      * set_crane_id
 
-*  // has_take_over for command_summary update
+* // has_take_over for command_summary update
 
 * 判断 command_summary_.command_stat().has_take_over() == false &&
 
 * !param_obj_.stat.cmd_begin_with_take_over && (chassis_msg != nullptr) && 
 
 * (chassis_msg->driving_mode() == Chassis::EMERGENCY_MODE)
-
-  * take_over = true `command_summary_.mutable_command_stat()->set_has_take_over(true);`
-
   
+  * take_over = true `command_summary_.mutable_command_stat()->set_has_take_over(true);`
 
 ### AbnormalTypeDetermine(is_test)
 
@@ -128,14 +122,14 @@
 
 * 实例化command_monitor::AbnormalTypeDetermine对象abnormal_type_determine
 * 判断系统时间异常SYSTEM_TIME_ERROR
-  *  **CommandSummaryAddAbnormal**(CommandStat::SYSTEM_TIME_ERROR, &abnormal_value);
+  * **CommandSummaryAddAbnormal**(CommandStat::SYSTEM_TIME_ERROR, &abnormal_value);
 * 判断param_obj_.stat.command_type
   * MOVE_TO_CRANE || MOVE_TO_GANTRY ||  WAIT_GANTRY_COME || 
   * MOVE_VIA_CRANE_CPS || MOVE_VIA_GANTRY_CPS || WAIT_CRANE_OFF || WAIT_GANTRY_OFF
     * 判断tos 指令错误 TOS_COMMAND_ERROR
       * **CommandSummaryAddAbnormal**(CommandStat::TOS_COMMAND_ERROR,&abnormal_value);
   * MOVE_TO_CRANE) || MOVE_TO_GANTRY
-    * 判断first adjust unfinished error  FIRST_ADJUST_UNFINISHED_ERROR	
+    * 判断first adjust unfinished error  FIRST_ADJUST_UNFINISHED_ERROR    
       * **CommandSummaryAddAbnormal(**CommandStat::FIRST_ADJUST_UNFINISHED_ERROR,&abnormal_value);
   * WAIT_GANTRY_COME
     * 判断!param_obj_.stat.cmd_begin_with_take_over && 位置错误 LOCALIZATION_ERROR
@@ -169,10 +163,6 @@
   * true: return true
 
 #### HasTosCommandError()
-
-
-
-
 
 ## remote_control
 
@@ -352,7 +342,6 @@ message TuningTerminalCommand {
       }
       optional OffsetPoint offset_point = 3;
     }
-
 ```
 
 ## remote_environment
@@ -389,8 +378,6 @@ planning回传给antenna的数据，主要包括header, task_mode,command_id
 不确定模块名时自己查看帮助
 ```
 
-
-
 ## CR
 
 使用命令arc diff --preview生成  *我也不懂
@@ -419,8 +406,6 @@ bazel clean
 ```
 bazel clean
 ```
-
-
 
 ### login
 
@@ -512,62 +497,56 @@ config/modules/common/module_conf/conf/living_modules.pb.txt
 ```
 eg:
 cc_proto_library(
-	name = "notepad_log_proto",
-	protos = ["notepad_log.proto"],
-	deps = [
-	    "//modules/common/proto:header_proto",
-		"//modules/common/proto:event_code_proto",
-		"//modules/common/proto:module_proto",
-	],
+    name = "notepad_log_proto",
+    protos = ["notepad_log.proto"],
+    deps = [
+        "//modules/common/proto:header_proto",
+        "//modules/common/proto:event_code_proto",
+        "//modules/common/proto:module_proto",
+    ],
 )
 ```
 
 需要修改配置
 
-* modules/common/adapters/BUILD	cc_library中加入依赖
+* modules/common/adapters/BUILD    cc_library中加入依赖
 
 * modules/common/adapters/proto/adapter_config.proto  主要是新的message_type
 
 * modules/common/adapters/message_adapters.h 需要包含的proto消息的C++编译文件头文件（xxx.pb.h），类型Python中的xxx_pb2.py，并在adapter命名空间中声明该消息的Adapter：
-
+  
   * eg:
-
+    
     ```
     #include "modules/msgs/notepad/proto/notepad_log.pb.h"
     
     using NotepadMessageAdapter = Adapter<fabupilot::notepad::NotepadMessage>;
     ```
 
-    
+* ```
+  using LocalizationAdapter = Adapter<::fabupilot::localization::Localization>;
+  ```
 
-  * ```
-    using LocalizationAdapter = Adapter<::fabupilot::localization::Localization>;
-    ```
-
-  * 需要在BUILD中添加依赖，（modules/common/adapters/BUILD -> message_adapters.h）
+* 需要在BUILD中添加依赖，（modules/common/adapters/BUILD -> message_adapters.h）
 
 * modules/common/adapters/adapter_manager.h 需要使用REGISTER_ADAPTER注册新增的proto消息，看起来只需要消息的类名就行
-
+  
   * eg:
-
+    
     ```
     (REGISTER_ADAPTER(NotepadMessage)
     ```
 
-    
-
 * modules/common/adapters/adapter_manager.cc 加入case(用来关联adapter.conf中定义的消息类型(NOTEPAD_LOG) 和proto消息类（NotepadMessage）)。
-
+  
   * eg:
-
+    
     ```
     case AdapterConfig::NOTEPAD_LOG:
     +        EnableNotepadMessage(config.type(), config.mode(),
     +                           config.message_history_limit());
     +        break;
     ```
-
-    
 
 * modules/common/driving_event/BUILD中添加新的依赖（handler）
 
@@ -586,4 +565,14 @@ build build build
 ```
 bazel build //modules/common/message/tools:echo_message
 ```
+
+# 宁波出差事宜
+
+1. # **流机网络访问**
+
+- WiFi：DO NOT USE VPN；密码：fabu382764
+- 浏览器访问：meishan.fabu.ai:1234
+- 输入login账号，密码及otp码即可正常上网
+
+
 

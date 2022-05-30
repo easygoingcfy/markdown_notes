@@ -1,10 +1,28 @@
 # 常用操作
 
+## 通知
+
+## 磁盘操作
+
+### 清理磁盘缓存*
+
+```
+echo 3 | sudo tee /proc/sys/vm/drop_caches
+```
+
+## 
+
+### 给用户权限
+
+```
+sudo usermod -aG sudo username
+```
+
 ## 终端
 
-`ctrl + shift + t` 		 在当前终端窗口中新建一个终端，通过alt+数字键切换
+`ctrl + shift + t`          在当前终端窗口中新建一个终端，通过alt+数字键切换
 
-`ctrl + alt + t `		  	新打开一个终端窗口
+`ctrl + alt + t `              新打开一个终端窗口
 
 ## ctrl + r 查找历史命令
 
@@ -30,13 +48,15 @@ sudo命令以系统管理者的身份执行指令
 - -H 将环境变数中的 HOME （家目录）指定为要变更身份的使用者家目录（如不加 -u 参数就是系统管理者 root ）
 - command 要以系统管理者身份（或以 -u 更改为其他人）执行的指令
 
+# 文件操作
+
 ## mv
 
-` mv  source_file dest_file` 	更改文件名
+` mv  source_file dest_file`     更改文件名
 
-` mv source_file dest_directory`		移动文件
+` mv source_file dest_directory`        移动文件
 
-`mv source_dir dest_dir` 	如果dest_dir存在，则移动目录，否则更改目录名
+`mv source_dir dest_dir`     如果dest_dir存在，则移动目录，否则更改目录名
 
 ## cp
 
@@ -100,10 +120,15 @@ cat [-AbeEnstTuv] [--help] [--version] fileName
 1 表示stdout标准输出
 2 表示stderr标准错误
 &是把该命令以后台的job的形式运行
-
 ```
 
+### ln 软链接
 
+```
+ ln [参数][源文件或目录][目标文件或目录]
+ eg:
+ ln -s log2013.log link2013
+```
 
 ## less
 
@@ -133,11 +158,9 @@ ex: `./myap | tee myap.log `
 ps -ef | grep 进程关键字
 ```
 
-
-
 ### 参数
 
-ps 的参数非常多, 在此仅列出几个常用的参数并大略介绍含义	
+ps 的参数非常多, 在此仅列出几个常用的参数并大略介绍含义    
 
 - -A 列出所有的进程
 
@@ -148,11 +171,11 @@ ps 的参数非常多, 在此仅列出几个常用的参数并大略介绍含义
 - -aux 显示所有包含其他使用者的行程
 
 - au(x) 输出格式 :
-
+  
   ```
   USER PID %CPU %MEM VSZ RSS TTY STAT START TIME COMMAND
   ```
-
+  
   - USER: 行程拥有者
   - PID: pid
   - %CPU: 占用的 CPU 使用率
@@ -210,8 +233,6 @@ tar -zxvf xxx.tar.gz  解压缩
 xz -d xxxx.tar.xz 解压缩
 ```
 
-
-
 ## dpkg
 
 ```
@@ -247,7 +268,6 @@ dir： 指定把文件系统挂载到哪个目录
 type：指定挂载的文件系统类型，一般不用指定，mount命令可以自行判断
 
 options： 指定挂载参数，比如ro表示只读方式挂载文件系统
-
 
 ## dpkg
 
@@ -288,7 +308,7 @@ du log2012.log     显示指定文件所占空间
 
 ## 进程
 
-### ps 
+### ps
 
 查看静态的进程统计信息
 
@@ -319,8 +339,6 @@ ps -uf
 pstree -aup
 pstree -ap username
 ```
-
-
 
 ## 环境变量
 
@@ -452,7 +470,7 @@ $ tmux list-session
 > $ tmux switch -t <session-name>
 > ```
 
-#### 重命名会话	
+#### 重命名会话
 
 `tmux rename-session`命令用于重命名会话。
 
@@ -507,4 +525,3 @@ https://www.runoob.com/linux/linux-comm-crontab.html
 service cron restart
 0 */4 * * * python /home/caofangyu/caofangyu/event_parser/send_record_by_time
 ```
-

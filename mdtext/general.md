@@ -4,17 +4,29 @@
 sudo mount -t glusterfs storage1.fabu.ai:/onboard_data /onboard_data
 ```
 
-## ssh 
+## /private
+
+```
+sudo mount -t nfs 192.168.3.102:/private /private
+```
+
+## ssh
 
 地址： 172.25.20.8
 
-````
+```
 ssh caofangyu@172.25.20.8
-````
+```
+
+流机：
+
+```
+ssh -p 31454 caofangyu@jumpserver.ssh.fabu.ai
+```
 
 ## dev
 
-192.168.3.50	
+192.168.3.50    
 
 ## arm3
 
@@ -22,7 +34,15 @@ ssh caofangyu@172.25.20.8
 192.168.11.203
 ```
 
+自己的arm机器
 
+```
+nvidia@192.168.11.150
+nvidia382764
+
+nvidia@192.168.10.11
+nvidia
+```
 
 ### 数据存放
 
@@ -52,6 +72,12 @@ http://192.168.3.100:18890/#/report
 ```
 s-admin
 fabu124
+```
+
+## 启动模块
+
+```
+启动prometheus加个参数--local-ip=127.0.0.1
 ```
 
 ## REMOTE_CONTROL
@@ -84,7 +110,13 @@ fabu382764
 
 文件地址： ~/.ssh/id_rsa.pub
 
+## 消息
 
+这里有所有消息的定义，可以直接用
+
+```
+http://git.fabu.ai/lihao/fabukit/blob/master/src/fabukit/message/topic_utils.py
+```
 
 ## Fabupilot/quick starts
 
@@ -102,7 +134,14 @@ $ bash deploy/common/update_release.sh master/HEAD
 
 拉取指定版本
 
-$ bash deploy/common/update_release.sh master/********
+$ bash deploy/common/update_release.sh xxxx/xxxx
+
+拉取版本是deploy版本不对的情况
+
+```
+进deploy切换版本后执行：
+export LOCAL_DEPLOY_VERSION= commit_id
+```
 
 ### 切换车号
 
@@ -149,8 +188,6 @@ $ ./scripts/message_service.sh play /onboard_data/bags/meishangang/howo21/202105
 ```
 ./scripts/planning_v3 start_fe
 ```
-
-
 
 ## openVpn
 
@@ -214,4 +251,3 @@ $ bash fabupilot.sh build_opt_gpu
 ## arcanist
 
 ![image-20220224165804550](/home/caofangyu/.config/Typora/typora-user-images/image-20220224165804550.png)
-

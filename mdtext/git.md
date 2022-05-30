@@ -1,4 +1,4 @@
-# 常用操作  
+# 常用操作
 
 ## 代理
 
@@ -22,11 +22,17 @@ git config --global https.proxy 'socks5://127.0.0.1:8080'
 ```
 
 - - -
-## git init  
+
+## git init
+
 初始化当前目录为仓库，并将当前仓库设置为master
+
 - - -
-## git add 、 git commit -m  
+
+## git add 、 git commit -m
+
 ### add 将文件添加到缓存区
+
 git add --all 将所有改动文件提交到暂存区
 git add .     提交所有改动，除了删除操作
 commit 提交到本地仓库  -m表示注释  
@@ -40,8 +46,6 @@ commit 提交到本地仓库  -m表示注释
 git diff
 此时比较的是 已暂存（staged）和已追踪未暂存（modified）之间的修改部分。
 ```
-
-
 
 ### 查看已暂存的修改
 
@@ -57,9 +61,9 @@ git log -p
 此时比较的是每次提交到仓库的版本 与 上一次提交到仓库的版本之间的变化
 ```
 
+## git hooks
 
-
-# git 子模块（git submodule）
+## git 子模块（git submodule）
 
 https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E5%AD%90%E6%A8%A1%E5%9D%97
 
@@ -150,8 +154,6 @@ git diff --check
 - 使用悬挂式缩进
 ```
 
-
-
 ## 格式
 
 ```text
@@ -221,8 +223,6 @@ git stash drop stash@{num} 从列表中删除存储
 
 git stash clear    清除所有存储
 ```
-
-
 
 # 远程仓库
 
@@ -300,8 +300,6 @@ git reset HEAD~1
 git pull
 ```
 
-
-
 ## 查看远程仓库
 
 ```
@@ -355,7 +353,7 @@ git tag -a v1.2 xxxxxx
 
 ```
 git push origin <tagname> 推送一个标签
-git push origin --tags	  推送所有不在远程仓库服务器的标签（不会区分轻量标签和附注标签）
+git push origin --tags      推送所有不在远程仓库服务器的标签（不会区分轻量标签和附注标签）
 ```
 
 ### 删除标签
@@ -394,11 +392,9 @@ git config --global alias.co checkout
 ### 使.gitignore生效
 
 ```
-git rm -r --cached .			#清除缓存
-git add .						#重新trace file
+git rm -r --cached .            #清除缓存
+git add .                        #重新trace file
 ```
-
-
 
 # git分支
 
@@ -413,8 +409,6 @@ Git保存的不是文件的变化或者差异，而是一系列不同时刻的 �
 当使用git commit进行提交操作时，Git会先计算每一个子目录的校验和，然后在Git仓库中将这些校验和保存为树对象（记录着目录结构和blob对象索引）。
 
 随后，Git会创建一个提交对象，它除了上面提到的那些信息外，还包含指向这个树对象（项目根目录）的指针。如此一来，Git就可以在需要的时候重现此次保存的快照。
-
-
 
 Git的分支，本质上仅仅是指向提交对象的可变指针。
 
@@ -434,8 +428,6 @@ git branch branch_name
 git checkout -b <newbranchname>
 ```
 
-
-
 ## 查看各分支当前所指的对象
 
 ```
@@ -454,62 +446,89 @@ git checkout branch_name
 git branch -d branch_name
 ```
 
-
-
 - - -
+
 ## git log 查看历史提交日志
+
 git log filename 查看单个文件的历史日志
+
 - - -
+
 ## git reset --opt  回滚代码仓库
+
 ### --soft
+
 只恢复头指针
-### --mixed  
+
+### --mixed
+
 恢复头指针，已经add的暂存区丢掉,工作空间不变
-### --hard  
+
+### --hard
+
 一切恢复(并不理解)
+
 - - -
-## git status 查看状态  
+
+## git status 查看状态
+
 ## git config 用户操作
 
 `git config user.name` 
 
-`git config --global user.name "new_name"`	修改用户名
+`git config --global user.name "new_name"`    修改用户名
 
 `git config user.password`
 
 `git config user.email`
 
-`git config --list`		查看配置信息
+`git config --list`        查看配置信息
 
 ## git checkout
+
 切换分支
 git checkout -b dev 创建一个分支，并切换过去
 --file 将文件切换到最近一次的状态（不能迭代）
+
 - - -
+
 ## git rm 删除文件
+
 使用git rm删除文件需要使用commit提交
+
 - - -
+
 ## git reflog 查看提交历史
+
 - - -
+
 ## git branch
+
 查看分支
 git branch branch_name 创建一个分支,但不会切换
 git branch -m branch_name_old brancn_name_new 修改分支名
 git branch -D 强制删除分支
+
 - - -
+
 ## git merge 合并分支
+
 常用来在master中合并其他分支（开发中建议使用分支）
+
 - - -
+
 ## git stash
+
 保存当前工作状态。(当工作区修改了文件或其他功能时，不能切换分区，使用git stash)
 使用git stash pop恢复
+
 - - -
-## git diff 
+
+## git diff
+
 查看不同分支的文件差异
 
 ## cherry-pick
-
-
 
 - - -
 
@@ -521,13 +540,9 @@ git branch -D 强制删除分支
 git daemon --reuseaddr --base-path=/srv/git/ /srv/git/
 ```
 
-
-
 # 一些经验
 
-## git分支开发步骤  
-
-
+## git分支开发步骤
 
 在不饶乱master代码的情况下进行开发
 拉取分支（分支名简洁，commit中简单描述）

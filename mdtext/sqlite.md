@@ -425,6 +425,12 @@ CREATE TABLE COMPANY(
 )
 ```
 
+### SQLite update
+
+```
+"UPDATE TABLE_NAME set FIELD = xxx where field=xxx"
+```
+
 
 
 # SQLAlchemy

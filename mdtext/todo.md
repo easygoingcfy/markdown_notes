@@ -1,47 +1,67 @@
-current 
 
-一次读入多个db文件，每个db文件建立一个链接，存储成字典的形式 （文件名：con？）
 
-# 20220512
+## data_analzyer问题
 
-### 测试同时读多个db文件的时间。
+![image-20220530144449444](/home/caofangyu/.config/Typora/typora-user-images/image-20220530144449444.png)
 
-![image-20220512192853792](/home/caofangyu/.config/Typora/typora-user-images/image-20220512192853792.png)
-
-### sql中加入新的表，保存时间与文件名信息
+![image-20220530171112518](/home/caofangyu/.config/Typora/typora-user-images/image-20220530171112518.png)
 
 
 
-### 开始统计对位指标
+![image-20220530173014515](/home/caofangyu/.config/Typora/typora-user-images/image-20220530173014515.png)
 
+del函数出错：
 
+AttributeError: 'EventRecord' object has no attribute 'insert_cursor'
 
+新接口
 
+### 统计对位指标
 
+# 先做
 
+录接管数据，通过回调函数
 
+处理 remote_control读数据
 
+## 新建一个模块 data_analyzer
 
-## 新建一个模块 data_analyze
+### 添加文件逻辑
+
+- 存所有事件
+  - 存储需要记录的状态（如时间，对应的时间名等）到DB文件中
+    - db文件在什么时候创建
+- 存分析结果
+
+### analyzer.py
+
+#### 接管时分析，自动驾驶过程中需要记录数据吗？
+
+#### 在自动驾驶中
+
+有哪些状态需要关注，分别需要干嘛
+
+#### 退出自动驾驶
+
+做的分析
+
+对位误差：perception：crane_detection.proto   -->CraneObject(可以通过is_target_crane判断)   GantryObject
 
 位置:  modules/tools/data_analyzer
 
 先拉一个分支实现
 
 * 写配置文件
+  
   * xxx.conf
 
 * 配置Living modules
+  
   * ```
     config/modules/common/module_conf/conf/living_modules.pb.txt
     ```
-  
 
 1 往前搜包
-
-
-
-
 
 ## python脚本完成数据分析
 
@@ -49,7 +69,9 @@ current
 
 * 判断车辆状态（自动驾驶，脱离自动驾驶）
   * http://git.fabu.ai/fabupilot/fabupilot/blob/master/modules/common/driving_event/conf/driving_event_conf.pb.txt#L815
-  *  http://git.fabu.ai/fabupilot/fabupilot/blob/master/modules/common/driving_event/conf/driving_event_conf.pb.txt#L1087
+  * http://git.fabu.ai/fabupilot/fabupilot/blob/master/modules/common/driving_event/conf/driving_event_conf.pb.txt#L1087
+  * 进入自动驾驶：VEHICLE_START
+  * 脱离自动驾驶：VEHICLE_INTO_EMERGENCY
   * 通过解析数据来完成
 * 脱离自动驾驶后进行实时分析，（数据为记录的db文件以及msg文件）
   * 确定分析的数据范围（时间或者状态决定）
@@ -69,8 +91,6 @@ length:
 
 数据保存路径的问题，线上存的时候也是保存在data/bag里吗，相对路径一致吗
 
-
-
 ### 接管时需要的参数
 
 接管时间
@@ -84,14 +104,6 @@ length:
 #### 搜索数据的顺序
 
 从前往后遍历比
-
-
-
-
-
-
-
-
 
 在本地fabupilot上build时每次都会有个
 
@@ -123,7 +135,7 @@ Downloading LFS objects:
    2. 设置waitkey（例子中用的1000/fps, 教程中建议25左右）。waitkey影响播放速度
 3. 视频输出重定向？
 
-## cache 
+## cache
 
 用 numpy把已经发送过的record数据存储好，每次发送之前对照一次，已经发送过的数据就不再发送了。
 
@@ -166,29 +178,18 @@ Downloading LFS objects:
   * 存在同样的event_code对应多个标签的情况，用re匹配content，确定具体标签。content也需要有个列表或者字典。
     * dict{'tag_name': 're_patten'}
 
-
-
-
-| monitor错误日志                                              | EventCode                | 附加判断条件 | planning刹停规则 | 问题标签                       |
-| ------------------------------------------------------------ | ------------------------ | ------------ | ---------------- | ------------------------------ |
-|                                                              | INPUT_GNSS_UNSTABLE      | 横纵路上     |                  | 驱动-组合导航-组合导航信号异常 |
-| 定位接收的GNSS不稳定,将触发规划停车                          | INPUT_GNSS_UNSTABLE      | 非横纵路上   |                  | 定位-定位错误刹停              |
-| 系统错误: 处于紧急阶段-无变道空间                            | PLANNING_SYSTEM_ERROR    | 无           |                  | 规划--决策--无变道空间         |
-| 系统错误: 地图路线搜索失败                                   | PLANNING_SYSTEM_ERROR    | 无           |                  | 规划--决策--路径搜索失败       |
-| 模块消息延时:antenna [REMOTE_ENVIRONMENT] has delay          | MODULE_TOPIC_DELAY       | 无           |                  | 缺少合适的问题标签             |
-| 系统错误: 处于紧急阶段-收到紧急停车指令 底盘参数异常，紧急停车 | PLANNING_SYSTEM_ERROR    | 无           |                  | 车辆-底盘硬件错误              |
-| 转向控制异常,将触发规划紧急停车                              | EPS_ANGLE_EXCEPTION      | 无           |                  | 车辆-底盘硬件错误              |
-| 定位接收的车道线错误,将触发规划停车                          | INPUT_VISION_LANE_ERROR  | 无           |                  | 定位-定位错误刹停              |
-| 双机时间同步异常,请求主动安全停车                            | COMPUTER_TIME_SYNC_ERROR | 无           |                  | 普罗米修斯-双机同步异常        |
-| perception_lidar has error: [NEED_EMERGENCY_FATAL]-106021-[激光雷达遮挡错误] |                          | 无           |                  | 驱动-激光雷达-激光雷达帧率异常 |
-
-
-
-
-
-
-
-
+| monitor错误日志                                                          | EventCode                | 附加判断条件 | planning刹停规则 | 问题标签             |
+| -------------------------------------------------------------------- | ------------------------ | ------ | ------------ | ---------------- |
+|                                                                      | INPUT_GNSS_UNSTABLE      | 横纵路上   |              | 驱动-组合导航-组合导航信号异常 |
+| 定位接收的GNSS不稳定,将触发规划停车                                                 | INPUT_GNSS_UNSTABLE      | 非横纵路上  |              | 定位-定位错误刹停        |
+| 系统错误: 处于紧急阶段-无变道空间                                                   | PLANNING_SYSTEM_ERROR    | 无      |              | 规划--决策--无变道空间    |
+| 系统错误: 地图路线搜索失败                                                       | PLANNING_SYSTEM_ERROR    | 无      |              | 规划--决策--路径搜索失败   |
+| 模块消息延时:antenna [REMOTE_ENVIRONMENT] has delay                        | MODULE_TOPIC_DELAY       | 无      |              | 缺少合适的问题标签        |
+| 系统错误: 处于紧急阶段-收到紧急停车指令 底盘参数异常，紧急停车                                    | PLANNING_SYSTEM_ERROR    | 无      |              | 车辆-底盘硬件错误        |
+| 转向控制异常,将触发规划紧急停车                                                     | EPS_ANGLE_EXCEPTION      | 无      |              | 车辆-底盘硬件错误        |
+| 定位接收的车道线错误,将触发规划停车                                                   | INPUT_VISION_LANE_ERROR  | 无      |              | 定位-定位错误刹停        |
+| 双机时间同步异常,请求主动安全停车                                                    | COMPUTER_TIME_SYNC_ERROR | 无      |              | 普罗米修斯-双机同步异常     |
+| perception_lidar has error: [NEED_EMERGENCY_FATAL]-106021-[激光雷达遮挡错误] |                          | 无      |              | 驱动-激光雷达-激光雷达帧率异常 |
 
 * 从云控拿到的数据可以转成字典，字典格式如下：
 
@@ -200,10 +201,7 @@ Downloading LFS objects:
   }
   ```
 
-  
-
 * 看错误判断的原理
-
 
 形如HasSystemTimeError()。在abnormal_type_determine.cc里面
 
@@ -214,15 +212,16 @@ Downloading LFS objects:
 ### 溯源
 
 - message::MessageService::Init(module_name,callback,1)
+  
   - MessageService::InitImpl(module_name,callback)
   - 
 
 - fabupilot::common::adapter::AdapterManager::Init(configs)    
-
+  
   - configs: config/modules/planning_v3/conf/adapter.conf
-
+    
     - config形式：
-
+      
       ```
       config {
            type: LOCALIZATION
@@ -230,7 +229,7 @@ Downloading LFS objects:
            message_history_limit: 50
         }
       ```
-
+  
   - 对config.type: EnableLocalization
 
 # handler
@@ -247,7 +246,7 @@ dev0执行arc diff --preview 报错：No space left on device
 
 主要用于向Notepad端发送数据（司机），基本内容应该与MonitorHandler一致，需要ParseContent
 
-* driving_event.cc 进行注册（RegisterFactory)	
+* driving_event.cc 进行注册（RegisterFactory)    
 
 * handler.h 同monitor_log
 
@@ -260,21 +259,16 @@ dev0执行arc diff --preview 报错：No space left on device
 * driving_event_conf.pb.txt新加的事件需要在modules/common/proto/event_code.proto中登记
 
 * 需要修改配置
-
+  
   * modules/common/adapters/proto/adapter_config.proto  主要是新的message_type，目前应该是使用NOTEPAD或者新加NOTEPAD_LOG
-
+  
   * modules/common/adapters/message_adapters.h 需要包含的proto消息的C++编译文件头文件（xxx.pb.h），类型Python中的xxx_pb2.py，并在adapter命名空间中声明该消息的Adapter：
-
+    
     * ```
       using LocalizationAdapter = Adapter<::fabupilot::localization::Localization>;
       ```
 
-      
-
-  * modules/common/adapters/adapter_manager.h 需要使用REGISTER_ADAPTER注册新增的proto消息，看起来只需要消息的类名就行
-
-
-
+* modules/common/adapters/adapter_manager.h 需要使用REGISTER_ADAPTER注册新增的proto消息，看起来只需要消息的类名就行
 
 自己播包，学一下怎么分析接管原因。
 
@@ -316,8 +310,6 @@ driving_event.cc ： RegisterFactory增加EMERGENCY
 
 参考 ： modules/common/message/tools/message_bag.cc
 
-
-
 常见接管类型，判断的方法，数据在哪（那个字段）
 
 应该看看播包的脚本 以及 接管分析的PPT
@@ -336,8 +328,6 @@ driving_event.cc ： RegisterFactory增加EMERGENCY
 
 git@git.fabu.ai:caofangyu/event_parser.git
 
-
-
 ## RemoteControl
 
 频率：1/s  每个bag60个
@@ -349,8 +339,6 @@ header
 command
 
 tos_command_text
-
-
 
 ## TosCommand
 
@@ -386,16 +374,12 @@ spreader_size
 
 ### crane_status
 
-
-
 * spreader_lane
 * is_working
 * spreader_size
 * spreader_lane_old
 * spreader_speed
 * netload
-
-
 
 # 指令
 
@@ -414,8 +398,6 @@ spreader_size
 ![f06be0c1-1d07-47f5-a8ae-44cd9b0b373f](/home/caofangyu/me/f06be0c1-1d07-47f5-a8ae-44cd9b0b373f.jpg)
 
 ————————————————————————————————————————————————————————————
-
-
 
 # 最终的目标
 
@@ -477,7 +459,7 @@ record_list：
 
 #### 步骤
 
-##### 安装protocol buffers编译器 
+##### 安装protocol buffers编译器
 
 ###### 先安装setuptools
 
@@ -568,7 +550,7 @@ new1、从modules.common.message.tools.proto.message_bag_pb2 as message_bag_pb2�
 
 其中读文件需要用到struct.unpack函数。
 
-（message文件格式应该是分段的，每段开头是8位的unsignedlong，记录本段数据长度	）
+（message文件格式应该是分段的，每段开头是8位的unsignedlong，记录本段数据长度    ）
 
 2、 从modules.common.message.tools.proto import message_bag_pb2 as message_bag 实例化一个BagDataChunk对象:
 
@@ -580,7 +562,7 @@ new1、从modules.common.message.tools.proto.message_bag_pb2 as message_bag_pb2�
 
 msg数据会存在d.message_data中，使用proto默认的ParseFromString解析
 
-## to do 
+## to do
 
 先解析一个msg文件。
 
@@ -644,17 +626,17 @@ data_list = []
 
 需要提取的信息：
 
-​						车辆
+​                        车辆
 
-​							|
+​                            |
 
-​						 data
+​                         data
 
-​							|
+​                            |
 
-​			record_list + loc[]
+​            record_list + loc[]
 
-​	record_list采用字典形式存放每辆车的batch_record
+​    record_list采用字典形式存放每辆车的batch_record
 
    message_list同样
 
@@ -704,8 +686,6 @@ data_list = []
 
 ### BagParse
 
-
-
 把我的SS代码面向对象一下，这个可能要花点时间
 
 把一些常用的功能写成公共函数，可以增加参数使其适用性更广泛
@@ -713,8 +693,6 @@ data_list = []
 ## 3在recordItem中新增一个字段，字段信息从msg中提取（目前为是否动态接管，判断速度是否为0？）
 
 需要根据时间匹配bags中的数据之后，读取信息，再将信息填到record中，发送出去
-
-
 
 # 2021/1/26
 
@@ -729,8 +707,6 @@ data_list = []
 ## 2根目录改成可以配置的方法（参考ApolloAuto/apollo）
 
 ## 3对关心的参数配置一个列表（类似type_list），记录类型与关键值（如timestamp这种）
-
-
 
 ## 4 如何发送文件
 
@@ -750,33 +726,29 @@ data_list = []
 
 ### 代码虽然看起来面向对象了，但是函数的参数更多了，感觉函数的位置和参数并不是很合理，虚假的面向对象
 
-
-
 # 2022/1/27
 
 ## 优化时间
 
 1. 直接保存了需要读取的msg文件数据，省去了每次打开关闭文件的操作。
-
+   
    时间从1个多小时减少到了半小时左右把
 
 2. 目前的结构为从bag_index里面每次读一个chunk，从chunk中读文件类型，如果符合在建立对应类型的对象提取数据
-
+   
    考虑：
-
+   
    根据message_bag.proto文件，
-
+   
    bag_index中的每个units中的data_header中包含message_type，同时units中也有message_data_offset和data_length
-
+   
    所以：直接使用bag_index.units[index]判断类型并且读取数据。省去解析bag_chunk的过程。
 
-​		用process_units代替了next_chunk和process_chunk函数。
+​        用process_units代替了next_chunk和process_chunk函数。
 
-​		时间~~大概是~~~依然是半个小时
+​        时间~~大概是~~~依然是半个小时
 
- 		从bag_index中直接读取时间，然后先判断时间再判断类型，但是效率并没有显著提升。
-
-
+         从bag_index中直接读取时间，然后先判断时间再判断类型，但是效率并没有显著提升。
 
 3. 应该如何正确的面向对象
 
@@ -814,15 +786,11 @@ bag_index中的时间数据应该是顺序排列的，尝试用二分法找到�
 
 如果将现在的record添加到batch_record里面
 
-
-
 ### 1.2 修改proto，添加关心的数据类型
 
 目前测试是localization中的坐标数据(utm_x?)
 
-### 1.3  面向对象一哈 
-
-
+### 1.3  面向对象一哈
 
 ## 2 添加消息队列
 
@@ -866,7 +834,7 @@ done
 
 ## 4 如何用字典把数据关联起来，方便管理
 
-## 5 考虑建立一个配置文件，方便后续扩展和改动。 
+## 5 考虑建立一个配置文件，方便后续扩展和改动。
 
 ## 2022/2/11
 
@@ -1048,7 +1016,7 @@ def replace_and_append(src_path,
 
 检查新脚本的运行时间。
 
-### old: 
+### old:
 
 [main]total_record_list:488 
 [main]process use :5763.485047 s 
