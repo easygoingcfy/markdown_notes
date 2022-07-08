@@ -1,3 +1,65 @@
+```
+当前版本信息
+deploy：
+ce69ec649a089e56b63efe3a7cf37989ac6d3141
+fabupilot_config:
+11a5fe9b9670826041b728ccc2568bec3ddb6502 (此为fabupilot_config data_analyzer_v2.5分支，无ntbyd配置)
+aaae9740300772d1b4a3483b9341040361943a09  (此为fabupilot_config data_analyzer_v2.5分支，有ntbyd配置)
+66c0605a52d00c47af1904e754810720370eb104 （此为data_analyzer0602分支，有ntbyd配置）
+data_analyzer 
+7b2457f490597bda631910343f88f92f1df571ca
+mointor:
+8587dc67fcd4f2ad92b498b8f92c57c1340b5fc1
+planning_v3:
+4e37907d3b51cf42f00e33bc9bb68a19d1475515
+perception_v2:
+32f7bb3bf5ff9f6bc58b1995b904f0af3f7f96b7
+```
+
+```
+0706 09：57基于master 用于南通测试，更新fabupilot_config, data_analyzer和monitor模块
+custom_builds/a01e0bb8
+ x86:3970
+ arm:3970
+```
+
+车辆IP(523 524 525 528 529)
+
+IP为+21，howo为+1
+
+T523(howo24):
+
+```
+172.25.44.2
+172.25.44.3
+```
+
+T524
+
+```
+172.25.45.3
+```
+
+T525
+
+```
+172.25.46.3
+```
+
+T528
+
+```
+172.25.49.3
+```
+
+T529
+
+```
+172.25.50.3
+```
+
+
+
 # 指令
 
 ## command_monitor(c++)

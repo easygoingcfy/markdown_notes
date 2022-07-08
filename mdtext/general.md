@@ -70,9 +70,11 @@ http://192.168.3.100:18890/#/report
 ```
 
 ```
-s-admin
+s-public
 fabu124
 ```
+
+
 
 ## 启动模块
 
@@ -176,12 +178,21 @@ $ ./scripts/message_service.sh play /onboard_data/bags/meishangang/howo21/202105
 ### 查看车上monitor
 
 ```
-192.168.3.100:8523
+192.168.3.100:8(车名：ATXXX 不要AT)
 ```
 
 不要经常开，会影响车上网络
 
 ### 模块
+
+查看模块在车辆的哪台服务器上
+
+```
+在living modules里面看end_point
+perception lidar在.2上，camera在.3上
+```
+
+
 
 #### 在后端*（不确定）启动模块
 

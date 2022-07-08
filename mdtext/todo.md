@@ -1,3 +1,237 @@
+无人化车辆: 520/521/522/526/527/530/533/539/519
+
+​              howo20  howo21 howo22 howo23 howo27 howo28 howo31 howo34 howo40
+
+更新5g_delay的车（混线）：howo24 howo26 howo29 howo30 howo25      howo14，15，16，29，30
+
+AT523 AT524 AT525 AT528 AT529
+
+
+
+判断文件夹是否可写入，不可写入时db存放到/tmp中
+
+新接受消息task_state，查看对cpu影响
+
+## 撰写文档：
+
+阐述driving_event模块的功能和用途
+
+ 异常处理策略
+
+安全策略
+
+```
+11.2.8. 异常处理模块
+11.2.8.1. 能统计、收集、查询自动驾驶水平运输设备的所有故障信息。监控界面上显示具体异常信息及影响范围，采用醒目颜色预警或其他方式通知相关人员。
+11.2.8.2. 记录异常原因，对处理过程和影响范围提供追溯。
+
+自动驾驶系统能够根据提前设计分级管理及异常处理流程，通过复位，重发指令等方式，让自动驾驶水平运输设备继续作业，或者进入自动驾驶水平运输设备缓冲区域，减少人工接管次数。
+```
+
+
+
+# 20220706
+
+测试bag.py：
+
+有错误，sqlalchemy报类型错误，未解决
+
+# 20220705
+
+```
+1. data_analyzer 合并最基础的部分 db数据收集，collect先注释不做。 
+2. 5g delay部分合并到master
+3. fabupilot config合并+测试
+```
+
+
+
+# 20220704
+
+0704南通测试的数据回传好了检查log，观察是否有 MONITOR_TOPIC_DELAY事件
+
+data_analyzer:重构bag.py，将与db有关的操作放在另外一个类中
+
+bag类目前用于管理多个bag, 新类用来对单个bag进行操作
+
+
+
+# 20220701
+
+调整从egoInfo找scene逻辑，扩大时间范围，返回完整列表。
+
+修改comment里内容
+
+离线更新场景：一车一天大概一个小时左右？
+
+![image-20220704094530685](/home/caofangyu/.config/Typora/typora-user-images/image-20220704094530685.png)
+
+场景更新步骤：拿到未更新场景的PingData数据， 根据时间从EgoInfo找scene，更新
+
+# 20220630
+
+1. doc整理好，排查下混线场景数据，有没有问题
+2.  改comment上内容
+3. 做完之后看下data_collect内容，要准备合并了
+
+# 20220629
+
+无人化延时数据 输出docx
+
+线上优化ｄｂ，读ｂａｇ＿ｉｎｄｅｘ的时候存ｄｂ。db
+
+无人化和混线在一个doc里分开统计。 先显示无人化的数据，再显示混线的数据。
+
+doc里面的图片删掉
+
+检查混线数据（场景数据很少）
+
+# 20220627 
+
+1. 新发版本本地测试，实车测试
+2. 数据回传check脚本，检查recordF和recordB,固定执行，发送到微信群
+   1. 无人化路径：/onboard_data/bags/meishangang_driverless_v2
+   2. 从/fabudata读取recordB recordF中无人化数据scp到本地，再与/onboard_data上数据对比，检查回传漏包情况
+3. ~~5G延时统计，输出到html中~~放弃，改为使用reportlib生成pdf
+
+# 20220624
+
+1. 无人化超时数据输出脚本化，输出到data3上某个目录，按时期给出划分（前天做的，1辆车一个直方图和表格数据）
+
+   直方图：场景延时分布 表格数据形式如下：
+
+   1. 从ecs log读文件保存到db数据中
+   2. 根据db输出对应的直方图与表格数据，有空改下函数，支持显示的下标自定义？
+   
+1. 输出按场景分类后的直方图分布。
+
+目前是三个场景，泊位，引桥，箱区
+
+输出各场景的时间占比
+
+文件储存在data3指定目录
+
+# 20220623
+
+1. ~~无人化场景数据解析，先尽快实现一个版本放着跑，直接利用bag.py就行，数据更新写到db里面。~~
+2. 读bag index，写入db文件，然后基于db文件查找 和 1 对比下时间
+3. 混线场景数据分析。
+3. 写从db中读取index解析消息更新场景的脚本
+
+无人化车辆: 520/521/522/526/527/530/533/539/519
+
+# 20220621
+
+写监控cpu的脚本
+使用
+
+```
+ps -aux | grep data_analyzer/main.py
+```
+
+
+
+# 20220620
+
+~~绘图函数，支持一次绘制多个车辆的数据~~
+
+统计车辆运行时间（分段统计，间隔超过五分钟以上为一段，统计总时间）
+
+~~查看5g_delay更新~~
+
+陈彦冰-修改回传检查脚本
+
+### 重构
+
+需要的数据：
+
+时间分布
+
+场景分布
+
+延迟
+
+总时间
+
+# 20220616
+
+#### 5g_delay分支： 重写update_scene函数
+
+现在直接在线上把scene_type存到了数据库中，重写update_scene函数来更新PingData
+
+# 20220615
+
+1. ~~改图（5G超时），梅山再跑一天，目前来看引桥分布最多，可以跑几天确认下~~ 
+2. ~~跑1天南通数据（5G超时）~~
+3. 测试情况跟踪（cpu），确认有没有退出自动驾驶事件以及退出后的分析。 
+   1. 目前拿不到数据，延后
+
+4. ~~5G数据集成到data_analyzer~~
+5. 优化bag.py 
+
+## data_analyzer：
+
+### 5G超时统计整合到data-analyzer
+
+放在data_collect.py里，collect()函数中
+
+### 优化读bag_index（存到db里面）
+
+
+
+## 5G超时空间分布（scene）
+
+1. log中的信息储存在sqlite3数据库中（ecs_network）
+2. 根据车以及时间，从bag找scene数据（data_analyzer：common/bag.py）
+3. 更新数据库
+4. 根据数据绘图
+   1. 绘图时空数据修改为无场景
+   2. 针对单车运行进行修改
+
+### log路径
+
+```
+梅山
+root = /fabudata or /onboard_data/logs
+/fabudata:  /fabudata/howo8/2022-06-02/ecs...
+/onboard_data: /onboard_data/logs/howo8/2022-06-02/ecs...
+南通
+root = /onboard_data/logs
+```
+
+
+
+5G超时信息统计
+
+1. 统计一个周期内的信息
+2. 数据存储到db中
+
+
+
+网络延时任务流程
+
+1. 使用active_safety_reporter-master中的log_querier.py脚本生成指定日期的data.json数据（需要/private,需要在当前目录建立data文件夹软连接到/private/active_safety_reporter/d）
+
+data.json数据格式：
+
+{date:{vehicle:[{}, {}, {}, ... ]}}
+
+2. 使用brake(data storage中）中脚本main.py 读取data.json更新max_vel  scene字段生成active_emer.json文件
+3. 使用仓库data_parser中脚本parse_csv.py从csv文件读数据，结果保存在planning_emer.json中(需要/private)
+4. 使用data_parser中脚本process_json.py合并json文件，并输出分析结果图片，保存在image目录中。
+
+# 0606
+
+http://jira.fabu.ai/browse/ATRUCK-2359?filter=-1
+
+## 根据接管记录找接管包
+
+1. 从云控拿接管记录
+2. 根据接管记录的时间，车找接管包，统计缺失数
+3. 根据接管记录（或者接管包找前后五分钟的包），统计丢失个数
+
+## data_collecter
+
 
 
 ## data_analzyer问题
@@ -1084,3 +1318,274 @@ Reviewed By: xiezhongjian, qianwei, wangpeng
 static_cast<>
 
 lambda表达式
+
+# 工作记录
+
+## 20220613 周一
+
+### 完善统计5G超时分布的python脚本
+
+主要内容：
+
+1. 从指定日期的log中收集5G超时数据，保存在sqlite数据库中。
+2. 更新数据库中的数据：根据时间从bag中读场景信息（scene)
+3. 画出5G超时数据分布图，包括时间分布与场景分布
+
+修复之前一个脚本的bug，该脚本用来统计数据回传丢包的情况
+
+### data_analyzer：
+
+合并data_collect分支
+
+修改main函数和shell脚本，暂时不使用fire库，使用argparse进行命令行参数的解析
+
+## 20220614 周二
+
+### data_analyzer:
+
+南通现场测试：
+
+车辆：nbtyd1
+
+问题：
+
+modules/tools/data_analyzer/data_collector.py中引用了不需要的库
+
+line7:  import tqdm  需要删除
+
+模块不能自启，需要修改module_conf
+
+目前的版本后台启动模块不需要使用start
+
+内容：
+
+统计5G超时数据，统计模块CPU占用率情况
+
+使用takeover_message作为退出自动驾驶事件
+
+修复现场测试发现的问题
+
+### 5G超时统计脚本：
+
+修复一些bug
+
+增加log_root参数，现在支持对南通港口数据进行处理，默认为梅山港数据
+
+整理上传南通港06.11，梅山港06.06，06.07统计数据到企业微信文档
+
+重构数据处理及绘图代码，为并入data_analyzer做准备
+
+## 20220615 周三
+
+###  data_analyzer & 5G超时统计
+
+合并5G超时统计到data_analyzer中。
+
+5G超时统计增加绘制延迟分布柱状图
+
+与陈彦冰讨论数据回传检查的细节，确定数据回传检查需求具体内容
+
+## 20220616 周四
+
+#### 5g_delay分支： 重写update_scene函数
+
+现在直接在线上把scene_type存到了数据库中，重写update_scene函数来更新PingData
+
+修复检测不到log文件时会直接挂掉的问题
+
+解决绘图时注释文本位置不正确的问题
+
+## 20220617 周五
+
+### 5g_delay分支：
+
+#### 重构超时数据处理代码
+
+[修复检测不到日期文件夹会自动退出的bug，现在使用同一个db文件存储数据，所有对数据库的操作封装在event_db中](http://git.fabu.ai/fabupilot/fabupilot/commit/38cec03c137fe5fec8b95925ccdc2405d40d9c4a)
+
+优化读超时log代码，每次读log文件时增量读取，每次最多处理1000条记录进行提交
+
+#### 在车端服务器上测试版本，修复问题
+
+## 20220620 monday
+
+### 绘图函数：
+
+增加绘制指定日期所有车辆数据的功能 使用-t date -f folder来执行。
+
+小更新：
+
+* 给文件名和图表标题增加车辆日期信息
+* 增加logger,保存日志信息到ecs.log中
+* 解决图标信息展示不全的问题，解决X轴标签过长重叠的问题
+
+增加统计功能：统计每辆车每天运行的时间，统计每辆车平均每小时超时次数，发送到企业微信
+
+## 20220621 tuesday
+
+data_analyzer：
+
+修改scene字段保存方式，不在存储时进行中英文转换，直接保存原内容
+
+### 绘图
+
+重构绘图代码，使用EcsData类处理并保存数据，使用Plotter类完成绘图和统计功能。
+
+删除重复和无用代码，统一对单车数据与多车数据的处理，使用Plottr类完成全部功能
+
+新增绘制延迟分布散点图，横轴为时间，纵轴为延迟
+
+### 脚本
+
+完成监控模块cpu占用的脚本，放在scripts中
+
+## 20220622 Wednesday
+
+### 绘图
+
+优化绘图代码，增加分辨率，修改字体，调整颜色，让显示更清晰
+
+修改延时统计直方图X轴下标，现在为`[0-30ms] [30-100ms][100ms-200ms] [200ms-300ms][300ms-500ms] [500ms-1s], 1s以上，接管`
+
+延时统计改为每次Ping数据为一次记录，此前为4次统计为一条，修改相关的统计与绘图代码
+
+按要求输出延时统计数据，内容包括 延时平均值，延时最大值，上述下标所占比例，丢包比例，支持单车、多车统计，多车时既输出单车数据，也输出总的统计数据。
+
+统计单并输出一天记录中场景记录的数量
+
+### data_analyzer
+
+优化读ecs log文件逻辑，改成增量读取
+
+
+
+## 20220623 Thursday
+
+### data_analyzer
+
+1. 无人化场景延迟数据解析与更新
+   1. 解析
+   
+      从无人化车辆的ecs log中读取数据储存到db中
+   
+   2. 更新
+   
+      1. 解析bag数据存储index到数据库中，利用该数据库寻找并更新延迟数据的场景
+      2. 根据时间找相应的bag，解析planning_info得到scene更新数据中场景字段
+
+2. 修复没有使用lru_cache缓存的问题，修复新版本读ecs log文件会挂掉的问题
+
+## 20220627 monday
+
+### 5G超时检测&绘图
+
+修复定时脚本运行失败的bug
+
+统一db文件命名：现在所有存储ping_data的db文件名字为：howoxx-2022xxxx.db（日期为8位没有不用'-'连接格式）
+
+1. 新发版本本地测试，实车测试
+2. 数据回传check脚本，检查recordF和recordB,固定执行，发送到微信群
+   1. 无人化路径：/onboard_data/bags/meishangang_driverless_v2
+   2. 从/fabudata读取recordB recordF中无人化数据scp到本地，再与/onboard_data上数据对比，检查回传漏包情况
+3. ~~5G延时统计，输出到html中~~放弃，改为使用reportlib生成pdf
+
+## 20220628 tuesday
+
+查到recordF文件存在重复上传的情况（eg /fabudata/howo31/20220617/0845/recordF，/fabudata/howo31/20220617/1546/recordF），输出recordF增加去重，recordF改为每天更新前三天的数据
+
+### 5G超时检测&绘图
+
+~~增加Pdf类，用于输出pdf文档。~~改成使用python-docx生成word文档
+
+将场景延时分布改为用表示显示，调整图片大小让图表能在Word上完整显示
+
+修改输出文档格式与内容，首先输出总的统计表格，之后按照表格-三场景延时分布图片的顺序排列
+
+## 20220629 Wednesday
+
+南通港现场测试：
+
+fabupilot_config未配置living_modules
+
+monitor不显示data_analyzer模块，重启无效，未查出原因
+
+data_analyzer启动后log不刷新
+
+问题疑似为版本生成失败/错误
+
+### 5G超时检测&绘图
+
+延时数据统计表格中加入总数据一栏，增加运行时长统计
+
+修改 无人化场景延迟数据解析脚本，现在每天主动更新howo21车的场景数据，并发送doc文档到企业微信。
+
+## data_analyzer
+
+修改读bag方式：现在读bag时把数据索引存到sqlite数据库，一个bag对应一个db文件，直接使用sqlite查询数据。
+
+## 20220630 Thursday
+
+输出docx中不再放入图片
+
+doc中将无人化数据与混线数据分开统计，先显示无人化数据，再显示混线数据	
+
+
+
+优化bag.py：按要求修改bag.py代码，大致内容如下：
+
+去掉tqdm,删除冗余的函数，对db文件操作统一使用utils中SqliteDB接口，将db文件存储在bag目录日期文件夹内，现在表名为MsgUnit
+
+检查混线场景数据量少的问题：
+
+对比db文件内场景数量一致，确认是场景数据没有存储下来
+
+
+
+
+
+主要原因是发送的Planning_info消息中大部分没有scene字段
+
+查看data_analyzer中消息的处理逻辑（message.py），认为没有问题
+
+## 20220704
+
+### 5g超时检测&doc
+
+#### 离线场景更新脚本
+
+离线更新混线场景数据
+
+混线场景数据使用批量更新，处理一个db文件时间缩短到3分钟左右。
+
+将存储无人化bag数据索引到db，以及使用存储的索引更新场景的函数也改为批量存储与更新
+
+
+
+### 现场测试
+
+南通现场测试，一切正常
+
+## 20220705
+
+混线测试车辆从howo24 howo26 howo29 howo30 howo25 更换成 howo14，15，16，29，30，修改拷贝log脚本车辆名以及对应的IP地址
+
+1. data_analyzer 合并最基础的部分 db数据收集，collect先注释不做。 
+2. 5g delay部分合并到master
+
+## 20220706
+
+### data_analyzer
+
+重构bag.py，将所有对单个包的操作放到bag_manager类中，有bag_manager提供对外的接口
+
+测试bag.py功能：
+
+ 修复没有检测db文件夹的问题，修复两个数据类型的错误
+
+使用宁波现场测试的数据测试bag.py流程，能正常存储bag索引到db文件，并根据提供的时间搜索指定类型的数据。
+
+
+
+判断文件夹是否可写入，不可写入时db存放到/tmp中
+
+新接受消息task_state，查看对cpu影响

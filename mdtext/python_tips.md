@@ -1,3 +1,11 @@
+
+
+# 基础&理论
+
+
+
+
+
 ## 字典dict
 
 哈希表
@@ -10,6 +18,12 @@
 items = [('name','Gumby'),('age',42)]
 d = dict(items)
 d = dict(name='Gumby',age=42,height=1.76)
+```
+
+### 合并字典
+
+```
+dict2.update(dict1)
 ```
 
 
@@ -185,9 +199,694 @@ Python clear() 用来删除列表的所有元素，也即清空列表
 zip([iterable, ...])
 ```
 
+## 注解 typing
 
+用 : 类型 的形式指定函数的参数类型，用 -> 类型 的形式指定函数的返回值类型。
+
+### 类型别名
+
+适用于简化复杂的类型签名
+
+```
+Vector = list[floar]
+```
+
+### NewType
+
+使用 [`NewType`](https://docs.python.org/zh-cn/3/library/typing.html#typing.NewType) 助手来创建不同的类型
+
+```
+from typing import NewType
+
+UserId = NewType('UserId', int)
+some_id = UserId(524313)
+```
+
+### 可调对象（Callable）
+
+预期特定签名回调函数的框架可以用 `Callable[[Arg1Type, Arg2Type], ReturnType]` 实现类型提示。
+
+```
+from collections.abc import Callable
+
+def feeder(get_next_item: Callable[[], str]) -> None:
+    # Body
+
+def async_query(on_success: Callable[[int], None],
+                on_error: Callable[[int, Exception], None]) -> None:
+    # Body
+
+async def on_update(value: str) -> None:
+    # Body
+callback: Callable[[str], Awaitable[None]] = on_update
+```
+
+
+
+## [`inspect`](https://docs.python.org/3/library/inspect.html#module-inspect) — Inspect live objects
+
+
+
+## yield
+
+简单地讲，yield 的作用就是把一个函数变成一个 generator，带有 yield 的函数不再是一个普通函数，Python 解释器会将其视为一个 generator，调用 fab(5) 不会执行 fab 函数，而是返回一个 iterable 对象！在 for 循环执行时，每次循环都会执行 fab 函数内部的代码，执行到 yield b 时，fab 函数就返回一个迭代值，下次迭代时，代码从 yield b 的下一条语句继续执行，而函数的本地变量看起来和上次中断执行前是完全一样的，于是函数继续执行，直到再次遇到 yield。
+
+一个带有 yield 的函数就是一个 generator，它和普通函数不同，生成一个 generator 看起来像函数调用，但不会执行任何函数代码，直到对其调用 next()（在 for 循环中会自动调用 next()）才开始执行。虽然执行流程仍按函数的流程执行，但每执行到一个 yield 语句就会中断，并返回一个迭代值，下次执行时从 yield 的下一个语句继续执行。看起来就好像一个函数在正常执行的过程中被 yield 中断了数次，每次中断都会通过 yield 返回当前的迭代值。
+
+yield 的好处是显而易见的，把一个函数改写为一个 generator 就获得了迭代能力，比起用类的实例保存状态来计算下一个 next() 的值，不仅代码简洁，而且执行流程异常清晰。
+
+## lru_cache
+
+```
+import functools
+
+@functools.lru_cache()
+def xxx():
+```
+
+## 时间
+
+timestamp 转np.datetime64
+
+```
+t.to_datetime64()
+```
+
+
+
+# 面向对象
+
+## super
+
+**super()** 函数是用于调用父类(超类)的一个方法。
+
+**super()** 是用来解决多重继承问题的，直接用类名调用父类方法在使用单继承的时候没问题，但是如果使用多继承，会涉及到查找顺序（MRO）、重复调用（钻石继承）等种种问题。
+
+MRO 就是类的方法解析顺序表, 其实也就是继承父类方法时的顺序表。
+
+```
+super(B, self).add(x)
+super().add()
+super(LocalizationMsg, self).__init__()
+```
+
+## lru_cache
+
+```
+from functools import lru_cache
+```
+
+def lru_cache(maxsize=128, typed=False):
+
+maxsize:被装饰的方法最大可缓存结果数量,为None时表示可以缓存无限个结果
+
+typed:如果 *typed* 设置为true，不同类型的函数参数将被分别缓存
+
+清理缓存：
+
+cache_info 具名元组，包含命中次数 hits，未命中次数 misses ，最大缓存数量 maxsize 和 当前缓存大小 currsize
+
+```
+func为被修饰的函数
+cache_info = func.cache_info()
+if cache_info[3] > 0:
+    func.cache_clear()
+```
+
+
+
+## 执行系统命令
+
+os.system()
 
 # 库
+
+## import reportlib 生成pdf 
+
+https://zhuanlan.zhihu.com/p/318390273
+
+### PLATYPUS
+
+Platypus是“Page Layout and Typography Using Scripts”，是使用脚本的页面布局和印刷术的缩写，这是一个高层次页面布局库，它可以让你通过编程创造复杂的文档，并且毫不费力。
+
+Platypus设计的目的是**尽可能地将高层布局设计与文档内容分离**，比如，段落使用段落格式构造，页面使用页面模板，这样做是有好处的，在仅仅修改几行代码的情况下，包含数百个页面的数百个文档就能够被构造成不同的风格。
+
+Platypus从上到下，可以被看成具备多个层次。
+
+DocTemplates：文档最外层的容器
+
+PageTemplates：各种页面布局的规格
+
+Frames：包含流动的文本和图形的文档区域规范
+
+Flowables：能够被“流入文档”的文本、图形和段落等。
+
+![img](https://pic2.zhimg.com/80/v2-825211073a9973053d0ae81be7daf291_720w.jpg)
+
+### 元素间距&换页
+
+```
+from reportlab.lib.units import inch
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
+
+story.append(Spacer(1, 0.2*inch))
+
+from reportlab.platypus import SimpleDocTemplate, Paragraph, PageBreak
+story.append(PageBreak())
+```
+
+
+
+### 段落
+
+段落是一种重要的Flowables，它可以格式化任意的文本。
+
+**段落中主要包括两种信息：文本和格式。**
+
+下面的语句可以用来创建一个段落的实例。
+
+```
+Paragraph(text, style)
+```
+
+text参数提供了段落的文本，末尾和换行处的空白都会被删除。
+
+style参数用于设置段落的格式，这里段落的格式是指参数的集合，包括字体大小、行间距、首行缩进等参数。我们可以调用如下语句来获得默认段落格式。
+
+```
+from reportlab.lib.styles import ParagraphStyle
+```
+
+```
+class ParagraphStyle(PropertySet):
+    defaults = {
+        'fontName':_baseFontName,
+        'fontSize':10,
+        'leading':12,
+        'leftIndent':0,
+        'rightIndent':0,
+        'firstLineIndent':0,
+        'alignment':TA_LEFT,
+        'spaceBefore':0,
+        'spaceAfter':0,
+        'bulletFontName':_baseFontName,
+        'bulletFontSize':10,
+        'bulletIndent':0,
+        #'bulletColor':black,
+        'textColor': black,
+        'backColor':None,
+        'wordWrap':None,        #None means do nothing special
+                                #CJK use Chinese Line breaking
+                                #LTR RTL use left to right / right to left
+                                #with support from pyfribi2 if available
+        'borderWidth': 0,
+        'borderPadding': 0,
+        'borderColor': None,
+        'borderRadius': None,
+        'allowWidows': 1,
+        'allowOrphans': 0,
+        'textTransform':None,   #uppercase lowercase (captitalize not yet) or None or absent
+        'endDots':None,         #dots on the last line of left/right justified paras
+                                #string or object with text and optional fontName, fontSize, textColor & backColor
+                                #dy
+        'splitLongWords':1,     #make best efforts to split long words
+        'underlineWidth': _baseUnderlineWidth,  #underline width
+        'bulletAnchor': 'start',    #where the bullet is anchored ie start, middle, end or numeric
+        'justifyLastLine': 0,   #n allow justification on the last line for more than n words 0 means don't bother
+        'justifyBreaks': 0,     #justify lines broken with <br/>
+        'spaceShrinkage': _spaceShrinkage,  #allow shrinkage of percentage of space to fit on line
+        'strikeWidth': _baseStrikeWidth,    #stroke width
+        'underlineOffset': _baseUnderlineOffset,    #fraction of fontsize to offset underlines
+        'underlineGap': _baseUnderlineGap,      #gap for double/triple underline
+        'strikeOffset': _baseStrikeOffset,  #fraction of fontsize to offset strikethrough
+        'strikeGap': _baseStrikeGap,        #gap for double/triple strike
+        'linkUnderline': _platypus_link_underline,
+        #'underlineColor':  None,
+        #'strikeColor': None,
+        'hyphenationLang': _hyphenationLang,
+        #'hyphenationMinWordLength': _hyphenationMinWordLength,
+        'embeddedHyphenation': _embeddedHyphenation,
+        'uriWasteReduce': _uriWasteReduce,
+        }
+```
+
+参数说明：
+
+- fontName：字体名称
+- fontSize：字体大小
+- leading：行间距
+- leftIndent：左缩进
+- rightIndent：右缩进
+- firstLineIndent：首行缩进
+- alignment：对齐方式
+- spaceBefore：段前间隙
+- spaceAfter：段后间隙
+- bulletFontName：列表名称
+- bulletFontSize：列表字体大小
+- bulletIndent：列表缩进
+- textColor：字体颜色
+- backColor：背景色
+- borderWidth：边框粗细
+- borderPadding：边框间距
+- borderColor：边框颜色
+
+获得简单的预定义格式：
+
+```
+from reportlab.lib.styles import getSampleStyleSheet
+stylesheet=getSampleStyleSheet()
+normalStyle = stylesheet['Normal']
+```
+
+可用格式：
+
+- Normal
+- BodyText
+- Italic
+- Heading1
+- Title
+- Heading2
+- Heading3
+- Heading4
+- Heading5
+- Heading6
+- Bullet
+- Definition
+- Code
+- UnorderedList
+- OrderedList
+
+### 表格
+
+表格是Flowable的派生类，是一种简单文本表格机制。表格可以保存所有能被转换为字符串或Flowerable是所有事物。
+
+如果我们不提供行高，它们可以根据数据自动计算出行高。
+
+如果需要，它们可以跨页分割，你可以指定跨页分割后，需要重复的行数。
+
+表格风格和表格数据是分离的，因此你可以声明一系列的风格，然后将它们用于一大堆报告。
+
+表格使用如下代码进行创建：
+
+```
+Table(data, colWidths=None, rowHeights=None, style=None, splitByRow=1,
+repeatRows=0, repeatCols=0, rowSplitRange=None, spaceBefore=None,
+spaceAfter=None)
+```
+
+#### 参数：
+
+- data：数据参数是一系列的表格值，每个表格值能够被转换为字符串或者Flowable实例。data值的第一行是data[0]，第i行j列表格值是data[i] [j]。
+- colWidths：是一系列值，这些值代表每列的宽度。如果传递的是None，则对应列宽需要被自动计算。
+- rowHeights：是一系列值，这些值代表每行的高度。如果传递的是None，则对应的行高需要被自动计算。
+- style：表格被创建时的初始样式值。
+- splitByRow：布尔值，当指定值为1时，允许跨页分割表格，当指定指为0时，不允许跨页分割表格。
+- repeatRows：指定跨页分行时，需要重复的行数。
+- repeatCols：暂时没用。
+- spaceBefore：指定表格前的行数。
+- spaceAfter：指定表格后的行数。
+
+ex：
+
+```
+from reportlab.platypus import SimpleDocTemplate, Table
+from reportlab.lib.styles import getSampleStyleSheet
+
+# 调用模板，创建指定名称的PDF文档
+doc = SimpleDocTemplate("Hello.pdf")
+# 获得模板表格
+styles = getSampleStyleSheet()
+# 指定模板
+style = styles['Normal']
+# 初始化内容
+story =[]
+
+# 初始化表格内容
+data= [['00', '01', '02', '03', '04'],
+       ['10', '11', '12', '13', '14'],
+       ['20', '21', '22', '23', '24'],
+       ['30', '31', '32', '33', '34']]
+
+# 根据内容创建表格
+t = Table(data)
+# 将表格添加到内容中
+story.append(t)
+# 将内容输出到PDF中
+doc.build(story)
+```
+
+#### 表格格式：
+
+指定表格格式有两种方式，一种是在调用创建表格接口时，传入style参数，一种是在创建完表格后，调用如下接口：
+
+```
+Table.setStyle(tblStyle)
+```
+
+##### **直接传入style参数**
+
+```
+from reportlab.platypus import SimpleDocTemplate, Table
+from reportlab.lib import colors
+from reportlab.lib.styles import getSampleStyleSheet
+
+doc = SimpleDocTemplate("Hello.pdf")
+styles = getSampleStyleSheet()
+style = styles['Normal']
+story =[]
+
+data= [['00', '01', '02', '03', '04'],
+['10', '11', '12', '13', '14'],
+['20', '21', '22', '23', '24'],
+['30', '31', '32', '33', '34']]
+
+t=Table(data,style=[
+('GRID',(0,0),(-1,-1),1,colors.grey),
+('GRID',(1,1),(-2,-2),1,colors.green),
+('BOX',(0,0),(1,-1),2,colors.red),
+('BACKGROUND', (0, 0), (0, 1), colors.pink),
+('BACKGROUND', (1, 1), (1, 2), colors.lavender),
+('BACKGROUND', (2, 2), (2, 3), colors.orange),
+])
+
+story.append(t)
+doc.build(story)
+```
+
+##### **调用setStyle**	
+
+```
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
+from reportlab.lib import colors
+from reportlab.lib.styles import getSampleStyleSheet
+
+doc = SimpleDocTemplate("Hello.pdf")
+styles = getSampleStyleSheet()
+style = styles['Normal']
+story =[]
+
+data= [['00', '01', '02', '03', '04'],
+['10', '11', '12', '13', '14'],
+['20', '21', '22', '23', '24'],
+['30', '31', '32', '33', '34']]
+
+t=Table(data)
+
+t.setStyle(TableStyle(
+    [('INNERGRID', (0,0), (-1,-1), 0.25, colors.black),
+     ('BOX', (0,0), (-1,-1), 2, colors.black),
+     ('LINEBELOW', (0,0), (-1,0), 2, colors.yellow),
+     ('LINEAFTER', (0,0), (0,-1), 2, colors.blue),
+     ('ALIGN', (1,1), (-1,-1), 'RIGHT')]
+    ))
+
+story.append(t)
+doc.build(story)
+
+```
+
+#### 格式化命令
+
+- FONTNAME：字体名称
+- FONTSIZE：字体大小
+- LEADING：行间距
+- TEXTCOLOR：字体颜色
+- ALIGNMENT：水平对齐方式（可选值："LEFT"，”RIGHT“，”CENTER“）
+- LEFTPADDING：左边填充
+- RIGHTPADDING：右边填充
+- BOTTOMPADDING：底部填充
+- TOPPADDING：顶部填充
+- BACKGROUND：背景色
+- VALIGN：垂直对齐方式（可选值："TOP"，“MIDDLE”，“BOTTOM”）
+- GRID：表格颜色，被指定的行列中的所有子行和子列都被设置成相应颜色
+- INNERGRID：表格颜色，仅仅修改指定的子行和子列的相应颜色（不包括边框）
+- BOX：边框颜色，被指定的边框的颜色
+- LINEBELOW：指定块底部的行颜色
+- LINEAFTER：指定块右边的行颜色。
+
+### 图片
+
+图片的调用接口比较简单，在调用该接口时，支持默认的jpeg格式。接口如下：
+
+```
+Image(filename, width=None, height=None)
+```
+
+#### 参数
+
+- filename：指定文件名
+- width：指定图片的宽度
+- height：指定图片的高度
+
+ex：
+
+```
+from reportlab.platypus import SimpleDocTemplate, Image
+
+from reportlab.lib.styles import getSampleStyleSheet
+
+doc = SimpleDocTemplate("Hello.pdf")
+styles = getSampleStyleSheet()
+style = styles['Normal']
+story =[]
+
+t = Image("C:\\Users\\Administrator\\Desktop\\timg.jpg")
+story.append(t)
+
+doc.build(story)
+```
+
+## import docx生成word
+
+conda :
+
+```
+conda install -c conda-forge python-docx
+```
+
+pip
+
+```
+pip install python-docx
+```
+
+### 常用函数
+
+```
+from docx import Document
+from docx.shared import Pt, RGBColor
+from docx.oxml.ns import qn
+from docx.enum.table import WD_TABLE_ALIGNMENT
+from docx.enum.text import WD_ALIGN_PARAGRAPH
+```
+
+#### 添加标题
+
+```
+doc.add_heading(title, level)
+设置居中：
+paragraph = doc.add_heading(title, level)
+paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
+```
+
+#### 添加段落
+
+```
+paragraph = doc.add_paragraph(text, style)
+设置字体：
+run = paragraph.add_run()
+run.font.size = Pt(9)
+```
+
+#### 添加表格
+
+```
+table = doc.add_table(rows, cols)
+设置
+table.style = "Table Grid"
+table.alignment= WD_TABLE_ALIGNMENT.CENTER
+访问单元格：
+table.cell(x,y).text = ""
+table.rows[0].cells
+table.columns[0].cells
+```
+
+
+
+#### 保存doc
+
+```
+doc.save(filepath)
+```
+
+
+
+## import tqdm
+
+tqdm模块是python进度条库, 主要分为两种运行模式
+
+1. 基于迭代对象运行: tqdm(iterator)
+
+2. 手动进行更新
+
+```
+class tqdm(object):
+  """
+  Decorate an iterable object, returning an iterator which acts exactly
+  like the original iterable, but prints a dynamically updating
+  progressbar every time a value is requested.
+  """
+
+  def __init__(self, iterable=None, desc=None, total=None, leave=False,
+               file=sys.stderr, ncols=None, mininterval=0.1,
+               maxinterval=10.0, miniters=None, ascii=None,
+               disable=False, unit='it', unit_scale=False,
+               dynamic_ncols=False, smoothing=0.3, nested=False,
+               bar_format=None, initial=0, gui=False):
+```
+
+- iterable: 可迭代的对象, 在手动更新时不需要进行设置
+- desc: 字符串, 左边进度条描述文字
+- total: 总的项目数
+- leave: bool值, 迭代完成后是否保留进度条
+- file: 输出指向位置, 默认是终端, 一般不需要设置
+- ncols: 调整进度条宽度, 默认是根据环境自动调节长度, 如果设置为0, 就没有进度条, 只有输出的信息
+- unit: 描述处理项目的文字, 默认是'it', 例如: 100 it/s, 处理照片的话设置为'img' ,则为 100 img/s
+- unit_scale: 自动根据国际标准进行项目处理速度单位的换算, 例如 100000 it/s >> 100k it/s
+
+## import logging
+
+### 基础设置
+
+```
+logging.basicConfig()
+参数：
+filename
+filemode 使用filemode='w',每次执行将会覆盖之前的log
+encoding
+level
+```
+
+### 设置显示日期和时间
+
+```
+import logging
+logging.basicConfig(format='%(asctime)s %(message)s')
+logging.warning('is when this event was logged.')
+```
+
+## 进阶
+
+Logger类
+
+```python
+logger = logging.getLogger(__name__)
+```
+
+
+
+## import pyplot
+
+### 基础
+
+#### 绘图函数
+
+plot 折线图
+
+```
+参数：颜色与线形（同matlab）
+plt.plot(x_data,y_data,'ro')
+```
+
+scatter 散点图
+
+```
+matplotlib.pyplot.scatter(x, y, s=None, c=None, marker=None, cmap=None, norm=None, vmin=None, vmax=None, alpha=None, linewidths=None, *, edgecolors=None, plotnonfinite=False, data=None, **kwargs)
+```
+
+参数说明
+
+x，y：长度相同的数组，也就是我们即将绘制散点图的数据点，输入数据。
+
+s：点的大小，默认 20，也可以是个数组，数组每个参数为对应点的大小。
+
+c：点的颜色，默认蓝色 'b'，也可以是个 RGB 或 RGBA 二维行数组。
+
+marker：点的样式，默认小圆圈 'o'。
+
+cmap：Colormap，默认 None，标量或者是一个 colormap 的名字，只有 c 是一个浮点数数组的时才使用。如果没有申明就是 image.cmap。
+
+norm：Normalize，默认 None，数据亮度在 0-1 之间，只有 c 是一个浮点数的数组的时才使用。
+
+vmin，vmax：：亮度设置，在 norm 参数存在时会忽略。
+
+alpha：：透明度设置，0-1 之间，默认 None，即不透明。
+
+linewidths：：标记点的长度。
+
+edgecolors：：颜色或颜色序列，默认为 'face'，可选值有 'face', 'none', None。
+
+plotnonfinite：：布尔值，设置是否使用非限定的 c ( inf, -inf 或 nan) 绘制点。
+
+**kwargs：：其他参数。
+
+data:  **可索引对象，可选** 如果给定，以下参数也接受一个字符串`s`，它被解释为`data[s]`（除非这引发异常）：
+
+*x* , *y* , *s* ,*线宽*, *edgecolors* , *c* , *facecolor* , *facecolors* , *color*
+
+### 绘制时间数据
+
+需要使用np库，将时间首先转换为datetime,然后使用np.datetime64()转换为datetime64类型即可。
+
+坐标轴范围使用plt.xticks()设置，可使用pd.date_range设置时间范围：
+
+```
+plt.xticks(pd.date_range(f"{self.date} 8:00", f"{self.date} 23:00", freq="1h"))
+```
+
+### 让图像分布均匀
+
+使用自定义比例
+
+*class* **matplotlib.scale.****FuncScale****(***axis***,** *functions***)**
+
+
+
+## import ipdb 
+
+设置断点：
+
+```
+ipdb.set_trace()
+```
+
+启动命令式：
+
+```
+python -m ipdb code.py
+```
+
+
+
+```
+ENTER(重复上次命令)
+c(继续)
+l(查找当前位于哪里)
+s(进入子程序)
+r(运行直到子程序结束)
+!<python 命令>
+h(帮助)
+a(rgs) 打印当前函数的参数
+j(ump) 让程序跳转到指定的行数
+l(ist) 可以列出当前将要运行的代码块
+n(ext) 让程序运行下一行，如果当前语句有一个函数调用，用 n 是不会进入被调用的函数体中的
+p(rint) 最有用的命令之一，打印某个变量
+q(uit) 退出调试
+r(eturn) 继续执行，直到函数体返回
+s(tep) 跟 n 相似，但是如果当前有一个函数调用，那么 s 会进入被调用的函数体中
+```
+
+
 
 ## threading 线程锁
 
@@ -211,6 +910,10 @@ json.loads()    将已编码的 JSON 字符串解码为 Python 对象
 
 
 ## import argparse
+
+https://docs.python.org/zh-cn/3/library/argparse.html#the-add-argument-method
+
+https://docs.python.org/zh-cn/3/howto/argparse.html
 
 对命令行参数进行操作
 
@@ -283,9 +986,86 @@ time.strftime(format[, t])
 
 返回以可读字符串表示的当地时间
 
+### time.gmtime()
+
+gmtime() 函数将一个时间戳转换为UTC时区（0时区）的struct_time，可选的参数sec表示从1970-1-1以来的秒数。其默认值为time.time()，函数返回time.struct_time类型的对象。
+
 ## import numpy
 
+### 随机数
 
+#### rand
+
+numpy.random.rand(d0, d1, …, dn)，产生[0,1)之间均匀分布的随机浮点数，其中d0，d1....表示传入的数组形状。
+
+```
+生成含有2个元素的一维数组
+np.random.rand(2)
+生成2*4的二维数组
+np.random.rand(2,4)
+```
+
+#### randn
+
+numpy.random.randn(d0, d1, …, dn)从标准正态分布中返回一个或多个样本值。 参数表示样本的形状。所谓标准正态分布就是指这个函数产生的随机数，服从均值为0，方差为1的分布，使用方法和rand()类似。
+
+#### random
+
+numpy.random.random()方法返回随机生成的一个实数（浮点数），它在[0,1)范围内。
+
+```
+生成一个2*4的随机数组
+numpy.random.random((2,4))
+```
+
+这边需要注意的是这个函数的参数，只有一个参数“size”，有三种取值，None，int型整数，或者int型元组。
+
+#### randint
+
+用于生成指定范围内的整数。
+
+```
+np.random.randint(0,50,50)
+```
+
+具体函数：randint(low, high=None, size=None, dtype='l')
+
+其中low是整型元素，表示范围的下限，可以取到。high表示范围的上限，不能取到。也就是左闭右开区间。
+
+high没有填写时，默认生成随机数的范围是[0，low)
+
+size可以是int整数，或者int型的元组，表示产生随机数的个数，或者随机数组的形状。
+
+dtype表示具体随机数的类型，默认是int，可以指定成int64。
+
+#### uniform
+
+从指定范围内产生均匀分布的随机浮点数
+
+```
+#默认产生一个[0,1)之间随机浮点数
+temp=np.random.uniform()
+```
+
+函数：uniform(low=0.0, high=1.0, size=None)
+
+low表示范围的下限，float型，或float型数组，默认为0.0.
+
+high表示范围的上限，float型，或float型数组，默认为1.0.
+
+size表示“形状”或“个数”，int型，或int型元组，默认为None。
+
+* 如果范围只有一个参数num，
+
+如果num小于1，那么随机数的范围是[0,num)
+
+如果num大于1，那么随机数的范围是[1,num)
+
+如果num等于1，那么产生的随机数全是1。
+
+#### seed
+
+np.random.seed()
 
 ## import pandas
 
@@ -409,13 +1189,39 @@ DataFrame.to_excel(excel_writer, sheet_name='Sheet1', na_rep='', float_format=No
 >
 > *0.20.0 版中的新功能。*
 
+### pandas.data_range
+
+https://pandas.pydata.org/docs/reference/api/pandas.date_range.html
+
+按照指定的时间区间与时间间隔生成序列
+
+```
+pandas.date_range(start=None, end=None, periods=None, freq=None, tz=None, normalize=False, name=None, closed=NoDefault.no_default, inclusive=None, **kwargs)
+```
+
 
 
 ## import psutil
 
 
 
+## import os
 
+查看文件权限：
+
+返回bool值
+
+```
+os.access()
+```
+
+os.F_OK: 检查文件或文件夹是否存在;
+
+os.R_OK: 检查文件或文件夹是否可读;
+
+os.W_OK: 检查文件或文件夹是否可以写入;
+
+os.X_OK: 检查文件或文件夹是否可以执行
 
 ## os.system()
 

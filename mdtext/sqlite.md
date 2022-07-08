@@ -435,6 +435,64 @@ CREATE TABLE COMPANY(
 
 # SQLAlchemy
 
+## session
+
+## 批量操作
+
+批量插入
+
+```
+session.bulk_insert_mappings(ModelClass, list(dict()))   此方法插入数据格式为字典
+session.bulk_save_objects(ModelClass, list(dict())) 
+```
+
+批量更新
+
+```
+session.bulk_update_mappings(ModelClass, list(dict()))     
+```
+
+
+
+## 查询
+
+### 判断字段为空：
+
+table.field is None是错误的写法，会直接被解释器忽略
+
+```
+table.is_(None)
+table.isnot(None)
+```
+
+### 多条件查询：
+
+与：
+
+```
+
+from sqlalchemy import and_
+ 
+query.filter(and_(User.name == 'ed', User.fullname == 'Ed Jones'))
+query.filter(User.name == 'ed', User.fullname == 'Ed Jones')
+query.filter(User.name == 'ed').filter(User.fullname == 'Ed Jones')
+```
+
+或
+
+```
+from sqlalchemy import or_
+query.filter(or_(User.name == 'ed', User.name == 'wendy'))
+```
+
+match
+
+```
+query.filter(User.name.match('wendy'))
+```
+
+
+
 ## 建立与数据库的连接
 
 ### sqlite示例

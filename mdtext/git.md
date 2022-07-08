@@ -82,6 +82,7 @@ git submodule init 初始化本地配置文件
 git submodule update 从项目中抓取所有数据并检出父项目中列出的合适的提交。
 或者合成一步：
 git submodule update --init
+git submodule update --init --recursive 递归更新所有子模块（包括子模块的子模块）
 ```
 
 #### 更简单的方式
@@ -249,6 +250,7 @@ ssh-keygen -o
 
 ```
 git push -u <远程仓库名> <本地分支名>
+git branch --set-upstream-to=origin/<branch> master
 ```
 
 ## 查看远程仓库
@@ -442,11 +444,21 @@ git checkout branch_name
 
 ## 删除分支
 
+删除本地分支
+
 ```
 git branch -d branch_name
 ```
 
+删除远程分支
+
+```
+git push origin --delete branch_name
+```
+
 - - -
+
+
 
 ## git log 查看历史提交日志
 
